@@ -60,5 +60,6 @@ gem 'rmagick',                  '~> 2.12.0', rmagick_options
 
 # USER DEFINED
 gem 'haml'
+gem 'deodar', '~> 1.0.0.0.1', :git => 'git://github.com/AlexisMasters/deodar.git'
 
 # END USER DEFINED
