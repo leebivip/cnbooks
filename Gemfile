@@ -39,7 +39,9 @@ gem 'refinerycms-inquiries',    '~> 0.9.8.8'
 gem 'refinerycms-news',       '~> 0.9.9'
 # gem 'refinerycms-portfolio',  '~> 0.9.8'
 # gem 'refinerycms-theming',    '~> 0.9.8'
+
 gem 'refinerycms-blog', '~> 1.0.13.0.3', :git => 'git://github.com/dsaronin/refinerycms-blog.git'
+gem 'refinerycms-galleries', '~> 0.4.0.2', :require => 'galleries', :git => 'git://github.com/dsaronin/refinerycms-galleries.git'
 
 # Add i18n support (optional, you can remove this if you really want to).
 gem 'refinerycms-i18n',         '~> 0.9.8.7'
