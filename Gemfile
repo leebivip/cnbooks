@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.1'
+gem 'rails', '3.0.3'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -32,7 +32,7 @@ gem 'aws-s3', :require => 'aws/s3'
 # REFINERY CMS ================================================================
 
 # Specify the Refinery CMS core:
-gem 'refinerycms',              '~> 0.9.8.5'
+gem 'refinerycms',              '= 0.9.8.6'
 
 # Specify additional Refinery CMS Engines here (all optional):
 gem 'refinerycms-inquiries',    '~> 0.9.8.8'
@@ -60,6 +60,6 @@ gem 'rmagick',                  '~> 2.12.0', rmagick_options
 
 # USER DEFINED
 gem 'haml'
-gem 'deodar', '~> 1.0.0.0.1', :git => 'git://github.com/AlexisMasters/deodar.git'
+gem 'deodar', '1.0.0.1.1', :git => 'git://github.com/AlexisMasters/deodar.git'
 
 # END USER DEFINED
