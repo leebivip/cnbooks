@@ -1,11 +1,4 @@
 GIT
-  remote: git://github.com/AlexisMasters/deodar.git
-  revision: 1c0b6e2320a0f0d898370e043380579e634b17f5
-  specs:
-    deodar (1.0.0.1.1)
-      refinerycms (>= 0.9.8.5)
-
-GIT
   remote: git://github.com/dsaronin/refinerycms-blog.git
   revision: 815d1fd277b7b8d80440ef4a168f329d4aa80a8d
   specs:
@@ -135,7 +128,6 @@ PLATFORMS
 
 DEPENDENCIES
   aws-s3
-  deodar (= 1.0.0.1.1)!
   haml
   pg
   rails (= 3.0.3)
