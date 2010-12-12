@@ -3,63 +3,61 @@
 // ---------------------------------------------------------------------
 // standard color & other variables
 // ---------------------------------------------------------------------
-!BASIC_FG    =    #000000
-!BASIC_BG    =    #FFFFFF
+$BASIC_FG: black
+$BASIC_BG: white
 
-!FG_ERROR  =  #C6130A
-!FG_ERROR_SHADOW  =  #620D10
+$FG_ERROR: #c6130a
+$FG_ERROR_SHADOW: #620d10
 
-!BG_HEADER  = !BASIC_FG 
-!FG_HEADER  = #8daEaE    
-!HV_HEADER  = !BASIC_BG
+$BG_HEADER: $BASIC_FG
+$FG_HEADER: #8daeae
+$HV_HEADER: $BASIC_BG
 
-!BG_FOOTER  = !BG_HEADER
-!FG_FOOTER  = #49466D
+$BG_FOOTER: $BG_HEADER
+$FG_FOOTER: #49466d
 
-!BG_CENTRALBOX  = #0F1D23    
-!FG_CENTRALBOX   = #F7F8F8
-!FG_CENTRALBOX_BORDER   = #9F9F9F
+$BG_CENTRALBOX: #0f1d23
+$FG_CENTRALBOX: #f7f8f8
+$FG_CENTRALBOX_BORDER: #9f9f9f
 
-!BG_MAINPAGE  = #dfdfdf
-!FG_MAINPAGE  = !BG_CENTRALBOX
-
+$BG_MAINPAGE: #dfdfdf
+$FG_MAINPAGE: $BG_CENTRALBOX
 
 // DIMENSIONS
 
-!CENTRAL_WIDTH  = 740px
-!ASIDE_WIDTH    = 215px
-!HORIZONTAL_MARGIN = 7px
-!CONTAINER_WIDTH  = !CENTRAL_WIDTH + !ASIDE_WIDTH + !HORIZONTAL_MARGIN
-!CONTAINER_WIDTH_PDF = 185mm
-!PAGE_HEIGHT = 225mm
+$CENTRAL_WIDTH: 740px
+$ASIDE_WIDTH: 215px
+$HORIZONTAL_MARGIN: 7px
+$CONTAINER_WIDTH: $CENTRAL_WIDTH + $ASIDE_WIDTH + $HORIZONTAL_MARGIN
+$CONTAINER_WIDTH_PDF: 185mm
+$PAGE_HEIGHT: 225mm
 
-!CENTRAL_HEIGHT          = 335px
-!CENTRAL_WORK_HEIGHT     = 450px
+$CENTRAL_HEIGHT: 335px
+$CENTRAL_WORK_HEIGHT: 450px
 
-!SPLASH_HEIGHT  =  !CENTRAL_WORK_HEIGHT - 20
-!SPLASH_WIDTH   =  !CENTRAL_WIDTH - 30
+$SPLASH_HEIGHT: $CENTRAL_WORK_HEIGHT - 20
+$SPLASH_WIDTH: $CENTRAL_WIDTH - 30
 
-!HEADER_HEIGHT  = 35px
-
+$HEADER_HEIGHT: 35px
 
 // MIX-INS
 
-=BEVEL_CORNER(!RADIUS)
-  -moz-border-radius = !RADIUS
-  -webkit-border-radius = !RADIUS
+=BEVEL_CORNER($RADIUS)
+  -moz-border-radius: $RADIUS
+  -webkit-border-radius: $RADIUS
 
-=GRADIENT_BOX(!LIGHT,!DARK)
-  background-image = "-moz-linear-gradient(bottom, #{!LIGHT}, #{!DARK}, #{!LIGHT} )"
-  background-image = "-webkit-gradient(linear,left bottom, left top, color-stop(0, #{!LIGHT}), color-stop(0.4, #{!DARK}), color-stop(1, #{!LIGHT})  )"
+=GRADIENT_BOX($LIGHT, $DARK)
+  background-image: unquote("-moz-linear-gradient(bottom, #{$LIGHT}, #{$DARK}, #{$LIGHT} )")
+  background-image: unquote("-webkit-gradient(linear,left bottom, left top, color-stop(0, #{$LIGHT}), color-stop(0.4, #{$DARK}), color-stop(1, #{$LIGHT})  )")
 
 html
-  color: !BASIC_FG
-  background-color: !BG_MAINPAGE
-  font-family: 'Myriad Web','Myriad Pro', Helvetica, Verdana, Arial, Tahoma, Sans-Serif
+  color: $BASIC_FG
+  background-color: $BG_MAINPAGE
+  font-family: "Myriad Web", "Myriad Pro", Helvetica, Verdana, Arial, Tahoma, Sans-Serif
 
 body
-  color: !BG_CENTRALBOX
-  background: "#{!BG_MAINPAGE} url(../images/container_bkgd.png) repeat-x 0px 30px"
+  color: $BG_CENTRALBOX
+  background: "#{$BG_MAINPAGE} url(../images/container_bkgd.png) repeat-x 0px 30px"
   margin: 0px
   padding: 0px
 
@@ -90,12 +88,12 @@ body
 
 #header
   /* background: url('../images/header_background.png') repeat-x;
-  background: #000
+  background: black
 
 #header_content
   position: relative
   height: 65px
-  background: url('../images/header_logo.png') 0px 15px no-repeat
+  background: url("../images/header_logo.png") 0px 15px no-repeat
   h1
     color: #feffff
     font-size: 24px
@@ -173,12 +171,11 @@ body
 
 #footer
   margin-top: 200px
-  background: url('../images/footer_background.png') repeat-x
+  background: url("../images/footer_background.png") repeat-x
 
 #footer_content
   height: 45px
-  background: url('../images/tas_bigger-35.png') 950px 5px no-repeat
-  
+  background: url("../images/tas_bigger-35.png") 950px 5px no-repeat
   p
     padding: 15px 50px
     text-align: right
