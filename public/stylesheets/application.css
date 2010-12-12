@@ -1,7 +1,11 @@
-@import url('/stylesheets/refinery/application.css');
-/*  Override default refinery application CSS below.
- *  Formatting applies to all frontend. */
+html {
+  color: black;
+  background-color: #dfdfdf;
+  font-family: "Myriad Web", "Myriad Pro", Helvetica, Verdana, Arial, Tahoma, Sans-Serif; }
+
 body {
+  color: #0f1d23;
+  background: "#dfdfdf url(../images/container_bkgd.png) repeat-x 0px 30px";
   margin: 0px;
   padding: 0px; }
 
