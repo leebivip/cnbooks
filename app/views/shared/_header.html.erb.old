@@ -1,7 +1,0 @@
-<div id='header_content'>
-  <%= render :partial => "/shared/menu",
-             :locals => {
-               :dom_id => 'menu',
-               :css => 'menu'
-             } -%>
-</div>
