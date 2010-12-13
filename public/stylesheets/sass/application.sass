@@ -11,34 +11,49 @@ $FG_ERROR_SHADOW: #620d10
 
 $BG_HEADER: $BASIC_FG
 $FG_HEADER: #8daeae
-$HV_HEADER: $BASIC_BG
+  
+$BG_NAV: $BG_HEADER
+$FG_NAV: $FG_HEADER
+$HV_NAV: $BASIC_BG
 
 $BG_FOOTER: $BG_HEADER
 $FG_FOOTER: #49466d
 
-$BG_CENTRALBOX: #0f1d23
-$FG_CENTRALBOX: #f7f8f8
-$FG_CENTRALBOX_BORDER: #9f9f9f
+$BG_SIDEBAR: #0f1d23
+$FG_SIDEBAR: #f7f8f8
 
 $BG_MAINPAGE: #dfdfdf
-$FG_MAINPAGE: $BG_CENTRALBOX
+$FG_MAINPAGE: $BASIC_FG
 
 // DIMENSIONS
 
-$CENTRAL_WIDTH: 740px
-$ASIDE_WIDTH: 215px
-$HORIZONTAL_MARGIN: 7px
-$CONTAINER_WIDTH: $CENTRAL_WIDTH + $ASIDE_WIDTH + $HORIZONTAL_MARGIN
-$CONTAINER_WIDTH_PDF: 185mm
-$PAGE_HEIGHT: 225mm
+    // VIEWPORT is the viewing area "above the fold"
+$VIEWPORT_WIDTH: 1024px
+$VIEWPORT_HEIGHT: 768px
 
-$CENTRAL_HEIGHT: 335px
-$CENTRAL_WORK_HEIGHT: 450px
+$MASTHEAD_HEIGHT: 80px
+$MASTHEAD_PHANTOM_HEIGHT: 0px    // presence utilizes background image
+$NAV_HEIGHT: 20px
 
-$SPLASH_HEIGHT: $CENTRAL_WORK_HEIGHT - 20
-$SPLASH_WIDTH: $CENTRAL_WIDTH - 30
+$HEADER_HEIGHT: $MASTHEAD_HEIGHT + $NAV_HEIGHT
 
-$HEADER_HEIGHT: 35px
+$FOOTER_HEIGHT: 35px
+
+$STANDARD_MARGIN: 5px
+
+$SIDEBAR_INNER_WIDTH: 220px
+$SIDEBAR_LEFT_MARGIN: $STANDARD_MARGIN
+$SIDEBAR_RIGHT_MARGIN: $STANDARD_MARGIN
+$SIDEBAR_WIDTH: $SIDEBAR_INNER_WIDTH + $SIDEBAR_LEFT_MARGIN + $SIDEBAR_RIGHT_MARGIN
+
+$MAIN_LEFT_MARGIN: $STANDARD_MARGIN
+$MAIN_RIGHT_MARGIN: $STANDARD_MARGIN
+$MAIN_TOP_MARGIN: $STANDARD_MARGIN
+$MAIN_BTM_MARGIN: $STANDARD_MARGIN
+
+$MAIN_CONTENT_WIDTH: $VIEWPORT_WIDTH - $MAIN_LEFT_MARGIN - $MAIN_RIGHT_MARGIN - $SIDEBAR_WIDTH
+$MAIN_CONTENT_HEIGHT: $VIEWPORT_HEIGHT - $MASTHEAD_HEIGHT - $MASTHEAD_PHANTOM_HEIGHT - $HEADER_HEIGHT - $MAIN_TOP_MARGIN - $MAIN_BTM_MARGIN
+
 
 // MIX-INS
 
@@ -49,8 +64,6 @@ $HEADER_HEIGHT: 35px
 =GRADIENT_BOX($LIGHT, $DARK)
   background-image: unquote("-moz-linear-gradient(bottom, #{$LIGHT}, #{$DARK}, #{$LIGHT} )")
   background-image: unquote("-webkit-gradient(linear,left bottom, left top, color-stop(0, #{$LIGHT}), color-stop(0.4, #{$DARK}), color-stop(1, #{$LIGHT})  )")
-
-html
 
 body
   margin: 0px
@@ -78,6 +91,16 @@ body
   min-height: 430px
   width: 990px
   margin: 0px auto
+
+#footer
+  background: #000 url("../images/footer_background.png") repeat-x
+  
+#footer_content
+  height: 45px
+  background: url("../images/tas_bigger-35.png") 950px 5px no-repeat
+  p
+    padding: 15px 50px
+    text-align: right
 
 #header_content, #footer_content, #site_bar_content
   width: 990px
@@ -133,24 +156,20 @@ body
     &.selected a, &:hover a, a:hover, ul li a:hover
       color: #32322b
       background: #d8d8d8
-      -moz-border-radius: 5px
-      -webkit-border-radius: 5px
+      +BEVEL_CORNER(5px)
   div.selected a
     color: #32322b
     background: #d8d8d8
-    -moz-border-radius: 5px
-    -webkit-border-radius: 5px
+    +BEVEL_CORNER(5px)
   a
     &.selected, &:hover
       color: #32322b
       background: #d8d8d8
-      -moz-border-radius: 5px
-      -webkit-border-radius: 5px
+      +BEVEL_CORNER(5px)
   div:hover > a
     color: #32322b
     background: #d8d8d8
-    -moz-border-radius: 5px
-    -webkit-border-radius: 5px
+    +BEVEL_CORNER(5px)
   li ul, nav
     position: absolute
     left: -99999px
@@ -159,22 +178,11 @@ body
     min-width: 140px
     max-width: 300px
     background: #d8d8d8
-    -moz-border-radius: 5px
-    -webkit-border-radius: 5px
+    +BEVEL_CORNER(5px)
   li ul li, nav a
     float: left
   li:hover ul, div:hover nav
     left: auto
-
-#footer
-  background: #000 url("../images/footer_background.png") repeat-x
-  
-#footer_content
-  height: 45px
-  background: url("../images/tas_bigger-35.png") 950px 5px no-repeat
-  p
-    padding: 15px 50px
-    text-align: right
 
 .inquiries
   .field input

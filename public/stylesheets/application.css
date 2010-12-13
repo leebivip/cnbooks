@@ -25,6 +25,16 @@ body {
   width: 990px;
   margin: 0px auto; }
 
+#footer {
+  background: black url("../images/footer_background.png") repeat-x; }
+
+#footer_content {
+  height: 45px;
+  background: url("../images/tas_bigger-35.png") 950px 5px no-repeat; }
+  #footer_content p {
+    padding: 15px 50px;
+    text-align: right; }
+
 #header_content, #footer_content, #site_bar_content {
   width: 990px;
   margin: 0px auto; }
@@ -108,16 +118,6 @@ body {
   float: left; }
 #menu li:hover ul, #menu div:hover nav {
   left: auto; }
-
-#footer {
-  background: black url("../images/footer_background.png") repeat-x; }
-
-#footer_content {
-  height: 45px;
-  background: url("../images/tas_bigger-35.png") 950px 5px no-repeat; }
-  #footer_content p {
-    padding: 15px 50px;
-    text-align: right; }
 
 .inquiries .field input {
   border: 1px solid #75766f;
