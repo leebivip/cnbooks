@@ -11,9 +11,9 @@
     #site_bar_content.clearfix
       #editor_switch
         = site_bar_switch_link
-      = link_to image_tag("#{"http://refinerycms.com/images/" unless local_request?}refinery/logo-site-bar.png", |
-                  :alt => "Refinery (tm) Content Manager"),                                                      |
-        'http://refinerycms.com',                                                                                |
+      = link_to image_tag("#{"http://refinerycms.com/images/" unless local_request?}header_logo.png",            |
+                  :alt => "Gardenia templater"),                                                      |
+        'http://gardenia.heroku.com/',                                                                                |
         :target => '_blank',                                                                                     |
         :id => 'site_bar_refinery_cms_logo'                                                                      |
       #site_bar_branding
