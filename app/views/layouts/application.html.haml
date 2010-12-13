@@ -12,11 +12,24 @@
     #page_container
       #page
         = render :partial => "/shared/ie6check" if request.env['HTTP_USER_AGENT'] =~ /MSIE/
-        #header
-          = render :partial => "/shared/header"
-        -# the following phantom div should not be required, but needed to prevent #body encompassing #footer .. haml issue?
-        %div
+        
+        - if RefinerySetting.get(:sf_stretch) # select stretch headers/footers?
+
+          #header
+            = render :partial => "/shared/header"
+          -# the following phantom div should not be required, but needed to prevent #body encompassing #footer .. haml issue?
+          %div
+            #body.clearfix
+              = yield
+          #footer
+            = render :partial => "/shared/footer"
+
+        - else  # non-stretch
+
           #body.clearfix
+            #header
+              = render :partial => "/shared/header"
             = yield
-        #footer
-          = render :partial => "/shared/footer"
+            #footer
+              = render :partial => "/shared/footer"
+        
