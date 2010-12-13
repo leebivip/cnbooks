@@ -14,7 +14,9 @@
         = render :partial => "/shared/ie6check" if request.env['HTTP_USER_AGENT'] =~ /MSIE/
         #header
           = render :partial => "/shared/header"
-        #body.clearfix
-          = yield
+        -# the following phantom div should not be required, but needed to prevent #body encompassing #footer .. haml issue?
+        %div
+          #body.clearfix
+            = yield
         #footer
           = render :partial => "/shared/footer"

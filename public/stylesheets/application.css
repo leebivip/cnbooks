@@ -1,11 +1,4 @@
-html {
-  color: black;
-  background-color: #dfdfdf;
-  font-family: "Myriad Web", "Myriad Pro", Helvetica, Verdana, Arial, Tahoma, Sans-Serif; }
-
 body {
-  color: #0f1d23;
-  background: "#dfdfdf url(../images/container_bkgd.png) repeat-x 0px 30px";
   margin: 0px;
   padding: 0px; }
 
@@ -13,9 +6,11 @@ body {
   margin-top: 36px; }
 
 #body_content_left {
+  float: left;
   width: 574px; }
 
 #body_content_right {
+  float: right;
   width: 396px; }
   #body_content_right img {
     border: 3px solid #c7c7c7; }
@@ -115,8 +110,7 @@ body {
   left: auto; }
 
 #footer {
-  margin-top: 200px;
-  background: url("../images/footer_background.png") repeat-x; }
+  background: black url("../images/footer_background.png") repeat-x; }
 
 #footer_content {
   height: 45px;

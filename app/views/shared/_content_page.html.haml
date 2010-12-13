@@ -23,7 +23,10 @@
       - section[:html] = "<h1 id='#{dom_id}'>#{section[:html]}</h1>"
   - else
     - css << "no_#{dom_id}"
-<div id='body_content' class='clearfix#{" #{css.join(' ')}" if css.any?}'>
-- sections.each do |s|
-  = s[:html].to_s.html_safe
+    
+- class_list = "clearfix#{" #{css.join(' ')}" if css.any?}"
+
+#body_content{ :class => class_list }
+  - sections.each do |s|
+    = s[:html].to_s.html_safe
 = render :partial => '/shared/draft_page_message' unless @page.nil? or @page.live?

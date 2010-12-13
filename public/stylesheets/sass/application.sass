@@ -51,13 +51,8 @@ $HEADER_HEIGHT: 35px
   background-image: unquote("-webkit-gradient(linear,left bottom, left top, color-stop(0, #{$LIGHT}), color-stop(0.4, #{$DARK}), color-stop(1, #{$LIGHT})  )")
 
 html
-  color: $BASIC_FG
-  background-color: $BG_MAINPAGE
-  font-family: "Myriad Web", "Myriad Pro", Helvetica, Verdana, Arial, Tahoma, Sans-Serif
 
 body
-  color: $BG_CENTRALBOX
-  background: "#{$BG_MAINPAGE} url(../images/container_bkgd.png) repeat-x 0px 30px"
   margin: 0px
   padding: 0px
 
@@ -65,9 +60,11 @@ body
   margin-top: 36px
 
 #body_content_left
+  float: left
   width: 574px
 
 #body_content_right
+  float: right
   width: 396px
   img
     border: 3px solid #c7c7c7
@@ -170,9 +167,8 @@ body
     left: auto
 
 #footer
-  margin-top: 200px
-  background: url("../images/footer_background.png") repeat-x
-
+  background: #000 url("../images/footer_background.png") repeat-x
+  
 #footer_content
   height: 45px
   background: url("../images/tas_bigger-35.png") 950px 5px no-repeat
