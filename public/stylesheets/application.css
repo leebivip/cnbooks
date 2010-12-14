@@ -13,18 +13,29 @@ body {
   margin: 0px auto; }
 
 #body_content {
-  background: #fcefc1;
-  min-height: 618px;
+  background: #fff6c8;
+  min-height: 1196px;
   margin: 0;
   padding: 5px; }
 
+#main_content {
+  width: 670px; }
+
+#sidebar_content {
+  width: 290px; }
+
+#body_content_title {
+  width: 670px; }
+  #body_content_title h1 {
+    padding: 0 15px; }
+
 #body_content_left {
-  float: left;
-  width: 760px; }
+  margin: 0;
+  padding: 15px; }
 
 #body_content_right {
-  float: right;
-  width: 220px; }
+  margin: 0;
+  padding: 15px; }
   #body_content_right img {
     border: 3px solid #c7c7c7; }
 
@@ -56,8 +67,8 @@ body {
   background: url("../images/masthead.png") 30px 5px no-repeat; }
 
 #header {
-  background-image: -moz-linear-gradient(bottom, #ddd068, #b5a947, #ddd068 );
-  background-image: -webkit-gradient(linear,left bottom, left top, color-stop(0, #ddd068), color-stop(0.4, #b5a947), color-stop(1, #ddd068)  ); }
+  background-image: -moz-linear-gradient(bottom, #fff6c8, #9c8c59, #fff6c8 );
+  background-image: -webkit-gradient(linear,left bottom, left top, color-stop(0, #fff6c8), color-stop(0.4, #9c8c59), color-stop(1, #fff6c8)  ); }
 
 #header_content {
   background: black;
@@ -66,7 +77,7 @@ body {
 
 #nav_search_box {
   float: right;
-  width: 220px;
+  width: 260px;
   display: inline;
   border: 1px solid yellow;
   line-height: 4em;

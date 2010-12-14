@@ -24,11 +24,11 @@ $FG_FOOTER: #49466d
 $BG_SIDEBAR: #0f1d23
 $FG_SIDEBAR: #f7f8f8
 
-$BG_MAINPAGE: #FCEFC1
+$BG_MAINPAGE: #Fff6C8 //  #FCEFC1
 $FG_MAINPAGE: $BASIC_FG
 
-$HEADER_LT: #DDD068
-$HEADER_DK: #B5A947
+$HEADER_LT: $BG_MAINPAGE  // #DDD068
+$HEADER_DK: #9C8C59  //  #B5A947
 
 
 // *****************************************************************************
@@ -52,9 +52,9 @@ $HEADER_HEIGHT: $MASTHEAD_HEIGHT + $NAV_HEIGHT
 
 $FOOTER_HEIGHT: 45px
 
-$STANDARD_MARGIN: 5px
+$STANDARD_MARGIN: 15px
 
-$SIDEBAR_INNER_WIDTH: 220px
+$SIDEBAR_INNER_WIDTH: 260px
 $SIDEBAR_LEFT_MARGIN: $STANDARD_MARGIN
 $SIDEBAR_RIGHT_MARGIN: $STANDARD_MARGIN
 $SIDEBAR_WIDTH: $SIDEBAR_INNER_WIDTH + $SIDEBAR_LEFT_MARGIN + $SIDEBAR_RIGHT_MARGIN
@@ -98,17 +98,35 @@ body
 
 #body_content
   background: $BG_MAINPAGE
-  min-height: $MAIN_CONTENT_HEIGHT
+  min-height: $MAIN_CONTENT_HEIGHT *2
   margin: 0 
   padding: 5px
+  
+//******************************************************************************
+// NOTE: DO NOT SPECIFY float: xxxx for main_content, sidebar_content, body_content_title
+// it is dynamically set in shared/content_page.html.haml based on refinery settings
+//******************************************************************************
+#main_content
+  width: $INNER_CONTENT_AREAS_WIDTH - $SIDEBAR_INNER_WIDTH - $STANDARD_MARGIN * 4
+  
+#sidebar_content
+  width: $SIDEBAR_INNER_WIDTH + $STANDARD_MARGIN * 2
+  
+#body_content_title
+  width: $INNER_CONTENT_AREAS_WIDTH - $SIDEBAR_INNER_WIDTH - $STANDARD_MARGIN * 4
+  h1
+    padding: 0 $STANDARD_MARGIN
+    
+//******************************************************************************
+
 
 #body_content_left
-  float: left
-  width: $INNER_CONTENT_AREAS_WIDTH - $SIDEBAR_INNER_WIDTH - $STANDARD_MARGIN - $STANDARD_MARGIN
+  margin: 0
+  padding: $STANDARD_MARGIN
 
 #body_content_right
-  float: right
-  width: $SIDEBAR_INNER_WIDTH
+  margin: 0
+  padding: $STANDARD_MARGIN
   img
     border: 3px solid #c7c7c7
 
