@@ -39,14 +39,18 @@ body {
   width: 990px;
   margin: 0px auto; }
 
+#masthead {
+  height: 45px;
+  background: url("../images/masthead.png") 30px 5px no-repeat; }
+
 #header {
-  /* background: url('../images/header_background.png') repeat-x; */
-  background: black; }
+  background-image: -moz-linear-gradient(bottom, #ddd068, #b5a947, #ddd068 );
+  background-image: -webkit-gradient(linear,left bottom, left top, color-stop(0, #ddd068), color-stop(0.4, #b5a947), color-stop(1, #ddd068)  ); }
 
 #header_content {
+  background: url("../images/header_background.png") repeat-x;
   position: relative;
-  height: 65px;
-  background: url("../images/masthead.png") 0px 15px no-repeat; }
+  height: 50px; }
   #header_content h1 {
     color: #feffff;
     font-size: 24px;
@@ -54,7 +58,7 @@ body {
     left: 0px;
     text-decoration: none;
     position: absolute;
-    bottom: 30px;
+    bottom: 5px;
     margin: 0px; }
     #header_content h1 a {
       color: #feffff;
@@ -64,7 +68,7 @@ body {
       text-decoration: none; }
   #header_content #menu {
     position: absolute;
-    bottom: 20px;
+    bottom: 5px;
     margin: 0px;
     right: 0px;
     padding: 0px; }
@@ -126,3 +130,8 @@ body {
   border: 1px solid #75766f;
   margin-left: 0px;
   width: 375px; }
+
+#nav_search_box {
+  display: inline;
+  border: 1px solid yellow;
+  color: white; }

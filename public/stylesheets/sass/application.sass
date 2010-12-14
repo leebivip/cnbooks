@@ -12,7 +12,7 @@ $FG_ERROR_SHADOW: #620d10
 $BG_HEADER: $BASIC_FG
 $FG_HEADER: #8daeae
   
-$BG_NAV: $BG_HEADER
+$BG_NAV: #000    //  #DBD19E
 $FG_NAV: $FG_HEADER
 $HV_NAV: $BASIC_BG
 
@@ -25,15 +25,19 @@ $FG_SIDEBAR: #f7f8f8
 $BG_MAINPAGE: #dfdfdf
 $FG_MAINPAGE: $BASIC_FG
 
+$HEADER_LT: #DDD068
+$HEADER_DK: #B5A947
+
+
 // DIMENSIONS
 
     // VIEWPORT is the viewing area "above the fold"
 $VIEWPORT_WIDTH: 1024px
 $VIEWPORT_HEIGHT: 768px
 
-$MASTHEAD_HEIGHT: 80px
+$MASTHEAD_HEIGHT: 45px
 $MASTHEAD_PHANTOM_HEIGHT: 0px    // presence utilizes background image
-$NAV_HEIGHT: 20px
+$NAV_HEIGHT: 50px
 
 $HEADER_HEIGHT: $MASTHEAD_HEIGHT + $NAV_HEIGHT
 
@@ -105,15 +109,19 @@ body
 #header_content, #footer_content, #site_bar_content
   width: 990px
   margin: 0px auto
+  
+#masthead
+  height: $MASTHEAD_HEIGHT
+  background: url("../images/masthead.png") 30px 5px no-repeat
 
 #header
-  /* background: url('../images/header_background.png') repeat-x;
-  background: black
-
+  +GRADIENT_BOX($HEADER_LT, $HEADER_DK)
+  
 #header_content
+  background: url('../images/header_background.png') repeat-x
+  // background: $BG_NAV
   position: relative
-  height: 65px
-  background: url("../images/masthead.png") 0px 15px no-repeat
+  height: $NAV_HEIGHT
   h1
     color: #feffff
     font-size: 24px
@@ -127,11 +135,11 @@ body
       left: 0px
       text-decoration: none
     position: absolute
-    bottom: 30px
+    bottom: $STANDARD_MARGIN
     margin: 0px
   #menu
     position: absolute
-    bottom: 20px
+    bottom: $STANDARD_MARGIN
     margin: 0px
     right: 0px
     padding: 0px
@@ -192,3 +200,12 @@ body
     border: 1px solid #75766f
     margin-left: 0px
     width: 375px
+
+#nav_left
+#nav_right
+  
+#nav_search_box
+  display: inline
+  border: 1px solid yellow
+  color:  #fff
+  

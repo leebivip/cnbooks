@@ -1,6 +1,13 @@
-#header_content
-  = render :partial => "/shared/menu", |
-    :locals => {                       |
-      :dom_id => 'menu',               |
-      :css => 'menu'                   |
-    }                                  |
+#masthead.clearfix
+  &nbsp;
+#nav_left
+  #header_content
+    = render :partial => "/shared/menu", |
+      :locals => {                       |
+        :dom_id => 'menu',               |
+        :css => 'menu'                   |
+      }                                  |
+- if RefinerySetting.get(:nav_search)
+  #nav_right
+    #nav_search_box
+      nav search TBD
