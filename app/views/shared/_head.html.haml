@@ -7,7 +7,7 @@
   = render(:partial => '/shared/html5_for_ie.js').html_safe if request.env['HTTP_USER_AGENT'] =~ /MSIE/
   = render :partial => 'shared/google_analytics' unless local_request?
   -#= stylesheet_link_tag 'baseline_reset.css'
-  = stylesheet_link_tag "application", "formatting", :theme => theme
+  = stylesheet_link_tag "application", :theme => theme
   -#= stylesheet_link_tag "theme" 
   -#= stylesheet_link_tag "home", :theme => theme if home_page?
   = "<!--[if IE 7]>#{stylesheet_link_tag 'ie7'}<![endif]-->".html_safe if request.env['HTTP_USER_AGENT'] =~ /MSIE/
