@@ -1,9 +1,12 @@
 body {
   margin: 0px;
-  padding: 0px; }
+  padding: 0px;
+  background: white url("../images/gardenia_pattern_clip.png") repeat; }
 
 #body_content {
-  margin-top: 36px; }
+  background: #fcefc1;
+  min-height: 618px;
+  padding: 5px; }
 
 #body_content_left {
   float: left;
@@ -20,24 +23,32 @@ body {
   padding: 0px;
   margin: 0px; }
 
-#body {
-  min-height: 430px;
+#body, #header_content, #footer_content, #site_bar_content {
   width: 990px;
   margin: 0px auto; }
 
 #footer {
+  position: fixed;
+  bottom: 0px;
   height: 45px;
   background: black url("../images/footer_background.png") repeat-x; }
 
-#footer_content {
-  background: url("../images/tas_bigger-35.png") 950px 5px no-repeat; }
-  #footer_content p {
-    padding: 15px 50px;
-    text-align: right; }
+#footer_inner_content p {
+  padding: 5px 0px;
+  text-align: right; }
+#footer_inner_content img {
+  float: right;
+  margin-top: -10px;
+  margin-left: 5px;
+  margin-right: 5px; }
 
-#header_content, #footer_content, #site_bar_content {
-  width: 990px;
-  margin: 0px auto; }
+#footer_content_left {
+  float: left;
+  width: 49%; }
+
+#footer_content_right {
+  float: right;
+  width: 49%; }
 
 #masthead {
   height: 45px;
