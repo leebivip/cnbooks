@@ -1,8 +1,9 @@
 # initialize all gardenia-expected settings
 # format is: [variable, default]
 [
-  [:version,'0.1-0'],
-  [:sf_stretch,false],
-  [:nav_search,true],
-  [:side_search,false],
+  [:site_name, 'Gardenia'],
+  [:gardenia_version,'0.1-0'],
+  [:gardenia_hf_stretch,false],
+  [:gardenia_nav_search,false],
+  [:gardenia_side_search,false],
 ].each{|setting,default| RefinerySetting.set(setting,default) if RefinerySetting.get(setting).nil?}

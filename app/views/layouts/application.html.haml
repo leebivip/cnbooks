@@ -13,7 +13,7 @@
       #page
         = render :partial => "/shared/ie6check" if request.env['HTTP_USER_AGENT'] =~ /MSIE/
         
-        - if RefinerySetting.get(:sf_stretch) # select stretch headers/footers?
+        - if RefinerySetting.get(:gardenia_hf_stretch) # select stretch headers/footers?
 
           #header
             = render :partial => "/shared/header"
