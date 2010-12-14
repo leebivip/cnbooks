@@ -12,7 +12,7 @@ $FG_ERROR_SHADOW: #620d10
 $BG_HEADER: $BASIC_FG
 $FG_HEADER: #8daeae
   
-$BG_NAV: #000    //  #DBD19E
+$BG_NAV: $BASIC_FG   //  #DBD19E
 $FG_NAV: $FG_HEADER
 $HV_NAV: $BASIC_BG
 
@@ -81,15 +81,16 @@ body
 #body_content
   background: $BG_MAINPAGE
   min-height: $MAIN_CONTENT_HEIGHT
+  margin: 0 
   padding: 5px
 
 #body_content_left
   float: left
-  width: 574px
+  width: $INNER_CONTENT_AREAS_WIDTH - $SIDEBAR_INNER_WIDTH - $STANDARD_MARGIN - $STANDARD_MARGIN
 
 #body_content_right
   float: right
-  width: 396px
+  width: $SIDEBAR_INNER_WIDTH
   img
     border: 3px solid #c7c7c7
 
@@ -106,7 +107,7 @@ body
   position: fixed
   bottom: 0px
   height: $FOOTER_HEIGHT
-  background: #000 url("../images/footer_background.png") repeat-x
+  background: $BG_FOOTER  // url("../images/footer_background.png") repeat-x
   
 #footer_inner_content
   p
@@ -133,32 +134,44 @@ body
 
 #header
   +GRADIENT_BOX($HEADER_LT, $HEADER_DK)
-  
+
 #header_content
-  background: url('../images/header_background.png') repeat-x
+  background: $BG_HEADER // url('../images/header_background.png') repeat-x
   // background: $BG_NAV
   position: relative
   height: $NAV_HEIGHT
+
+#nav_search_box
+  float: right
+  width: $SIDEBAR_INNER_WIDTH
+  display: inline
+  border: 1px solid yellow
+  line-height: 4em
+  color:  #fff
+
+#header_inner_content
+  //width: $INNER_CONTENT_AREAS_WIDTH - $SIDEBAR_INNER_WIDTH - $STANDARD_MARGIN
+  float: right
   h1
+    margin: 0px
     color: #feffff
     font-size: 24px
     font-weight: normal
-    left: 0px
     text-decoration: none
     a
       color: #feffff
       font-size: 24px
       font-weight: normal
-      left: 0px
+      //left: 0px
       text-decoration: none
-    position: absolute
-    bottom: $STANDARD_MARGIN
-    margin: 0px
+    //position: absolute
+    //left: 0px
+    //bottom: $STANDARD_MARGIN
   #menu
-    position: absolute
-    bottom: $STANDARD_MARGIN
+    //position: absolute
+    //bottom: $STANDARD_MARGIN
+    //right: 0px
     margin: 0px
-    right: 0px
     padding: 0px
 
 #language_switcher
@@ -218,11 +231,4 @@ body
     margin-left: 0px
     width: 375px
 
-#nav_left
-#nav_right
-  
-#nav_search_box
-  display: inline
-  border: 1px solid yellow
-  color:  #fff
   

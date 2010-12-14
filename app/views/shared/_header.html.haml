@@ -1,13 +1,12 @@
 #masthead.clearfix
   &nbsp;
-#nav_left
-  #header_content
+#header_content
+  - if RefinerySetting.get(:gardenia_nav_search)  # comes first because float right
+    #nav_search_box
+      nav search TBD
+  #header_inner_content
     = render :partial => "/shared/menu", |
       :locals => {                       |
         :dom_id => 'menu',               |
         :css => 'menu'                   |
       }                                  |
-- if RefinerySetting.get(:gardenia_nav_search)
-  #nav_right
-    #nav_search_box
-      nav search TBD
