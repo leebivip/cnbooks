@@ -1,8 +1,10 @@
-// ASSUMPTION: baseline_reset.css resets whatever browsers css settings
 
 // ---------------------------------------------------------------------
 // standard color & other variables
 // ---------------------------------------------------------------------
+
+// *****************************************************************************
+
 $BASIC_FG: black
 $BASIC_BG: white
 
@@ -27,6 +29,9 @@ $FG_MAINPAGE: $BASIC_FG
 
 $HEADER_LT: #DDD068
 $HEADER_DK: #B5A947
+
+
+// *****************************************************************************
 
 
 // DIMENSIONS
@@ -63,6 +68,8 @@ $MAIN_CONTENT_WIDTH: $VIEWPORT_WIDTH - $MAIN_LEFT_MARGIN - $MAIN_RIGHT_MARGIN - 
 $MAIN_CONTENT_HEIGHT: $VIEWPORT_HEIGHT - $MASTHEAD_HEIGHT - $MASTHEAD_PHANTOM_HEIGHT - $HEADER_HEIGHT - $MAIN_TOP_MARGIN - $MAIN_BTM_MARGIN
 
 
+// *****************************************************************************
+
 // MIX-INS
 
 =BEVEL_CORNER($RADIUS)
@@ -73,10 +80,21 @@ $MAIN_CONTENT_HEIGHT: $VIEWPORT_HEIGHT - $MASTHEAD_HEIGHT - $MASTHEAD_PHANTOM_HE
   background-image: unquote("-moz-linear-gradient(bottom, #{$LIGHT}, #{$DARK}, #{$LIGHT} )")
   background-image: unquote("-webkit-gradient(linear,left bottom, left top, color-stop(0, #{$LIGHT}), color-stop(0.4, #{$DARK}), color-stop(1, #{$LIGHT})  )")
 
+// *****************************************************************************
+
 body
   margin: 0px
   padding: 0px
   background: #fff url("../images/gardenia_pattern_clip.png") repeat
+
+#page
+  width: 100%
+  padding: 0px
+  margin: 0px
+
+#body, #header_content, #footer_content, #site_bar_content
+  width: $INNER_CONTENT_AREAS_WIDTH
+  margin: 0px auto
 
 #body_content
   background: $BG_MAINPAGE
@@ -93,15 +111,6 @@ body
   width: $SIDEBAR_INNER_WIDTH
   img
     border: 3px solid #c7c7c7
-
-#page
-  width: 100%
-  padding: 0px
-  margin: 0px
-
-#body, #header_content, #footer_content, #site_bar_content
-  width: $INNER_CONTENT_AREAS_WIDTH
-  margin: 0px auto
 
 #footer
   position: fixed
