@@ -33,7 +33,8 @@ module ApplicationHelper
 # preps the fall back stuff
 # ----------------------------------------------------------------------------- 
   def prep_dom_section(section, need_fallback )
-    section[:html] = ( content_for( section[:yield] ) )
+    
+    section[:html] = ( content_for( section[:yield] ) ) # renders here
     
     if section[:html].blank? and need_fallback and
         section.keys.include?(:fallback) and
@@ -67,7 +68,7 @@ module ApplicationHelper
     if @page.present? && Page.default_parts.size > 2  # need any sidebar boxes?
       
       sidebar_sections = Page.default_parts[2,Page.default_parts.size - 2].inject([]) do |list, part|
-        list << {:yield => part.to_sym, :fallback => part.to_sym}
+        list << {:yield => part.to_sym, :fallback => @page[part.to_sym] }
       end  # do each page part
         
       sidebar_sections.reject{ |section| hide_sections.include?( section[:yield] ) }
