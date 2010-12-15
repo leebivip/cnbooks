@@ -1,11 +1,7 @@
 -# Gardenia: replaced almost all the ruby code by moving it to application_helper.rb
 -# prepare_content_page sets instance variables: @sections, @class_list
-
-- show_empty_sections ||= false
-- remove_automatic_sections ||= false
-- hide_sections ||= []
-
-- prepare_content_page( false, false, [] )
+  
+- prepare_content_page(show_empty_sections ||= false, remove_automatic_sections ||= false, hide_sections ||= [])
 
 #body_content{ :class => @class_list }
   - @sections.each do |s|
