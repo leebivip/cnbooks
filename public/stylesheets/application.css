@@ -37,7 +37,13 @@ body {
   margin: 0;
   padding: 15px; }
   #body_content_right img {
-    border: 3px solid #c7c7c7; }
+    border: 3px solid #969792; }
+
+.sidebar_box {
+  margin: 15px;
+  padding: 1em;
+  min-height: 4em;
+  border: 2px solid blue; }
 
 #footer {
   position: fixed;
