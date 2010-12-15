@@ -165,23 +165,25 @@ body, input, textarea, select, p, li, blockquote {
   #body_content_left * p, #body_content_right * p, .page_part_body p, .page_part_side_body p {
     color: black; }
 
-h1, #body_content h1, #body_content_page_title h1 {
+h1, h2, h3, h4 {
   color: #052e02;
-  font-size: 2em;
-  font-weight: bold; }
+  letter-spacing: -0.1em;
+  font-weight: lighter; }
+
+h1, #body_content h1, #body_content_page_title h1 {
+  font-size: 2em; }
 
 #body_content_left p, #body_content_right p, .page_part_body p, .page_part_side_body p {
   margin-bottom: 15px; }
 
-h2, h3 {
-  color: #052e02;
-  font-weight: bold; }
-
 h2 {
-  font-size: 1.5em; }
+  font-size: 1.4em; }
 
 h3 {
   font-size: 1.2em; }
+
+h4 {
+  font-size: 1em; }
 
 #footer_content * {
   color: #89868d;

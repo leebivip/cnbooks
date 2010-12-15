@@ -2,4 +2,12 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  admin:
+    refinery_settings:
+      form:
+        help:
+          gardenia_version: This is the developer's current version number; please do not change.
+          gardenia_hf_stretch: "Header/footer stretches width of viewport: true if stretch, false if contained within margins"
+          gardenia_nav_search: Optional search form appears within navigation bar if true; false prevents appearance.
+          gardenia_side_search: Optional search form appears within sidebar area if true; false prevents appearance.
+          gardenia_main_content_side: Which side of the page should the widest part of the content be? Choices are left or right (not case sensitive)
