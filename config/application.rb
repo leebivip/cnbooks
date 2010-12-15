@@ -40,7 +40,7 @@ module Refinery
     config.filter_parameters += [:password]
     
     # add video tags to sanitize permitted tags
-    config.action_view.sanitized_allowed_tags = 'table', 'tr', 'td', 'iframe', 'script'
+    config.action_view.sanitized_allowed_tags = 'table', 'tr', 'td', 'iframe'
     config.action_view.sanitized_allowed_attributes = 'id', 'class', 'style', 'src', 'width', 'height', 'frameborder'
   end
 end

@@ -5,5 +5,5 @@
 
 #body_content{ :class => @class_list }
   - @sections.each do |s|
-    = s[:html].to_s      # = s[:html].to_s.html_safe
+    = s[:html].to_s.html_safe      # = s[:html].to_s.html_safe
 = render :partial => '/shared/draft_page_message' unless @page.nil? or @page.live?
