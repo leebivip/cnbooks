@@ -71,8 +71,12 @@ module ApplicationHelper
       end  # do each page part
         
       sidebar_sections.reject{ |section| hide_sections.include?( section[:yield] ) }
+      
+    else
+      
+      sidebar_sections = []   # no further sidebar sections
           
-    end
+    end  # if..else for sidebars
     
     css = []
   
