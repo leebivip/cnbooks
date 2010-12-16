@@ -42,8 +42,7 @@ body {
 .sidebar_box {
   margin: 15px;
   padding: 1em;
-  min-height: 4em;
-  border: 2px solid #052e02; }
+  min-height: 4em; }
 
 #footer {
   position: fixed;
