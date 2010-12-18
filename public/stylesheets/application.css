@@ -207,13 +207,13 @@ h4 {
   text-align: center;
   font-size: small; }
 .thumbnails dt, .thumbnails dd {
-  width: 110px;
+  width: 120px;
   float: left; }
 .thumbnails dt {
   margin-bottom: 4em; }
 .thumbnails dd {
   text-align: center;
-  margin: 105px 0 0 -110px; }
+  margin: 105px 0 0 -120px; }
 .thumbnails img {
   vertical-align: bottom;
   border: 0; }
