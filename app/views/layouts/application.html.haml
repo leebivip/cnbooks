@@ -32,4 +32,5 @@
             = yield
             #footer
               = render :partial => "/shared/footer"
+        = auto_discovery_link_tag(:rss, news_items_url(:format => 'rss'))
         

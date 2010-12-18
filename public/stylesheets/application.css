@@ -193,3 +193,27 @@ h4 {
 #footer_content * {
   color: #89868d;
   font-size: 0.9em; }
+
+#galleries li {
+  list-style: none; }
+#galleries a {
+  font-size: 1.4em; }
+
+#gallery_display li {
+  list-style: none; }
+
+.thumbnails dl {
+  float: left;
+  text-align: center;
+  font-size: small; }
+.thumbnails dt, .thumbnails dd {
+  width: 110px;
+  float: left; }
+.thumbnails dt {
+  margin-bottom: 4em; }
+.thumbnails dd {
+  text-align: center;
+  margin: 105px 0 0 -110px; }
+.thumbnails img {
+  vertical-align: bottom;
+  border: 0; }
