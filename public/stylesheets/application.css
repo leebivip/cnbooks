@@ -219,7 +219,8 @@ h4 {
 
 article {
   padding: 0 1em;
-  border: 1px solid #dddddd; }
+  border: 1px solid #dddddd;
+  margin-bottom: 2em; }
   article header {
     margin-bottom: 2em;
     padding: 0;
