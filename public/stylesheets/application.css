@@ -12,9 +12,11 @@ body {
   width: 990px;
   margin: 0px auto; }
 
-#body_content {
+#body {
   background: #fff6c8;
-  min-height: 1236px;
+  height: 1236px; }
+
+#body_content {
   margin: 0;
   padding: 0; }
 
