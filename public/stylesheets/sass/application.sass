@@ -101,7 +101,7 @@ body
   
 #body
   background: $BG_MAINPAGE
-  height: $MAIN_CONTENT_HEIGHT *2
+  min-height: $VIEWPORT_HEIGHT
 
 #body_content
   margin: 0 
@@ -391,4 +391,11 @@ article
       letter-spacing: 1px
       text-transform: uppercase
 
+.clearfix:after
+  content: "&nbsp"
+  margin-bottom: 0px
+  display: block
+  height: 0
+  clear: both
+  visibility: hidden
 
