@@ -14,7 +14,7 @@ body {
 
 #body_content {
   background: #fff6c8;
-  min-height: 1206px;
+  min-height: 1236px;
   margin: 0;
   padding: 0; }
 
@@ -31,17 +31,17 @@ body {
 
 #body_content_left {
   margin: 0;
-  padding: 15px; }
+  padding: 0; }
 
 #body_content_right {
   margin: 0;
-  padding: 15px; }
+  padding: 0; }
   #body_content_right img {
     border: 3px solid #969792; }
 
 .sidebar_box {
   margin: 15px;
-  padding: 1em;
+  padding: 0;
   min-height: 4em; }
 
 #footer {
@@ -78,7 +78,7 @@ body {
 #header_content {
   background: black;
   position: relative;
-  height: 45px; }
+  height: 30px; }
 
 #nav_search_box {
   float: right;
@@ -91,12 +91,12 @@ body {
   #header_inner_content h1 {
     margin: 0px;
     color: #fff6c8;
-    font-size: 2em;
+    font-size: 1.5em;
     font-weight: normal;
     text-decoration: none; }
     #header_inner_content h1 a {
       color: #fff6c8;
-      font-size: 2em;
+      font-size: 1.5em;
       font-weight: normal;
       text-decoration: none; }
   #header_inner_content #menu {
@@ -107,6 +107,9 @@ body {
   float: right;
   padding-top: 15px; }
 
+#menu ul {
+  margin: 0;
+  padding: 0; }
 #menu li, #menu > a, #menu div {
   float: left;
   list-style: none;
@@ -114,7 +117,7 @@ body {
 #menu a, #menu li:hover ul li a, #menu a:hover nav a {
   color: #969792;
   display: block;
-  padding: 10px 18px;
+  padding: 8px 15px;
   text-decoration: none;
   cursor: pointer;
   font-weight: bold; }
@@ -165,18 +168,14 @@ body, input, textarea, select, p, li, blockquote {
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 14px; }
 
-#body_content_left *, #body_content_right *, .page_part_body, .page_part_side_body {
-  line-height: 1.5em; }
-  #body_content_left * p, #body_content_right * p, .page_part_body p, .page_part_side_body p {
-    color: black; }
+#body_content_left * p, #body_content_right * p, .page_part_body p, .page_part_side_body p {
+  color: black; }
 
 h1, h2, h3, h4 {
   color: #052e02;
   letter-spacing: -0.1em;
-  font-weight: lighter; }
-
-h1, #body_content h1, #body_content_page_title h1 {
-  font-size: 2em; }
+  font-weight: lighter;
+  line-height: 0.8em; }
 
 #body_content_left p, #body_content_right p, .page_part_body p, .page_part_side_body p {
   margin-bottom: 15px; }

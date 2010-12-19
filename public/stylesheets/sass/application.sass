@@ -49,7 +49,7 @@ $INNER_CONTENT_AREAS_WIDTH: $VIEWPORT_WIDTH - $INNER_MARGIN - $INNER_MARGIN
 
 $MASTHEAD_HEIGHT: 45px
 $MASTHEAD_PHANTOM_HEIGHT: 0px    // presence utilizes background image
-$NAV_HEIGHT: 45px
+$NAV_HEIGHT: 30px
 
 $HEADER_HEIGHT: $MASTHEAD_HEIGHT + $NAV_HEIGHT
 
@@ -125,11 +125,11 @@ body
 
 #body_content_left
   margin: 0
-  padding: $STANDARD_MARGIN
+  padding: 0
 
 #body_content_right
   margin: 0
-  padding: $STANDARD_MARGIN
+  padding: 0
   img
     border: 3px solid $HV_MENU
 
@@ -137,7 +137,7 @@ body
 // *****************************************************************************
 .sidebar_box
   margin: $STANDARD_MARGIN
-  padding: 1em
+  padding: 0
   min-height: 4em
   // border: 2px solid $FG_TITLES
   
@@ -196,12 +196,12 @@ body
   h1
     margin: 0px
     color: $BG_MAINPAGE
-    font-size: 2em
+    font-size: 1.5em
     font-weight: normal
     text-decoration: none
     a
       color: $BG_MAINPAGE
-      font-size: 2em
+      font-size: 1.5em
       font-weight: normal
       //left: 0px
       text-decoration: none
@@ -224,6 +224,9 @@ body
 // *****************************************************************************
 // *****************************************************************************
 #menu
+  ul
+    margin: 0
+    padding: 0
   li, > a, div
     float: left
     list-style: none
@@ -231,7 +234,7 @@ body
   a, li:hover ul li a, a:hover nav a
     color: $HV_MENU
     display: block
-    padding: 10px 18px
+    padding: 8px 15px
     text-decoration: none
     cursor: pointer
     font-weight: bold
@@ -287,7 +290,7 @@ body, input, textarea, select, p, li, blockquote
   font-size: 14px
 
 #body_content_left *, #body_content_right *, .page_part_body, .page_part_side_body
-  line-height: 1.5em
+  // line-height: 1.5em
   p
     color: $FG_MAINPAGE
 
@@ -295,9 +298,10 @@ h1, h2, h3, h4
   color: $FG_TITLES
   letter-spacing: -0.1em
   font-weight: lighter
+  line-height: 0.8em
 
-h1, #body_content h1, #body_content_page_title h1
-  font-size: 2em
+// h1, #body_content h1, #body_content_page_title h1
+//  font-size: 2em
 
 #body_content_left p, #body_content_right p, .page_part_body p, .page_part_side_body p
   margin-bottom: $STANDARD_MARGIN
