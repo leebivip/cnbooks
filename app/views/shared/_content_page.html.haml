@@ -1,7 +1,10 @@
 -# Gardenia: replaced almost all the ruby code by moving it to application_helper.rb
 -# prepare_content_page sets instance variables: @sections, @class_list
   
-- prepare_content_page(show_empty_sections ||= false, remove_automatic_sections ||= false, hide_sections ||= [])
+- hide_sections ||= []
+- hide_sections << :body_content_title if RefinerySetting.get(:gardenia_disable_repeat_title)
+
+- prepare_content_page(show_empty_sections ||= false, remove_automatic_sections ||= false, hide_sections)
 
 #body_content{ :class => @class_list }
   - @sections.each do |s|

@@ -8,4 +8,5 @@
   [:gardenia_side_search,false],
   [:gardenia_main_content_side,'left'],
   [:gardenia_parts_allow_widgets, %w(Widgets)],
+  [:gardenia_disable_repeat_title, true],
 ].each{|setting,default| RefinerySetting.set(setting,default) if RefinerySetting.get(setting).nil?}

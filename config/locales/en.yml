@@ -11,7 +11,8 @@ en:
           gardenia_nav_search: Optional search form appears within navigation bar if true; false prevents appearance.
           gardenia_side_search: Optional search form appears within sidebar area if true; false prevents appearance.
           gardenia_main_content_side: Which side of the page should the widest part of the content be ('main content' vs 'sidebar')? Choices are left or right (not case sensitive)
-          gardenia_parts_allow_widgets: Which page parts should by-pass WymEditor and permit widget insertion. Case sensitive names must match names of Page Parts. 
+          gardenia_parts_allow_widgets: Which page parts should by-pass WymEditor and permit widget insertion. Case sensitive names must match names of Page Parts.
+          gardenia_disable_repeat_title: True if do not show section body_content_title which repeats tab field as page title. 
   plugins:
     galleries:
       title: Galleries
