@@ -126,21 +126,25 @@ body {
 #menu li.selected a, #menu li:hover a, #menu li a:hover, #menu li ul li a:hover {
   color: black;
   background: #fff6c8;
+  border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px; }
 #menu div.selected a {
   color: black;
   background: #fff6c8;
+  border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px; }
 #menu a.selected, #menu a:hover {
   color: black;
   background: #fff6c8;
+  border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px; }
 #menu div:hover > a {
   color: black;
   background: #fff6c8;
+  border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px; }
 #menu li ul, #menu nav {
@@ -151,6 +155,7 @@ body {
   min-width: 140px;
   max-width: 300px;
   background: #fff6c8;
+  border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px; }
 #menu li ul li, #menu nav a {

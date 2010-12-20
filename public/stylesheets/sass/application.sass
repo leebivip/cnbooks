@@ -4,6 +4,7 @@
 // ---------------------------------------------------------------------
 
 // *****************************************************************************
+// *****************************************************************************
 
 $BASIC_FG: black
 $BASIC_BG: white
@@ -33,6 +34,10 @@ $HEADER_DK: #9C8C59  //  #B5A947
 $FG_MENU: $FG_MAINPAGE
 $BG_MENU: $BG_MAINPAGE
 $HV_MENU: #969792 //  #d8d8d8
+
+$BG_SITEBAR: #666  
+$SITEBAR_SWITCH_LT: #B5A947
+$SITEBAR_SWITCH_DK: #7C6C39
 
 // *****************************************************************************
 
@@ -76,6 +81,7 @@ $MAIN_CONTENT_HEIGHT: $VIEWPORT_HEIGHT - $MASTHEAD_HEIGHT - $MASTHEAD_PHANTOM_HE
 // MIX-INS
 
 =BEVEL_CORNER($RADIUS)
+  border-radius: $RADIUS
   -moz-border-radius: $RADIUS
   -webkit-border-radius: $RADIUS
 
@@ -94,6 +100,7 @@ body
   width: 100%
   padding: 0px
   margin: 0px
+
 
 #body, #header_content, #footer_content, #site_bar_content
   width: $INNER_CONTENT_AREAS_WIDTH

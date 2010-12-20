@@ -1,0 +1,69 @@
+#site_bar {
+  color: white;
+  font-family: Arial;
+  font-size: 14px;
+  font-weight: normal;
+  height: 47px;
+  background: #aa8888;
+  padding: 0px; }
+  #site_bar * {
+    line-height: 47px;
+    color: white;
+    font-family: Arial;
+    font-size: 14px;
+    font-weight: normal; }
+  #site_bar a {
+    border-bottom: 1px dotted white;
+    text-decoration: none; }
+    #site_bar a:hover {
+      border-bottom: 1px solid white; }
+  #site_bar #site_bar_company_name {
+    font-weight: bold; }
+  #site_bar #site_bar_branding a {
+    font-weight: normal; }
+    #site_bar #site_bar_branding a#logout {
+      margin-left: 12px; }
+
+#site_bar_content {
+  position: relative; }
+
+a#site_bar_refinery_cms_logo {
+  left: 40%;
+  border-bottom: none;
+  line-height: 29px;
+  height: 29px;
+  margin-top: 9px;
+  overflow: hidden; }
+  a#site_bar_refinery_cms_logo:hover {
+    border-bottom: none;
+    opacity: 1; }
+
+#editor_switch, #site_bar_branding, a#site_bar_refinery_cms_logo {
+  position: absolute; }
+
+#site_bar_branding {
+  right: 0px; }
+
+#editor_switch {
+  left: 0px; }
+  #editor_switch a, #editor_switch a:hover {
+    color: white;
+    background-image: -moz-linear-gradient(bottom, #b5a947, #8c7c49, #b5a947 );
+    background-image: -webkit-gradient(linear,left bottom, left top, color-stop(0, #b5a947), color-stop(0.4, #8c7c49), color-stop(1, #b5a947)  );
+    border-bottom: 0px none;
+    padding: 4px 14px;
+    border: 1px solid #8c7c49;
+    height: 24px;
+    line-height: 24px;
+    cursor: pointer; }
+  #editor_switch span {
+    border: 1px solid #8c7c49;
+    height: 26px;
+    line-height: 26px;
+    margin-top: 9px;
+    display: block;
+    cursor: pointer; }
+  #editor_switch a, #editor_switch span {
+    border-radius: 6px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px; }
