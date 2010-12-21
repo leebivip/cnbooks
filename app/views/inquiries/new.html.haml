@@ -1,0 +1,31 @@
+- content_for :body_content_left do
+  .inquiries
+    = raw @page[Page.default_parts.first.to_sym]
+
+    .modal-form.basic-form
+      = form_for @inquiry do |f|
+        = render :partial => "/shared/admin/error_messages", |
+          :locals => {                                       |
+            :object => @inquiry,                             |
+            :include_object_name => true                     |
+          }                                                  |
+        %fieldset.modal-fieldset.clearfix2
+          %h3 contact us
+          
+          = f.label( :name, 'Name*', {:title => "Enter your first and last name"} ) 
+          = f.text_field( :name )
+          = f.label( :email, 'Email*', {:title => "Enter a valid email address"} )
+          = f.text_field( :email )
+          = f.label( :phone, 'Phone', {:title => "Optional phone number contact"} )
+          = f.text_field( :phone )
+          = f.label( :message, 'Message*', {:title => "Your inquiry message"} )
+          = f.text_area( :message, :rows => 2)
+          %br 
+          %p *required; cursor any label for help
+          = link_to t('.privacy_policy'), "/pages/privacy-policy", :id => "privacy_link" if RefinerySetting.find_or_set(:show_contact_privacy_link, false)
+          %br
+          = submit_tag( 'send inquiry', :class => "submit modal-submit", :value => "send inquiry" )
+          -# .actions
+            = f.submit t('.send')
+
+= render :partial => "/shared/content_page"

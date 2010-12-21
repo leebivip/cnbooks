@@ -24,7 +24,7 @@ $FG_FOOTER: #89868d
 $BG_SIDEBAR: #0f1d23
 $FG_SIDEBAR: #f7f8f8
 
-$BG_MAINPAGE: #Fff6C8 //  #FCEFC1
+$BG_MAINPAGE: #fff8e8 //  #FCEFC1
 $FG_MAINPAGE: $BASIC_FG
 $FG_TITLES: #052E02
 
@@ -38,6 +38,20 @@ $HV_MENU: #969792 //  #d8d8d8
 $BG_SITEBAR: #666  
 $SITEBAR_SWITCH_LT: #B5A947
 $SITEBAR_SWITCH_DK: #7C6C39
+
+$FG_FORMCAPTION:  #040707
+$BG_INPUTFORM:    #Fff6C8 // #E2F1FC
+$FG_INPUTLABEL:   #687771
+$FG_INPUTBOX:     #dCdFb1 // #D2D6D3
+$BG_INPUTBOX:     $BASIC_BG
+$HV_INPUTFORM:    #E2F1FC
+$FG_SUBMIT:       #21363D
+$FG_BASICFORM_P:  #4C5B52
+  
+$BG_FORM_SUBMIT:  #661315
+$FG_FORM_SUBMIT:  $BASIC_BG
+
+$FG_INPUTLABEL_DARK: #485751
 
 // *****************************************************************************
 
@@ -399,6 +413,9 @@ article
       letter-spacing: 1px
       text-transform: uppercase
 
+// *****************************************************************************
+// *****************************************************************************
+
 .clearfix:after
   content: "&nbsp"
   margin-bottom: 0px
@@ -407,3 +424,138 @@ article
   clear: both
   visibility: hidden
 
+// *****************************************************************************
+// *****************************************************************************
+.inquiries
+  margin: 0 auto
+  width: 80%
+  
+fieldset
+  &.modal-fieldset
+    padding: 0.5em
+    margin-bottom: 0.5em
+    border:    1px solid $FG_INPUTBOX
+    background:       $BG_INPUTFORM
+
+  &.wizard-fieldset
+    margin: 0.5em 0
+    border: none
+    background:  $BG_INPUTBOX
+
+  h3
+    font-weight: normal
+    font-size: 18px
+    color:    $FG_FORMCAPTION
+    text-transform: uppercase
+
+.basic-form
+  form
+    margin: 0
+    padding: 0
+    float: none
+    display: block
+
+  label
+    color:       $FG_INPUTLABEL
+    font-size: 12px
+    font-weight: bold
+    text-transform: uppercase
+    display: block
+
+    &:hover
+      background:   $HV_INPUTFORM
+      cursor: help
+
+  br
+    display: none
+
+  input,textarea
+    margin: 0px 0 0.5em 0
+    display: block
+    line-height: 1.5em
+    width: 98%
+    border:    solid 1px $FG_INPUTBOX
+    font-size: medium
+    font-weight: normal
+    color:       $FG_FORMCAPTION
+
+  input:hover
+    background:  $HV_INPUTFORM
+
+  p
+    padding: 0
+    font-style: italic
+    font-size: small
+    float: right
+    color: $FG_BASICFORM_P
+
+  a
+    display: inline
+    font-size: small
+
+.modal-form 
+  a
+    padding: 0
+  h3
+    line-height: 2em
+
+.nonmodal-form 
+  a
+    padding: 0
+  h3
+    line-height: 2em
+
+.form-lines
+  label
+    display: inline-block
+    width: 20em
+    padding-right: 1em
+  input
+    display: inline
+    font-size: 12px
+    line-height: 1em
+    width: auto
+  br
+    display: block
+
+.no-width
+  label
+    width: auto
+    
+input
+  &.submit
+    display: block
+    cursor: pointer
+    text-align: center
+    font-weight: bold
+    font-size: small
+    text-transform: uppercase
+    width: auto
+
+  &.modal-submit
+    margin-left: 80px
+    margin-top: 10px
+    padding: 5px 15px
+    color:       $FG_SUBMIT
+    background:  $BG_INPUTBOX
+    border:     2px solid $FG_INPUTBOX
+    +BEVEL_CORNER(20px)
+
+  &.submit-rightmost
+    margin-left: auto
+    margin-right: 0px
+
+  &.submit:hover
+    color:       $FG_INPUTLABEL
+    background:  $HV_INPUTFORM
+
+input[type="hidden"]
+  display: none
+
+#lefthand-fields
+  width: 48%
+  float: left
+
+#righthand-fields
+  width: 48%
+  float: right

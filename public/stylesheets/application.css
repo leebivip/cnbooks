@@ -13,7 +13,7 @@ body {
   margin: 0px auto; }
 
 #body_content {
-  background: #fff6c8;
+  background: #fff8e8;
   min-height: 663px;
   margin: 0;
   padding: 0; }
@@ -70,8 +70,8 @@ body {
   background: url("../images/masthead.png") 2em 0.5em no-repeat; }
 
 #header {
-  background-image: -moz-linear-gradient(bottom, black, black, #9c8c59, #fff6c8 );
-  background-image: -webkit-gradient(linear,left bottom, left top, color-stop(0, black), color-stop(0.3, black), color-stop(0.6, #9c8c59), color-stop(1, #fff6c8)  ); }
+  background-image: -moz-linear-gradient(bottom, black, black, #9c8c59, #fff8e8 );
+  background-image: -webkit-gradient(linear,left bottom, left top, color-stop(0, black), color-stop(0.3, black), color-stop(0.6, #9c8c59), color-stop(1, #fff8e8)  ); }
 
 #header_content {
   height: 30px; }
@@ -86,12 +86,12 @@ body {
   float: right; }
   #header_inner_content h1 {
     margin: 0px;
-    color: #fff6c8;
+    color: #fff8e8;
     font-size: 1.5em;
     font-weight: normal;
     text-decoration: none; }
     #header_inner_content h1 a {
-      color: #fff6c8;
+      color: #fff8e8;
       font-size: 1.5em;
       font-weight: normal;
       text-decoration: none; }
@@ -119,25 +119,25 @@ body {
   font-weight: bold; }
 #menu li.selected a, #menu li:hover a, #menu li a:hover, #menu li ul li a:hover {
   color: black;
-  background: #fff6c8;
+  background: #fff8e8;
   border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px; }
 #menu div.selected a {
   color: black;
-  background: #fff6c8;
+  background: #fff8e8;
   border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px; }
 #menu a.selected, #menu a:hover {
   color: black;
-  background: #fff6c8;
+  background: #fff8e8;
   border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px; }
 #menu div:hover > a {
   color: black;
-  background: #fff6c8;
+  background: #fff8e8;
   border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px; }
@@ -148,7 +148,7 @@ body {
   margin: 0px;
   min-width: 140px;
   max-width: 300px;
-  background: #fff6c8;
+  background: #fff8e8;
   border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px; }
@@ -248,3 +248,120 @@ article {
   height: 0;
   clear: both;
   visibility: hidden; }
+
+.inquiries {
+  margin: 0 auto;
+  width: 80%; }
+
+fieldset.modal-fieldset {
+  padding: 0.5em;
+  margin-bottom: 0.5em;
+  border: 1px solid #dcdfb1;
+  background: #fff6c8; }
+fieldset.wizard-fieldset {
+  margin: 0.5em 0;
+  border: none;
+  background: white; }
+fieldset h3 {
+  font-weight: normal;
+  font-size: 18px;
+  color: #040707;
+  text-transform: uppercase; }
+
+.basic-form form {
+  margin: 0;
+  padding: 0;
+  float: none;
+  display: block; }
+.basic-form label {
+  color: #687771;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  display: block; }
+  .basic-form label:hover {
+    background: #e2f1fc;
+    cursor: help; }
+.basic-form br {
+  display: none; }
+.basic-form input, .basic-form textarea {
+  margin: 0px 0 0.5em 0;
+  display: block;
+  line-height: 1.5em;
+  width: 98%;
+  border: solid 1px #dcdfb1;
+  font-size: medium;
+  font-weight: normal;
+  color: #040707; }
+.basic-form input:hover {
+  background: #e2f1fc; }
+.basic-form p {
+  padding: 0;
+  font-style: italic;
+  font-size: small;
+  float: right;
+  color: #4c5b52; }
+.basic-form a {
+  display: inline;
+  font-size: small; }
+
+.modal-form a {
+  padding: 0; }
+.modal-form h3 {
+  line-height: 2em; }
+
+.nonmodal-form a {
+  padding: 0; }
+.nonmodal-form h3 {
+  line-height: 2em; }
+
+.form-lines label {
+  display: inline-block;
+  width: 20em;
+  padding-right: 1em; }
+.form-lines input {
+  display: inline;
+  font-size: 12px;
+  line-height: 1em;
+  width: auto; }
+.form-lines br {
+  display: block; }
+
+.no-width label {
+  width: auto; }
+
+input.submit {
+  display: block;
+  cursor: pointer;
+  text-align: center;
+  font-weight: bold;
+  font-size: small;
+  text-transform: uppercase;
+  width: auto; }
+input.modal-submit {
+  margin-left: 80px;
+  margin-top: 10px;
+  padding: 5px 15px;
+  color: #21363d;
+  background: white;
+  border: 2px solid #dcdfb1;
+  border-radius: 20px;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px; }
+input.submit-rightmost {
+  margin-left: auto;
+  margin-right: 0px; }
+input.submit:hover {
+  color: #687771;
+  background: #e2f1fc; }
+
+input[type="hidden"] {
+  display: none; }
+
+#lefthand-fields {
+  width: 48%;
+  float: left; }
+
+#righthand-fields {
+  width: 48%;
+  float: right; }
