@@ -73,7 +73,7 @@ $MAIN_TOP_MARGIN: $STANDARD_MARGIN
 $MAIN_BTM_MARGIN: $STANDARD_MARGIN
 
 $MAIN_CONTENT_WIDTH: $VIEWPORT_WIDTH - $MAIN_LEFT_MARGIN - $MAIN_RIGHT_MARGIN - $SIDEBAR_WIDTH
-$MAIN_CONTENT_HEIGHT: $VIEWPORT_HEIGHT - $MASTHEAD_HEIGHT - $MASTHEAD_PHANTOM_HEIGHT - $HEADER_HEIGHT - $MAIN_TOP_MARGIN - $MAIN_BTM_MARGIN
+$MAIN_CONTENT_HEIGHT: $VIEWPORT_HEIGHT - $MASTHEAD_PHANTOM_HEIGHT - $HEADER_HEIGHT - $MAIN_TOP_MARGIN - $MAIN_BTM_MARGIN
 
 
 // *****************************************************************************
@@ -89,6 +89,10 @@ $MAIN_CONTENT_HEIGHT: $VIEWPORT_HEIGHT - $MASTHEAD_HEIGHT - $MASTHEAD_PHANTOM_HE
   background-image: unquote("-moz-linear-gradient(bottom, #{$LIGHT}, #{$DARK}, #{$LIGHT} )")
   background-image: unquote("-webkit-gradient(linear,left bottom, left top, color-stop(0, #{$LIGHT}), color-stop(0.4, #{$DARK}), color-stop(1, #{$LIGHT})  )")
 
+=GRADIENT_BAR_BOX($LIGHT, $DARK, $BAR)
+  background-image: unquote("-moz-linear-gradient(bottom, #{$BAR}, #{$BAR}, #{$DARK}, #{$LIGHT} )")
+  background-image: unquote("-webkit-gradient(linear,left bottom, left top, color-stop(0, #{$BAR}), color-stop(0.3, #{$BAR}), color-stop(0.6, #{$DARK}), color-stop(1, #{$LIGHT})  )")
+
 // *****************************************************************************
 // *****************************************************************************
 body
@@ -102,15 +106,15 @@ body
   margin: 0px
 
 
-#body, #header_content, #footer_content, #site_bar_content
+#body, #masthead, #header_content, #footer_content, #site_bar_content
   width: $INNER_CONTENT_AREAS_WIDTH
   margin: 0px auto
   
 #body
-  background: $BG_MAINPAGE
-  min-height: $VIEWPORT_HEIGHT
 
 #body_content
+  background: $BG_MAINPAGE
+  min-height: $MAIN_CONTENT_HEIGHT
   margin: 0 
   padding: 0
   
@@ -153,8 +157,6 @@ body
 // *****************************************************************************
 // *****************************************************************************
 #footer
-  position: fixed
-  bottom: 0px
   height: $FOOTER_HEIGHT
   background: $BG_FOOTER  // url("../images/footer_background.png") repeat-x
   
@@ -184,12 +186,11 @@ body
   background: url("../images/masthead.png") 2em 0.5em no-repeat
 
 #header
-  +GRADIENT_BOX($HEADER_LT, $HEADER_DK)
+  +GRADIENT_BAR_BOX($HEADER_LT, $HEADER_DK, $BG_NAV)
 
 #header_content
-  background: $BG_HEADER // url('../images/header_background.png') repeat-x
-  // background: $BG_NAV
-  position: relative
+  //background: $BG_HEADER // url('../images/header_background.png') repeat-x
+  //background: $BG_NAV
   height: $NAV_HEIGHT
 
 #nav_search_box
