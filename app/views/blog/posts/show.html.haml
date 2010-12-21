@@ -1,0 +1,60 @@
+- content_for :body_content_left do
+  #show_blog_post
+    = render 'post'
+  - if BlogPost.comments_allowed?
+    %aside#comments
+      %h2= t('.comments.title')
+      - if (comments = @blog_post.comments.approved).any?
+        = render :partial => "comment", :collection => comments
+      - else
+        %p
+          = t('blog.shared.comments.none')
+          \.
+      - flash.each do |key, value|
+        #flash{:class => "flash flash_#{key}"}
+          = value
+      %h2= t('.comments.add')
+
+      .modal-form.basic-form.comment_submission
+        = form_for [:blog_post, @blog_comment] do |f|
+          = render :partial => "/shared/admin/error_messages", |
+            :locals => {                                       |
+              :object => f.object,                             |
+              :include_object_name => true                     |
+            }                                                  |
+          %fieldset.modal-fieldset.clearfix2
+            = f.label( :name, 'Name', {:title => "Enter your name"} ) 
+            = f.text_field( :name )
+            = f.label( :email, 'Email', {:title => "Enter a valid email address"} )
+            = f.text_field( :email )
+            = f.label( :message, 'Message', {:title => "Your inquiry message"} )
+            = f.text_area( :message, :rows => 2)
+            %br 
+            %p  cursor any label for help
+            %br
+            = submit_tag( 'send', :class => "submit modal-submit", :value => "send" )
+            -# .actions
+              = f.submit t('.send')
+
+- content_for :body_content_right do
+  = render :partial => "/blog/shared/categories"
+  = render :partial => "/blog/shared/posts"
+  = render :partial => "/blog/shared/rss_feed"
+  = blog_archive_list
+= render :partial => "/shared/content_page", :locals => { :remove_automatic_sections => true, :hide_sections => [:body_content_title] }
+- if Refinery.version < '0.9.9'
+  - content_for :head_libraries, jquery_include_tags(:jquery_ui => false)
+  - content_for :head do
+    = stylesheet_link_tag 'refinerycms-blog'
+    = javascript_include_tag('refinerycms-blog')
+    - if BlogPost::ShareThis.enabled?
+      %script{:src => "http://w.sharethis.com/button/buttons.js"}
+      :javascript
+        stLight.options({publisher:' BlogPost::ShareThis.key '});- else
+  - content_for :stylesheets, stylesheet_link_tag('refinerycms-blog')
+  - content_for :before_javascript_libraries, jquery_include_tags(:jquery_ui => false)
+  - content_for :javascripts do
+    = javascript_include_tag 'refinerycms-blog'
+    %script{:src => "http://w.sharethis.com/button/buttons.js"}
+    :javascript
+      stLight.options({publisher:' BlogPost::ShareThis.key '});  - end if BlogPost::ShareThis.enabled?

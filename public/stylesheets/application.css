@@ -172,17 +172,20 @@ body, input, textarea, select, p, li, blockquote {
 #body_content_left * p, #body_content_right * p, .page_part_body p, .page_part_side_body p {
   color: black; }
 
+#body_content_left p, #body_content_right p, .page_part_body p, .page_part_side_body p {
+  margin-bottom: 15px; }
+
 h1, h2, h3, h4 {
   color: #052e02;
   letter-spacing: 0em;
   font-weight: lighter;
   line-height: 0.8em; }
 
-#body_content_left p, #body_content_right p, .page_part_body p, .page_part_side_body p {
-  margin-bottom: 15px; }
+h1 {
+  font-size: 1.8em; }
 
 h2 {
-  font-size: 1.4em; }
+  font-size: 1.5em; }
 
 h3 {
   font-size: 1.2em; }
@@ -249,7 +252,7 @@ article {
   clear: both;
   visibility: hidden; }
 
-.inquiries {
+.inquiries, .comment_submission {
   margin: 0 auto;
   width: 80%; }
 
