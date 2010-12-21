@@ -1,6 +1,5 @@
 - content_for :body_content_left do
   .inquiries
-    = raw @page[Page.default_parts.first.to_sym]
 
     .modal-form.basic-form
       = form_for @inquiry do |f|
@@ -10,8 +9,6 @@
             :include_object_name => true                     |
           }                                                  |
         %fieldset.modal-fieldset.clearfix2
-          %h3 contact us
-          
           = f.label( :name, 'Name*', {:title => "Enter your first and last name"} ) 
           = f.text_field( :name )
           = f.label( :email, 'Email*', {:title => "Enter a valid email address"} )
@@ -28,4 +25,5 @@
           -# .actions
             = f.submit t('.send')
 
+  = raw @page[Page.default_parts.first.to_sym]
 = render :partial => "/shared/content_page"
