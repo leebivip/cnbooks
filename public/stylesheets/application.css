@@ -225,6 +225,12 @@ h4 {
 article {
   padding: 0;
   margin-bottom: 3em; }
+  article .image-align-left {
+    float: left;
+    padding: 0 0.5em 0.5em 0; }
+  article .image-align-right {
+    float: right;
+    padding: 0 0 0.5em 0.5em; }
   article header {
     margin-bottom: 1em;
     padding: 0;
