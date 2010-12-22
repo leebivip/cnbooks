@@ -11,12 +11,12 @@
         %fieldset.modal-fieldset.clearfix2
           = f.label( :name, 'Name*', {:title => "Enter your first and last name"} ) 
           = f.text_field( :name )
-          = f.label( :email, 'Email*', {:title => "Enter a valid email address"} )
+          = f.label( :email, 'Email*', {:title => "Enter a valid email address so that we can respond"} )
           = f.text_field( :email )
           = f.label( :phone, 'Phone', {:title => "Optional phone number contact"} )
           = f.text_field( :phone )
-          = f.label( :message, 'Message*', {:title => "Your inquiry message"} )
-          = f.text_area( :message, :rows => 2)
+          = f.label( :message, 'Message*', {:title => "Your request, message, or comment for us"} )
+          = f.text_area( :message, :rows => 3)
           %br 
           %p *required; cursor any label for help
           = link_to t('.privacy_policy'), "/pages/privacy-policy", :id => "privacy_link" if RefinerySetting.find_or_set(:show_contact_privacy_link, false)

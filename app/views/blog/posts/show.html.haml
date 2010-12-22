@@ -23,12 +23,12 @@
               :include_object_name => true                     |
             }                                                  |
           %fieldset.modal-fieldset.clearfix2
-            = f.label( :name, 'Name', {:title => "Enter your name"} ) 
+            = f.label( :name, 'Name', {:title => "Enter your name to appear on the comment"} ) 
             = f.text_field( :name )
             = f.label( :email, 'Email', {:title => "Enter a valid email address"} )
             = f.text_field( :email )
-            = f.label( :message, 'Message', {:title => "Your inquiry message"} )
-            = f.text_area( :message, :rows => 2)
+            = f.label( :message, 'Message', {:title => "Enter your comment; please be respectful!"} )
+            = f.text_area( :message, :rows => 3)
             %br 
             %p  cursor any label for help
             %br
