@@ -204,6 +204,17 @@ img.image-align-right {
   float: right;
   padding: 0 0 0.5em 0.5em; }
 
+#body_content_right {
+  line-height: 1em; }
+  #body_content_right h1 {
+    font-size: 1.6em; }
+  #body_content_right h2 {
+    font-size: 1.3em; }
+  #body_content_right h3 {
+    font-size: 1.1em; }
+  #body_content_right h4 {
+    font-size: 1em; }
+
 #galleries, ul#galleries {
   -webkit-padding-start: 0;
   list-style: none inside; }
