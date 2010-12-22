@@ -45,7 +45,7 @@ body {
 
 #footer {
   height: 45px;
-  background: black; }
+  background: #333333; }
 
 #footer_inner_content p {
   padding: 0.5em 0px;
@@ -69,8 +69,8 @@ body {
   background: url("../images/masthead.png") 2em 0.5em no-repeat; }
 
 #header {
-  background-image: -moz-linear-gradient(bottom, black, black, #9c8c59, #fff8e8 );
-  background-image: -webkit-gradient(linear,left bottom, left top, color-stop(0, black), color-stop(0.3, black), color-stop(0.6, #9c8c59), color-stop(1, #fff8e8)  ); }
+  background-image: -moz-linear-gradient(bottom, #333333, #333333, #9c8c59, #fff8e8 );
+  background-image: -webkit-gradient(linear,left bottom, left top, color-stop(0, #333333), color-stop(0.3, #333333), color-stop(0.6, #9c8c59), color-stop(1, #fff8e8)  ); }
 
 #header_content {
   height: 30px; }
@@ -117,25 +117,25 @@ body {
   cursor: pointer;
   font-weight: bold; }
 #menu li.selected a, #menu li:hover a, #menu li a:hover, #menu li ul li a:hover {
-  color: black;
+  color: #333333;
   background: #fff8e8;
   border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px; }
 #menu div.selected a {
-  color: black;
+  color: #333333;
   background: #fff8e8;
   border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px; }
 #menu a.selected, #menu a:hover {
-  color: black;
+  color: #333333;
   background: #fff8e8;
   border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px; }
 #menu div:hover > a {
-  color: black;
+  color: #333333;
   background: #fff8e8;
   border-radius: 5px;
   -moz-border-radius: 5px;
@@ -169,7 +169,7 @@ body, input, textarea, select, p, li, blockquote {
   font-size: 14px; }
 
 #body_content_left * p, #body_content_right * p, .page_part_body p, .page_part_side_body p {
-  color: black; }
+  color: #333333; }
 
 #body_content_left p, #body_content_right p, .page_part_body p, .page_part_side_body p {
   margin-bottom: 15px; }
@@ -192,6 +192,16 @@ h3 {
 h4 {
   font-size: 1em; }
 
+a {
+  color: #666666;
+  text-decoration: none;
+  cursor: pointer; }
+  a:hover {
+    color: black;
+    background: #dcdcdc; }
+  a:visited {
+    color: #666666; }
+
 #footer_content * {
   color: #89868d;
   font-size: 0.9em; }
@@ -207,9 +217,13 @@ img.image-align-right {
 #body_content_right {
   line-height: 1em; }
   #body_content_right h1 {
-    font-size: 1.6em; }
+    font-size: 1.4em; }
+    #body_content_right h1 a {
+      font-size: 1.4em; }
   #body_content_right h2 {
     font-size: 1.3em; }
+    #body_content_right h2 a {
+      font-size: 1.3em; }
   #body_content_right h3 {
     font-size: 1.1em; }
   #body_content_right h4 {
@@ -219,7 +233,13 @@ img.image-align-right {
   -webkit-padding-start: 0;
   list-style: none inside; }
   #galleries a, ul#galleries a {
-    font-size: 1.4em; }
+    font-size: 1.6em; }
+
+#body_content_right #galleries, #body_content_right ul#galleries {
+  -webkit-padding-start: 0;
+  list-style: none inside; }
+  #body_content_right #galleries a, #body_content_right ul#galleries a {
+    font-size: 1.1em; }
 
 #gallery_display, ul#gallery_display {
   -webkit-padding-start: 0;

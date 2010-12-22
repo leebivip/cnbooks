@@ -6,8 +6,9 @@
 // *****************************************************************************
 // *****************************************************************************
 
-$BASIC_FG: black
+$BASIC_FG: #333
 $BASIC_BG: white
+$BASIC_NEUTRAL: #666
 
 $FG_ERROR: #c6130a
 $FG_ERROR_SHADOW: #620d10
@@ -35,10 +36,6 @@ $FG_MENU: $FG_MAINPAGE
 $BG_MENU: $BG_MAINPAGE
 $HV_MENU: #969792 //  #d8d8d8
 
-$BG_SITEBAR: #666  
-$SITEBAR_SWITCH_LT: #B5A947
-$SITEBAR_SWITCH_DK: #7C6C39
-
 $FG_FORMCAPTION:  #040707
 $BG_INPUTFORM:    #Fff6C8 // #E2F1FC
 $FG_INPUTLABEL:   #687771
@@ -52,7 +49,11 @@ $BG_FORM_SUBMIT:  #661315
 $FG_FORM_SUBMIT:  $BASIC_BG
 
 $FG_INPUTLABEL_DARK: #485751
-
+  
+$FG_ANCHOR_LINK:    $BASIC_NEUTRAL
+$FG_ANCHOR_VISITED: $BASIC_NEUTRAL
+$HV_ANCHOR_LINK:    #000
+$BG_ANCHOR_HOVER:   #dcdcdc
 // *****************************************************************************
 
 
@@ -337,6 +338,18 @@ h3
     
 h4
   font-size: 1.0em
+    
+a
+  color: $FG_ANCHOR_LINK
+  text-decoration: none
+  cursor: pointer
+  
+  &:hover
+    color: $HV_ANCHOR_LINK
+    background: $BG_ANCHOR_HOVER
+    
+  &:visited
+    color: $FG_ANCHOR_VISITED
 
 #footer_content *
   color: $FG_FOOTER
@@ -353,10 +366,14 @@ img.image-align-right
 #body_content_right
   line-height: 1em
   h1
-    font-size: 1.6em
+    font-size: 1.4em
+    a
+      font-size: 1.4em
   
   h2
     font-size: 1.3em
+    a
+      font-size: 1.3em
   
   h3
     font-size: 1.1em
@@ -374,7 +391,17 @@ img.image-align-right
   padding 0
   list-style: none inside
   a
-    font-size: 1.4em
+    font-size: 1.6em
+
+#body_content_right
+  #galleries, ul#galleries
+    -webkit-padding-start: 0
+    margin 0
+    padding 0
+    list-style: none inside
+    a
+      font-size: 1.1em
+  
 
 #gallery_display, ul#gallery_display
   -webkit-padding-start: 0
