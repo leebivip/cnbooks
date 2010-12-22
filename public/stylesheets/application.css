@@ -196,6 +196,14 @@ h4 {
   color: #89868d;
   font-size: 0.9em; }
 
+img.image-align-left {
+  float: left;
+  padding: 0 0.5em 0.5em 0; }
+
+img.image-align-right {
+  float: right;
+  padding: 0 0 0.5em 0.5em; }
+
 #galleries, ul#galleries {
   -webkit-padding-start: 0;
   list-style: none inside; }
@@ -225,12 +233,6 @@ h4 {
 article {
   padding: 0;
   margin-bottom: 3em; }
-  article .image-align-left {
-    float: left;
-    padding: 0 0.5em 0.5em 0; }
-  article .image-align-right {
-    float: right;
-    padding: 0 0 0.5em 0.5em; }
   article header {
     margin-bottom: 1em;
     padding: 0;
