@@ -26,15 +26,15 @@ body {
 
 #body_content_title {
   width: 670px;
-  padding: 0 1em; }
+  padding: 0 2em; }
 
 #body_content_left {
   margin: 0;
-  padding: 0 1em; }
+  padding: 0 2em; }
 
 #body_content_right {
   margin: 0;
-  padding: 0 1em; }
+  padding: 0 2em; }
   #body_content_right img {
     border: 3px solid #969792; }
 
@@ -175,7 +175,7 @@ body, input, textarea, select, p, li, blockquote {
   margin-bottom: 15px; }
 
 h1, h2, h3, h4 {
-  color: #052e02;
+  color: #003300;
   letter-spacing: 0em;
   font-weight: lighter;
   line-height: 0.8em; }
@@ -261,9 +261,12 @@ img.image-align-right {
   vertical-align: bottom;
   border: 0; }
 
+section:first-child {
+  padding-top: 1em; }
+
 article {
   padding: 0;
-  margin-bottom: 3em; }
+  margin-bottom: 2em; }
   article header {
     margin-bottom: 1em;
     padding: 0;
@@ -277,6 +280,7 @@ article {
         text-decoration: none; }
     article header details {
       margin: 0;
+      margin-top: 1em;
       padding: 0;
       font-size: 0.7em;
       font-style: normal;
