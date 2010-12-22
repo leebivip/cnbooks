@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/dsaronin/refinerycms-blog.git
-  revision: 5fd9c78dd885b12dae216db271bc75d105ed4343
+  revision: 0923eff1ee03e17ef71a608fd2ac99ec7864f59d
   specs:
-    refinerycms-blog (1.1.0.0.2)
+    refinerycms-blog (1.1.0.0.4)
       filters_spam (~> 0.2)
       refinerycms (>= 0.9.8)
 
@@ -132,7 +132,7 @@ DEPENDENCIES
   pg
   rails (= 3.0.3)
   refinerycms (= 0.9.8.6)
-  refinerycms-blog (= 1.1.0.0.2)!
+  refinerycms-blog (= 1.1.0.0.4)!
   refinerycms-galleries (= 0.4.0.6)!
   refinerycms-i18n (~> 0.9.8.7)
   refinerycms-inquiries (~> 0.9.8.8)

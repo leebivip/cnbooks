@@ -10,7 +10,7 @@
         %p
           = t('blog.shared.comments.none')
           \.
-      - flash.each do |key, value|
+      -# flash.each do |key, value|
         #flash{:class => "flash flash_#{key}"}
           = value
       %h2= t('.comments.add')
