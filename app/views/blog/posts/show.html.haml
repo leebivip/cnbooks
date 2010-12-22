@@ -1,5 +1,5 @@
 - content_for :body_content_left do
-  #show_blog_post
+  #show_blog_post.clearfix
     = render 'post'
   - if BlogPost.comments_allowed?
     %aside#comments
