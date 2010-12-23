@@ -10,24 +10,22 @@ $BASIC_FG: #333
 $BASIC_BG: white
 $BASIC_NEUTRAL: #666
 
-$FG_ERROR: #c6130a
-$FG_ERROR_SHADOW: #620d10
-
 $BG_HEADER: $BASIC_FG
 $FG_HEADER: #8daeae
   
 $BG_NAV: $BASIC_FG   //  #DBD19E
 $FG_NAV: $FG_HEADER
 $HV_NAV: $BASIC_BG
+
 $BG_FOOTER: $BG_HEADER
 $FG_FOOTER: #89868d
-
-$BG_SIDEBAR: #0f1d23
-$FG_SIDEBAR: #f7f8f8
 
 $BG_MAINPAGE: #fff8e8 //  #FCEFC1
 $FG_MAINPAGE: $BASIC_FG
 $FG_TITLES: #030
+
+$BG_SIDEBAR: $BG_MAINPAGE
+$FG_SIDEBAR: $BASIC_FG
 
 $HEADER_LT: $BG_MAINPAGE  // #DDD068
 $HEADER_DK: #9C8C59  //  #B5A947
@@ -91,7 +89,29 @@ $MAIN_BTM_MARGIN: $STANDARD_MARGIN
 $MAIN_CONTENT_WIDTH: $VIEWPORT_WIDTH - $MAIN_LEFT_MARGIN - $MAIN_RIGHT_MARGIN - $SIDEBAR_WIDTH
 $MAIN_CONTENT_HEIGHT: $VIEWPORT_HEIGHT - $MASTHEAD_PHANTOM_HEIGHT - $HEADER_HEIGHT - $MAIN_TOP_MARGIN - $MAIN_BTM_MARGIN
 
+// *****************************************************************************
+// *****************************************************************************
+// Other common settings
 
+$FONT_SIZE_NOMINAL_EM: 14px    // this determines what 1em is: ok to use %
+
+// reference Hx used in main content area; sidebar sets the Hx to one size lower 
+// main h1 $FONT_SIZE_REF_H1, sidebar h1 $FONT_SIZE_REF_H2, etc
+
+$FONT_SIZE_REF_H1: 1.8em       // main content reference size for h1
+$FONT_SIZE_ALT_H1: 1.6em       // main content alternate size for h1
+$FONT_SIZE_REF_H2: 1.3em       // main content reference size for h2
+$FONT_SIZE_REF_H3: 1.2em       // main content reference size for h3
+$FONT_SIZE_REF_H4: 1.1em       // main content reference size for h4
+$FONT_SIZE_REF_H5: 1.0em       // main content reference size for h5
+$FONT_SIZE_REF_H6: 0.8em       // main content reference size for h6
+$FONT_SIZE_REF_H7: 0.7em       // main content reference size for h7
+
+
+
+$NAV_TAB_BEVEL: 5px    // radius curvature for menu tab areas
+
+// *****************************************************************************
 // *****************************************************************************
 
 // MIX-INS
@@ -114,7 +134,7 @@ $MAIN_CONTENT_HEIGHT: $VIEWPORT_HEIGHT - $MASTHEAD_PHANTOM_HEIGHT - $HEADER_HEIG
 body
   margin: 0px
   padding: 0px
-  background: #fff url("../images/gardenia_pattern_clip.png") repeat
+  background: #fff url("../images/body_background.png") repeat
 
 #page
   width: 100%
@@ -165,8 +185,7 @@ body
 // *****************************************************************************
 .sidebar_box
   margin: $STANDARD_MARGIN
-  padding: 0
-  min-height: 4em
+  padding: 2em 0
   // border: 2px solid $FG_TITLES
   
 // *****************************************************************************
@@ -211,12 +230,10 @@ body
 #nav_search_box
   float: right
   width: $SIDEBAR_INNER_WIDTH
-  // display: inline
   line-height: 4em
   color:  $FG_HEADER
 
 #header_inner_content
-  //width: $INNER_CONTENT_AREAS_WIDTH - $SIDEBAR_INNER_WIDTH - $STANDARD_MARGIN
   float: right
   h1
     margin: 0px
@@ -228,15 +245,8 @@ body
       color: $BG_MAINPAGE
       font-size: 1.5em
       font-weight: normal
-      //left: 0px
       text-decoration: none
-    //position: absolute
-    //left: 0px
-    //bottom: $STANDARD_MARGIN
   #menu
-    //position: absolute
-    //bottom: $STANDARD_MARGIN
-    //right: 0px
     margin: 0px
     padding: 0px
 
@@ -267,20 +277,20 @@ body
     &.selected a, &:hover a, a:hover, ul li a:hover
       color: $FG_MENU
       background: $BG_MENU
-      +BEVEL_CORNER(5px)
+      +BEVEL_CORNER($NAV_TAB_BEVEL)
   div.selected a
     color: $FG_MENU
     background: $BG_MENU
-    +BEVEL_CORNER(5px)
+    +BEVEL_CORNER($NAV_TAB_BEVEL)
   a      
     &.selected, &:hover
       color: $FG_MENU
       background: $BG_MENU
-      +BEVEL_CORNER(5px)
+      +BEVEL_CORNER($NAV_TAB_BEVEL)
   div:hover > a
     color: $FG_MENU
     background: $BG_MENU
-    +BEVEL_CORNER(5px)
+    +BEVEL_CORNER($NAV_TAB_BEVEL)
   li ul, nav
     position: absolute
     left: -99999px
@@ -289,7 +299,7 @@ body
     min-width: 140px
     max-width: 300px
     background: $BG_MENU
-    +BEVEL_CORNER(5px)
+    +BEVEL_CORNER($NAV_TAB_BEVEL)
   li ul li, nav a
     float: left
   li:hover ul, div:hover nav
@@ -315,12 +325,17 @@ body, input, textarea, select, p, li, blockquote
   font-size: 14px
 
 #body_content_left *, #body_content_right *, .page_part_body, .page_part_side_body
-  // line-height: 1.5em
   p
     color: $FG_MAINPAGE
 
 #body_content_left p, #body_content_right p, .page_part_body p, .page_part_side_body p
-  margin-bottom: $STANDARD_MARGIN
+  margin: 0 0 $STANDARD_MARGIN 0
+
+ul, li
+  -webkit-padding-start: 0
+  margin 0
+  padding 0
+  list-style: none inside
 
 h1, h2, h3, h4
   color: $FG_TITLES
@@ -329,16 +344,16 @@ h1, h2, h3, h4
   line-height: 0.8em
 
 h1
-  font-size: 1.8em
+  font-size: $FONT_SIZE_REF_H1
 
 h2
   font-size: 1.5em
 
 h3
-  font-size: 1.2em
+  font-size: $FONT_SIZE_REF_H3
     
 h4
-  font-size: 1.0em
+  font-size: $FONT_SIZE_REF_H4
     
 a
   color: $FG_ANCHOR_LINK
@@ -367,20 +382,20 @@ img.image-align-right
 #body_content_right
   line-height: 1em
   h1
-    font-size: 1.4em
+    font-size: $FONT_SIZE_REF_H2
     a
-      font-size: 1.4em
+      font-size: $FONT_SIZE_REF_H2
   
   h2
-    font-size: 1.3em
+    font-size: $FONT_SIZE_REF_H3
     a
-      font-size: 1.3em
+      font-size: $FONT_SIZE_REF_H3
   
   h3
-    font-size: 1.1em
+    font-size: $FONT_SIZE_REF_H4
       
   h4
-    font-size: 1.0em
+    font-size: $FONT_SIZE_REF_H5
     
 // *******************************************************************
   // GALLERIES
@@ -392,7 +407,7 @@ img.image-align-right
   padding 0
   list-style: none inside
   a
-    font-size: 1.6em
+    font-size: $FONT_SIZE_ALT_H1
 
 #body_content_right
   #galleries, ul#galleries
@@ -401,7 +416,7 @@ img.image-align-right
     padding 0
     list-style: none inside
     a
-      font-size: 1.1em
+      font-size: $FONT_SIZE_REF_H4
   
 
 #gallery_display, ul#gallery_display
@@ -436,7 +451,7 @@ img.image-align-right
 // *****************************************************************************
 section:first-child
   padding-top: $STANDARD_PADDING / 2
-
+  
 article
   padding: 0
   //border: 1px solid #ddd
@@ -450,7 +465,7 @@ article
     h1
       margin: 0
       padding: 0
-      font-size: 1.6em
+      font-size: $FONT_SIZE_ALT_H1
       line-height: 1em
         
       a
@@ -464,6 +479,19 @@ article
       font-style: normal
       letter-spacing: 1px
       text-transform: uppercase
+
+#comments
+  p
+    font-size: 0.9em
+    font-style: italic
+  h2
+    font-size: $FONT_SIZE_REF_H3
+  article
+    header
+      margin-bottom: 0.5em
+        
+      details
+        margin-top: 0em  
 
 // *****************************************************************************
 // *****************************************************************************
@@ -496,7 +524,7 @@ fieldset
 
   h3
     font-weight: normal
-    font-size: 18px
+    font-size: $FONT_SIZE_REF_H3
     color:    $FG_FORMCAPTION
     text-transform: uppercase
 
@@ -509,7 +537,7 @@ fieldset
 
   label
     color:       $FG_INPUTLABEL
-    font-size: 10px
+    font-size: 0.7em
     font-weight: bold
     text-transform: uppercase
     display: block
@@ -564,7 +592,7 @@ fieldset
     padding-right: 1em
   input
     display: inline
-    font-size: 12px
+    font-size: 0.9em
     line-height: 1em
     width: auto
   br

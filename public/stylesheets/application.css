@@ -1,7 +1,7 @@
 body {
   margin: 0px;
   padding: 0px;
-  background: white url("../images/gardenia_pattern_clip.png") repeat; }
+  background: white url("../images/body_background.png") repeat; }
 
 #page {
   width: 100%;
@@ -172,7 +172,11 @@ body, input, textarea, select, p, li, blockquote {
   color: #333333; }
 
 #body_content_left p, #body_content_right p, .page_part_body p, .page_part_side_body p {
-  margin-bottom: 15px; }
+  margin: 0 0 15px 0; }
+
+ul, li {
+  -webkit-padding-start: 0;
+  list-style: none inside; }
 
 h1, h2, h3, h4 {
   color: #003300;
@@ -190,7 +194,7 @@ h3 {
   font-size: 1.2em; }
 
 h4 {
-  font-size: 1em; }
+  font-size: 1.1em; }
 
 a {
   color: #666666;
@@ -217,13 +221,13 @@ img.image-align-right {
 #body_content_right {
   line-height: 1em; }
   #body_content_right h1 {
-    font-size: 1.4em; }
-    #body_content_right h1 a {
-      font-size: 1.4em; }
-  #body_content_right h2 {
     font-size: 1.3em; }
-    #body_content_right h2 a {
+    #body_content_right h1 a {
       font-size: 1.3em; }
+  #body_content_right h2 {
+    font-size: 1.2em; }
+    #body_content_right h2 a {
+      font-size: 1.2em; }
   #body_content_right h3 {
     font-size: 1.1em; }
   #body_content_right h4 {
@@ -287,6 +291,16 @@ article {
       letter-spacing: 1px;
       text-transform: uppercase; }
 
+#comments p {
+  font-size: 0.9em;
+  font-style: italic; }
+#comments h2 {
+  font-size: 1.2em; }
+#comments article header {
+  margin-bottom: 0.5em; }
+  #comments article header details {
+    margin-top: 0em; }
+
 .clearfix:after {
   content: "&nbsp";
   margin-bottom: 0px;
@@ -310,7 +324,7 @@ fieldset.wizard-fieldset {
   background: white; }
 fieldset h3 {
   font-weight: normal;
-  font-size: 18px;
+  font-size: 1.2em;
   color: #040707;
   text-transform: uppercase; }
 
@@ -321,7 +335,7 @@ fieldset h3 {
   display: block; }
 .basic-form label {
   color: #687771;
-  font-size: 10px;
+  font-size: 0.7em;
   font-weight: bold;
   text-transform: uppercase;
   display: block; }
@@ -367,7 +381,7 @@ fieldset h3 {
   padding-right: 1em; }
 .form-lines input {
   display: inline;
-  font-size: 12px;
+  font-size: 0.9em;
   line-height: 1em;
   width: auto; }
 .form-lines br {
