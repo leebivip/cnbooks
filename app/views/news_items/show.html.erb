@@ -5,7 +5,7 @@
 	    <h1><%= @news_item.title %></h1>
 	    <details>
 	      <time datetime="<%= @news_item.publish_date %>" class='posted_at'>
-	        <%= t('.published', :when => l(@news_item.publish_date, :format => :long)) %>
+	      	<%= t('.published') %> <%= l(@news_item.publish_date, :format => :long) %>
 	      </time>	  
 	    </details>
 	  </header>
