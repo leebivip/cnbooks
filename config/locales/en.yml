@@ -60,3 +60,10 @@ en:
     admin:
       image_picker:
         image: "Image" 
+        
+  news_items:
+    recent_posts:
+      recent_posts: Recent Posts
+    index:
+      published: Published
+      read_more: "Read more >"

@@ -7,13 +7,25 @@
 
   <% if @news_items.any? %>
     <% @news_items.each do |item| %>
-      <h3><%= link_to item.title, news_item_url(item) %></h3>
-      <p>
-        <small><%= t('.published') %> <%= l(item.publish_date, :format => :long) %></small>
-      </p>
-      <%= truncate  item.body, :length => 200,
+
+	<article class='clearfix'>
+	  <header>
+	    <h3><%= link_to item.title, news_item_url(item) %></h3>
+	    <details>
+	      <time datetime="<%= item.publish_date.strftime('%Y-%m-%d') %>" class='posted_at'>
+	      	<%= t('.published') %> <%= l(item.publish_date, :format => :long) %>
+	        
+	      </time>	  
+	    </details>
+	  </header>
+	  
+	  <section class='clearfix'>
+      <%= truncate  item.body, :length => 220,
                     :omission => " ... #{link_to t('.read_more'), news_item_url(item)}",
                     :preserve_html_tags => true %>
+		</section>
+	</article>
+
     <% end %>
 
     <%= will_paginate(@news_items) %>
@@ -22,4 +34,4 @@
   <% end %>
 <% end -%>
 
-<%= render :partial => "/shared/content_page", :locals => {:hide_sections => [:body_content_title]}  %>
+<%= render :partial => "/shared/content_page" %>
