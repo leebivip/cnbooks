@@ -40,8 +40,7 @@ body {
 
 .sidebar_box {
   margin: 15px;
-  padding: 0;
-  min-height: 4em; }
+  padding: 2em 0; }
 
 #footer {
   height: 45px;
