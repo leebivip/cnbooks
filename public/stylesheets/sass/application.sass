@@ -107,7 +107,10 @@ $FONT_SIZE_REF_H5: 1.0em       // main content reference size for h5
 $FONT_SIZE_REF_H6: 0.8em       // main content reference size for h6
 $FONT_SIZE_REF_H7: 0.7em       // main content reference size for h7
 
-
+$MENU_MIN_WIDTH: 140px
+$MENU_MAX_WIDTH: 300px
+$MENU_HV_PADDING_TB: 8px
+$MENU_HV_PADDING_LR: 15px
 
 $NAV_TAB_BEVEL: 5px    // radius curvature for menu tab areas
 
@@ -258,6 +261,7 @@ body
 
 // *****************************************************************************
 // *****************************************************************************
+
 #menu
   ul
     margin: 0
@@ -269,7 +273,7 @@ body
   a, li:hover ul li a, a:hover nav a
     color: $HV_MENU
     display: block
-    padding: 8px 15px
+    padding: $MENU_HV_PADDING_TB $MENU_HV_PADDING_LR
     text-decoration: none
     cursor: pointer
     font-weight: bold
@@ -296,15 +300,15 @@ body
     left: -99999px
     padding: 0px
     margin: 0px
-    min-width: 140px
-    max-width: 300px
+    min-width: $MENU_MIN_WIDTH
+    max-width: $MENU_MAX_WIDTH
     background: $BG_MENU
     +BEVEL_CORNER($NAV_TAB_BEVEL)
   li ul li, nav a
     float: left
   li:hover ul, div:hover nav
     left: auto
-
+    
 // *****************************************************************************
 // *****************************************************************************
 .inquiries
