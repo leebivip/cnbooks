@@ -2,7 +2,6 @@
 # format is: [variable, default]
  if RefinerySetting.table_exists?
   [
-    [:site_name, 'Gardenia'],
     [:gardenia_version,'0.1-0'],
     [:gardenia_hf_stretch,false],
     [:gardenia_nav_search,false],

@@ -289,6 +289,9 @@ article {
       font-style: normal;
       letter-spacing: 1px;
       text-transform: uppercase; }
+      article header details share {
+        margin-top: -5px;
+        float: right; }
 
 #comments p {
   font-size: 0.9em;
