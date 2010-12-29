@@ -33,7 +33,6 @@ module ApplicationHelper
 # preps the fall back stuff
 # ----------------------------------------------------------------------------- 
   def prep_dom_section(section, need_fallback )
-    
     section[:html] = ( content_for( section[:yield] ) ) # renders here
     
     if section[:html].blank? and need_fallback and
