@@ -36,12 +36,12 @@ gem 'refinerycms',              '= 0.9.8.6'
 
 # Specify additional Refinery CMS Engines here (all optional):
 gem 'refinerycms-inquiries',    '~> 0.9.8.8'
-gem 'refinerycms-news',       '~> 0.9.9'
+gem 'refinerycms-news', :git => 'git://github.com/dsaronin/refinerycms-news', :branch => 'master'
 # gem 'refinerycms-portfolio',  '~> 0.9.8'
 # gem 'refinerycms-theming',    '~> 0.9.8'
 
-gem 'refinerycms-blog', '1.1.0.0.20', :git => 'git://github.com/dsaronin/refinerycms-blog.git'
-gem 'refinerycms-galleries', '0.4.0.6', :require => 'galleries', :git => 'git://github.com/dsaronin/refinerycms-galleries.git'
+gem 'refinerycms-blog', :git => 'git://github.com/dsaronin/refinerycms-blog', :branch => 'master'
+gem 'refinerycms-galleries', :require => 'galleries', :git => 'git://github.com/dsaronin/refinerycms-galleries', :branch => 'master'
 
 # Add i18n support (optional, you can remove this if you really want to).
 gem 'refinerycms-i18n',         '~> 0.9.8.7'

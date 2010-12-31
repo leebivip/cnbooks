@@ -9,6 +9,11 @@
     - @blog_posts = BlogPost.recent_top
     = render(:partial => "/blog/shared/posts")
 
+- if @page.present? && @page.parts.any?{|p| p.title == 'Recent News' }
+  - content_for('Recent News'.to_sym) do
+    - @news_items = NewsItem.latest
+    = render(:partial => "/news_items/recent_posts")
+
 - prepare_content_page(show_empty_sections ||= false, remove_automatic_sections ||= false, hide_sections)
 
 #body_content{ :class => @class_list }

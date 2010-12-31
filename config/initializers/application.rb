@@ -12,8 +12,10 @@
   ].each{|setting,default| RefinerySetting.set(setting,default) if RefinerySetting.get(setting).nil?}
   
   parts_list = RefinerySetting.get(:default_page_parts)
-  unless parts_list.include?('Recent Posts')
-    parts_list << 'Recent Posts'
+  ['Recent Posts', 'Recent News'].each do |parts_name|
+    unless parts_list.include?(parts_name)
+      parts_list << parts_name
+    end
     RefinerySetting.set(:default_page_parts, parts_list)
-  end
+  end  # do each special gardenia box
  end
