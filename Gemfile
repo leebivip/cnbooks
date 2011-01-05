@@ -32,10 +32,10 @@ gem 'aws-s3', :require => 'aws/s3'
 # REFINERY CMS ================================================================
 
 # Specify the Refinery CMS core:
-gem 'refinerycms',              '= 0.9.8.6'
+gem 'refinerycms',              '= 0.9.8.9'
 
 # Specify additional Refinery CMS Engines here (all optional):
-gem 'refinerycms-inquiries',    '~> 0.9.8.8'
+gem 'refinerycms-inquiries',    '~> 0.9.8.9'
 gem 'refinerycms-news', :git => 'git://github.com/dsaronin/refinerycms-news', :branch => 'master'
 # gem 'refinerycms-portfolio',  '~> 0.9.8'
 # gem 'refinerycms-theming',    '~> 0.9.8'
@@ -44,7 +44,7 @@ gem 'refinerycms-blog', :git => 'git://github.com/dsaronin/refinerycms-blog', :b
 gem 'refinerycms-galleries', :require => 'galleries', :git => 'git://github.com/dsaronin/refinerycms-galleries', :branch => 'master'
 
 # Add i18n support (optional, you can remove this if you really want to).
-gem 'refinerycms-i18n',         '~> 0.9.8.7'
+gem 'refinerycms-i18n',         '~> 0.9.8.9'
 
 # Figure out how to get RMagick:
 rmagick_options = {:require => false}

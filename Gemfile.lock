@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/dsaronin/refinerycms-blog
-  revision: 9a75bbec587e3ad20db8f919e040de718083fb8a
+  revision: 8029e476c4b78aca90445ee035d2a842f637aca2
   branch: master
   specs:
     refinerycms-blog (1.1)
@@ -16,7 +16,7 @@ GIT
 
 GIT
   remote: git://github.com/dsaronin/refinerycms-news
-  revision: 92fdba5dd54c58854369adbb766c2f7f728cf538
+  revision: ae8d54dcc4c95047e7474254f9e380195f55036f
   branch: master
   specs:
     refinerycms-news (1.0)
@@ -71,7 +71,7 @@ GEM
       babosa (~> 0.2.0)
     haml (3.0.22)
     i18n (0.5.0)
-    mail (2.2.13)
+    mail (2.2.14)
       activesupport (>= 2.3.6)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -86,7 +86,7 @@ GEM
       rack (>= 0.4)
     rack-mount (0.6.13)
       rack (>= 1.0.0)
-    rack-test (0.5.6)
+    rack-test (0.5.7)
       rack (>= 1.0)
     rails (3.0.3)
       actionmailer (= 3.0.3)
@@ -102,8 +102,8 @@ GEM
       rake (>= 0.8.7)
       thor (~> 0.14.4)
     rake (0.8.7)
-    rdoc (3.2)
-    refinerycms (0.9.8.6)
+    rdoc (3.3)
+    refinerycms (0.9.8.9)
       acts_as_indexed (~> 0.6.6)
       authlogic (~> 2.1.6)
       bundler (~> 1.0.0)
@@ -139,10 +139,10 @@ DEPENDENCIES
   haml
   pg
   rails (= 3.0.3)
-  refinerycms (= 0.9.8.6)
+  refinerycms (= 0.9.8.9)
   refinerycms-blog!
   refinerycms-galleries!
-  refinerycms-i18n (~> 0.9.8.7)
-  refinerycms-inquiries (~> 0.9.8.8)
+  refinerycms-i18n (~> 0.9.8.9)
+  refinerycms-inquiries (~> 0.9.8.9)
   refinerycms-news!
   rmagick (~> 2.12.0)
