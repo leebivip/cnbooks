@@ -76,11 +76,11 @@ $STANDARD_MARGIN: 36px    // unused
 
 $STANDARD_PADDING: 30px
 
-$SIDEBAR_INNER_WIDTH: 280px
+$SIDEBAR_INNER_WIDTH: 260px
 $SIDEBAR_LEFT_MARGIN: 0
 $SIDEBAR_RIGHT_MARGIN: 0
 
-$SIDEBAR_WIDTH: $SIDEBAR_INNER_WIDTH + $STANDARD_PADDING
+$SIDEBAR_WIDTH: $SIDEBAR_INNER_WIDTH + $STANDARD_PADDING + $STANDARD_PADDING/2
 
 // next 4 are 
 $MAIN_LEFT_MARGIN: 0
@@ -88,7 +88,7 @@ $MAIN_RIGHT_MARGIN: 0
 $MAIN_TOP_MARGIN: 0
 $MAIN_BTM_MARGIN: 0
 
-$MAIN_CONTENT_INNER_WIDTH: 610px
+$MAIN_CONTENT_INNER_WIDTH: 615px
 $MAIN_CONTENT_WIDTH: $MAIN_CONTENT_INNER_WIDTH + $STANDARD_PADDING + $STANDARD_PADDING
 $MAIN_TITLE_WIDTH: $MAIN_CONTENT_INNER_WIDTH
 
@@ -209,7 +209,8 @@ body
 #body_content
   background: $BG_MAINPAGE url("../images/body_content_bkg.gif") repeat
   border-bottom: 1px solid #2F4F4F
-  // min-height: $MAIN_CONTENT_HEIGHT
+  min-height: $MAIN_CONTENT_HEIGHT
+  padding: $STANDARD_PADDING 0
   
 //******************************************************************************
 // NOTE: DO NOT SPECIFY float: xxxx for main_content, sidebar_content, body_content_title
@@ -217,10 +218,11 @@ body
 //******************************************************************************
 #main_content
   width: $MAIN_CONTENT_WIDTH
+  padding: 0
 
 #sidebar_content
   width: $SIDEBAR_INNER_WIDTH
-  padding: 0 $STANDARD_PADDING / 2    // this controls all sidebar padding
+  padding: 0 $STANDARD_PADDING/2 0 $STANDARD_PADDING
 
 #body_content_title
   width: $MAIN_TITLE_WIDTH

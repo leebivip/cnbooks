@@ -56,17 +56,20 @@ body {
 
 #body_content {
   background: #ffefd5 url("../images/body_content_bkg.gif") repeat;
-  border-bottom: 1px solid #2f4f4f; }
+  border-bottom: 1px solid #2f4f4f;
+  min-height: 602px;
+  padding: 30px 0; }
 
 #main_content {
-  width: 670px; }
+  width: 675px;
+  padding: 0; }
 
 #sidebar_content {
-  width: 280px;
-  padding: 0 15px; }
+  width: 260px;
+  padding: 0 15px 0 30px; }
 
 #body_content_title {
-  width: 610px;
+  width: 615px;
   padding: 0 30px; }
 
 #body_content_left {
@@ -105,7 +108,7 @@ body {
 
 #nav_search_box {
   float: right;
-  width: 280px;
+  width: 260px;
   line-height: 4em;
   color: #f0fff0; }
 
