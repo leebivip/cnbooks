@@ -56,37 +56,45 @@ $BG_ANCHOR_HOVER:   #DCDCDC
 
 // DIMENSIONS
 
-    // VIEWPORT is the viewing area "above the fold"
-$VIEWPORT_WIDTH: 1024px
+// VIEWPORT is the viewing area "above the fold"
+$VIEWPORT_WIDTH: 990px
 $VIEWPORT_HEIGHT: 768px
 
-$INNER_MARGIN: 17px
-
+// these next two are unused
+$INNER_MARGIN: 0px
 $INNER_CONTENT_AREAS_WIDTH: $VIEWPORT_WIDTH - $INNER_MARGIN - $INNER_MARGIN
 
 $MASTHEAD_HEIGHT: 114px
-$MASTHEAD_PHANTOM_HEIGHT: 24px    // presence utilizes background image
+$MASTHEAD_PHANTOM_HEIGHT: 24px    // >0 reveals background image
 $NAV_HEIGHT: 28px
 
 $HEADER_HEIGHT: $MASTHEAD_HEIGHT + $NAV_HEIGHT
 
 $FOOTER_HEIGHT: 65px
 
-$STANDARD_MARGIN: 36px
+$STANDARD_MARGIN: 36px    // unused
+
 $STANDARD_PADDING: 30px
 
-$SIDEBAR_INNER_WIDTH: 260px
-$SIDEBAR_LEFT_MARGIN: $STANDARD_MARGIN
-$SIDEBAR_RIGHT_MARGIN: $STANDARD_MARGIN
-$SIDEBAR_WIDTH: $SIDEBAR_INNER_WIDTH + $SIDEBAR_LEFT_MARGIN + $SIDEBAR_RIGHT_MARGIN
+$SIDEBAR_INNER_WIDTH: 280px
+$SIDEBAR_LEFT_MARGIN: 0
+$SIDEBAR_RIGHT_MARGIN: 0
 
-$MAIN_LEFT_MARGIN: $STANDARD_MARGIN
-$MAIN_RIGHT_MARGIN: $STANDARD_MARGIN
-$MAIN_TOP_MARGIN: $STANDARD_MARGIN
-$MAIN_BTM_MARGIN: $STANDARD_MARGIN
+$SIDEBAR_WIDTH: $SIDEBAR_INNER_WIDTH + $STANDARD_PADDING
 
-$MAIN_CONTENT_WIDTH: $VIEWPORT_WIDTH - $MAIN_LEFT_MARGIN - $MAIN_RIGHT_MARGIN - $SIDEBAR_WIDTH
-$MAIN_CONTENT_HEIGHT: $VIEWPORT_HEIGHT - $MASTHEAD_PHANTOM_HEIGHT - $HEADER_HEIGHT - $MAIN_TOP_MARGIN - $MAIN_BTM_MARGIN
+// next 4 are 
+$MAIN_LEFT_MARGIN: 0
+$MAIN_RIGHT_MARGIN: 0
+$MAIN_TOP_MARGIN: 0
+$MAIN_BTM_MARGIN: 0
+
+$MAIN_CONTENT_INNER_WIDTH: 610px
+$MAIN_CONTENT_WIDTH: $MAIN_CONTENT_INNER_WIDTH + $STANDARD_PADDING + $STANDARD_PADDING
+$MAIN_TITLE_WIDTH: $MAIN_CONTENT_INNER_WIDTH
+
+$MAIN_CONTENT_HEIGHT: $VIEWPORT_HEIGHT - $MASTHEAD_PHANTOM_HEIGHT - $HEADER_HEIGHT
+
+$INQUIRY_TEXT_WIDTH:  425px
 
 // *****************************************************************************
 // *****************************************************************************
@@ -133,6 +141,7 @@ $NAV_TAB_BEVEL: 0px    // radius curvature for menu tab areas
 
 // *****************************************************************************
 // below from refinery formatting.css, which gardenia no longer references
+// many of these are needed to override browser agent default stylesheets
 // NOTE: THIS IS ALL THE GLOBAL BASIC HTML ELEMENT FORMATTING ..
 //       >> PUT SPECIFIC OVERRIDES (to ids/classes/sections) AFTERWARDS
 // *****************************************************************************
@@ -146,6 +155,10 @@ ul, li
   margin: 0
   padding: 0
   list-style: none inside
+  
+p
+  margin: 0
+  padding: 0.5em 0
 
 h1, h2, h3, h4
   color: $FG_TITLES
@@ -182,7 +195,7 @@ a
 body
   margin: 0px
   padding: 0px
-  background: #FFE4C4  url("../images/body_background.png") repeat
+  background: $HV_INPUTFORM  url("../images/body_background.png") repeat
 
 #page
   width: 100%
@@ -196,49 +209,33 @@ body
 #body_content
   background: $BG_MAINPAGE url("../images/body_content_bkg.gif") repeat
   border-bottom: 1px solid #2F4F4F
-  min-height: $MAIN_CONTENT_HEIGHT
+  // min-height: $MAIN_CONTENT_HEIGHT
   
 //******************************************************************************
-// NOTE: DO NOT SPECIFY float: xxxx for main_content, si_content, body_content_title
+// NOTE: DO NOT SPECIFY float: xxxx for main_content, sidebar_content, body_content_title
 // it is dynamically set in shared/content_page.html.haml based on refinery settings
 //******************************************************************************
 #main_content
-  width: $INNER_CONTENT_AREAS_WIDTH - $SIDEBAR_INNER_WIDTH - $STANDARD_MARGIN * 4
+  width: $MAIN_CONTENT_WIDTH
 
 #sidebar_content
-  width: $SIDEBAR_INNER_WIDTH + $STANDARD_MARGIN
+  width: $SIDEBAR_INNER_WIDTH
+  padding: 0 $STANDARD_PADDING / 2    // this controls all sidebar padding
 
 #body_content_title
-  width: $INNER_CONTENT_AREAS_WIDTH - $SIDEBAR_INNER_WIDTH - $STANDARD_MARGIN * 4
+  width: $MAIN_TITLE_WIDTH
   padding: 0 $STANDARD_PADDING
   
-    
 //******************************************************************************
 // *****************************************************************************
 
 #body_content_left
-  width: $MAIN_CONTENT_WIDTH
   margin: 0px
   padding: 0 $STANDARD_PADDING
 
 #body_content_right
   margin: 0px
-  padding: 0px
-  img
-    // border: 0px solid $HV_MENU
-
-// *****************************************************************************
-// *****************************************************************************
-
-.sidebar_box
-  // border: 0px solid $FG_TITLES
-  font-size: 0.90em
-  line-height: 1.3em
   
-  li
-    margin-left: 20px
-    line-height: 1.4em
-   
 // *****************************************************************************
 // *****************************************************************************
 #footer
@@ -247,7 +244,7 @@ body
   
 #footer_inner_content
   p
-    padding: 1em 0px
+    padding: 20px 20px
     text-align: left
   
   img
@@ -368,7 +365,7 @@ body
   textarea
     border: 1px solid #696969
     margin-left: 0px
-    width: 425px
+    width: $INQUIRY_TEXT_WIDTH
 
 // *******************************************************************
   // GALLERIES
@@ -630,6 +627,21 @@ input[type="hidden"]
   color: $FG_FOOTER
   font-size: 0.95em
 
+// *****************************************************************************
+// *****************************************************************************
+
+.sidebar_box
+  // border: 0px solid $FG_TITLES
+  font-size: 0.90em
+  line-height: 1.3em
+  
+  li
+    margin-left: 20px
+    line-height: 1.4em
+   
+// *****************************************************************************
+// *****************************************************************************
+
 img.image-align-left
   float: left
   padding: 0 1em 1em 0  
@@ -638,22 +650,26 @@ img.image-align-right
   float: right
   padding: 0 0 1em 1em
 
+// *****************************************************************************
+// *****************************************************************************
+
 #body_content_right 
   p
     font-size: 0.90em
+    line-height: 1.4em
   ul
     line-height: 1.3em
     margin-bottom: 1.6em
   li
     margin-left: 12px
+  img
+    // border: 0px solid $HV_MENU
     
 #body_content_left 
   p
     line-height: 1.6em
-    margin-top: 0px
 
-#sidebar_content
-  p
-    line-height: 1.4em
-  
- 
+// *****************************************************************************
+// *****************************************************************************
+
+    
