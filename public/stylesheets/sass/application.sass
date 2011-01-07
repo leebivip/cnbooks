@@ -18,7 +18,7 @@ $FG_NAV: $FG_HEADER
 $HV_NAV: $BASIC_BG
 
 $BG_FOOTER: $BG_HEADER
-$FG_FOOTER: #2F4F4F
+$FG_FOOTER: $BASIC_NEUTRAL // #2F4F4F
 
 $BG_MAINPAGE: #FFEFD5 //  #FCEFC1
 $FG_MAINPAGE: $BASIC_FG
@@ -245,6 +245,7 @@ body
   background: $BG_FOOTER   url("../images/footer_background.png") no-repeat
   
 #footer_inner_content
+  color: $FG_FOOTER
   p
     padding: 20px 20px
     text-align: left
@@ -269,7 +270,7 @@ body
 
 #masthead
   height: $MASTHEAD_HEIGHT
-  background: url("../images/masthead.jpg") no-repeat
+  background: url("../images/masthead.png") no-repeat
   border-bottom: 1px solid #2F4F4F
 
 #nav_search_box

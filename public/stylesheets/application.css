@@ -83,14 +83,16 @@ body {
   height: 65px;
   background: #2f4f4f url("../images/footer_background.png") no-repeat; }
 
-#footer_inner_content p {
-  padding: 20px 20px;
-  text-align: left; }
-#footer_inner_content img {
-  float: right;
-  margin-top: -1em;
-  margin-left: 0.5em;
-  margin-right: 0.5em; }
+#footer_inner_content {
+  color: #8fbc8f; }
+  #footer_inner_content p {
+    padding: 20px 20px;
+    text-align: left; }
+  #footer_inner_content img {
+    float: right;
+    margin-top: -1em;
+    margin-left: 0.5em;
+    margin-right: 0.5em; }
 
 #header {
   background-image: -moz-linear-gradient(bottom, #2f4f4f, #2f4f4f, #2f4f4f, #2f4f4f );
@@ -103,7 +105,7 @@ body {
 
 #masthead {
   height: 114px;
-  background: url("../images/masthead.jpg") no-repeat;
+  background: url("../images/masthead.png") no-repeat;
   border-bottom: 1px solid #2f4f4f; }
 
 #nav_search_box {
@@ -407,7 +409,7 @@ input[type="hidden"] {
   float: right; }
 
 #footer_content * {
-  color: #2f4f4f;
+  color: #8fbc8f;
   font-size: 0.95em; }
 
 .sidebar_box {
