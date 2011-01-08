@@ -33,7 +33,6 @@ module ApplicationHelper
 # preps the fall back stuff
 # ----------------------------------------------------------------------------- 
   def prep_dom_section(section, need_fallback )
-    
     section[:html] = ( content_for( section[:yield] ) ) # renders here
     
     if section[:html].blank? and need_fallback and
@@ -59,22 +58,27 @@ module ApplicationHelper
   
     need_fallback = (!show_empty_sections and !remove_automatic_sections)
     
-    @sections = [ {:yield => :body_content_title, :fallback => page_title, :id => 'body_content_page_title', :title => true} ]
+    @sections = [ 
+        {:yield => :body_content_right, :fallback => (@page.present? ? @page[Page.default_parts.second.to_sym] : nil)},
+        {:yield => :body_content_title, :fallback => page_title, :id => 'body_content_page_title', :title => true},
+        {:yield => :body_content_left, :fallback => (@page.present? ? @page[Page.default_parts.first.to_sym] : nil)},
+      ]
     
     # if there is no title, then the order of sections presented to browser must reverse, otherwise
     # things won't float correctly .. yeah, I know this repetitive code looks like a kludge below .. maybe clean up someday?
     
-    if content_for(:body_content_title).blank? || RefinerySetting.get(:gardenia_disable_repeat_title)
-      @sections.concat [ 
-        {:yield => :body_content_left, :fallback => (@page.present? ? @page[Page.default_parts.first.to_sym] : nil)},
-        {:yield => :body_content_right, :fallback => (@page.present? ? @page[Page.default_parts.second.to_sym] : nil)},
-      ]
-    else
-      @sections.concat [ 
-        {:yield => :body_content_right, :fallback => (@page.present? ? @page[Page.default_parts.second.to_sym] : nil)},
-        {:yield => :body_content_left, :fallback => (@page.present? ? @page[Page.default_parts.first.to_sym] : nil)},
-      ]
-    end
+#    if content_for(:body_content_title).blank? || RefinerySetting.get(:gardenia_disable_repeat_title)
+#      @sections.concat [ 
+#        {:yield => :body_content_left, :fallback => (@page.present? ? @page[Page.default_parts.first.to_sym] : nil)},
+#        {:yield => :body_content_right, :fallback => (@page.present? ? @page[Page.default_parts.second.to_sym] : nil)},
+#      ]
+#    else
+#      @sections.concat [ 
+#        {:yield => :body_content_right, :fallback => (@page.present? ? @page[Page.default_parts.second.to_sym] : nil)},
+#        {:yield => :body_content_title, :fallback => page_title, :id => 'body_content_page_title', :title => true},
+#        {:yield => :body_content_left, :fallback => (@page.present? ? @page[Page.default_parts.first.to_sym] : nil)},
+#      ]
+#    end
   
     @sections.delete_if{ |section| hide_sections.include?( section[:yield] ) }
     

@@ -1,0 +1,87 @@
+GETTING STARTED / ORGINATION
+==============================================
+
+1. Install basic refinery
+	refinerycms gardenia -d postgresql --heroku gardenia
+2. create database
+	sudo su postgres
+	creatdb gardenia_dev
+3. change database.yml
+	dbname: gardenia_dev
+	comment out user/password in each prod/dev/test
+4. cd gardenia
+	rake db:setup	to setup & run the migrations
+5. rails server		to run app locally
+6. gardenia.heroku.com	to run hosted
+	login: alexisdavid
+	password: davidalexis
+7. setup an Amazon S3 account & buckets... then:
+	heroku config:add S3_KEY=AKIAJWMKYYC6DNN5NSCA S3_SECRET=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 S3_BUCKET=dev.majozi.com
+8. add html whitelist to config/application.rb
+    
+    # add video tags to sanitize permitted tags
+    config.action_view.sanitized_allowed_tags = 'table', 'tr', 'td', 'iframe'
+    config.action_view.sanitized_allowed_attributes = 'id', 'class', 'style', 'src', 'width', 'height', 'frameborder'
+
+	
+ENGINE EXPANSION
+================================================
+1. Install blog engine
+
+	gem 'refinerycms-blog', '~> 1.1.0.0.1, :git => 'git://github.com/dsaronin/refinerycms-blog.git'
+
+	~$ bundle install
+	~$ rails generate refinery_blog
+	~$ git add .; git commit -a -m 'blog added to bundle'
+	~$ git push heroku
+	~$ rake db:migrate  (both locally & @ heroku)
+	~$ heroku restart
+
+2. Install news engine
+===========================
+
+	gem "refinerycms-news", '~> 0.9.9'
+
+	~$ bundle install
+	~$ rails generate refinerycms_news
+	~$ git add .; git commit -a -m 'blog added to bundle'
+	~$ git push heroku
+	~$ rake db:migrate  (both locally & @ heroku)
+	~$ heroku restart
+	
+3. Install galleries engine
+
+	gem 'refinerycms-galleries', '~> 0.4.0.2', :require => 'galleries', :git => 'git://github.com/dsaronin/refinerycms-galleries.git'
+
+	~$ bundle install
+	~$ rails generate refinery_galleries
+	~$ git add .; git commit -a -m 'blog added to bundle'
+	~$ git push heroku
+	~$ rake db:migrate  (both locally & @ heroku)
+	~$ heroku restart
+
+4. RSS (Really Simple Syndication)
+
+	To get RSS for your entire site, insert this into the head section of your layout after installing:
+	
+		<%= auto_discovery_link_tag(:rss, news_items_url(:format => 'rss')) %>
+		
+5. Haml/Sass
+	
+	gem 'haml'     add to bundle
+
+4. Rails 3 html
+	- String#html_safe
+	- Helper#raw(string)  outputs html as is
+
+5. OVerrides
+	rake refinery:override view=admin/pages/_page_part_field
+	rake refinery:override view=news_items/index
+	rake refinery:override view=inquiries/new	
+	rake refinery:override view=blog/posts/show
+	rake refinery:override view=news_items/show
+	rake refinery:override view=news_items/index
+	
+CLONING PROJECTS
+===============================================================
+env ARCHFLAGS="-arch x86_64" bundle install

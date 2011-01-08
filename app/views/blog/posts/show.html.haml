@@ -30,17 +30,21 @@
             = f.text_area( :message, :rows => 3)
             %br 
             %p  cursor any label for help
+            %share
+              = render( :partial => "/blog/shared/shared", :locals => {:share_url => blog_post_url(@blog_post) } )
             %br
             = submit_tag( 'send', :class => "submit modal-submit", :value => "send" )
             -# .actions
               = f.submit t('.send')
 
 - content_for :body_content_right do
-  = render :partial => "/blog/shared/categories"
   = render :partial => "/blog/shared/posts"
-  = render :partial => "/blog/shared/rss_feed"
+  = render :partial => "/blog/shared/categories"
   = blog_archive_list
+  = render :partial => "/blog/shared/rss_feed"
+  
 = render :partial => "/shared/content_page", :locals => { :remove_automatic_sections => true, :hide_sections => [:body_content_title] }
+
 - if Refinery.version < '0.9.9'
   - content_for :head_libraries, jquery_include_tags(:jquery_ui => false)
   - content_for :head do
