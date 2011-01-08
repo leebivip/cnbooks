@@ -11,6 +11,11 @@
   -#= stylesheet_link_tag "theme" 
   -#= stylesheet_link_tag "home", :theme => theme if home_page?
   = "<!--[if IE 7]>#{stylesheet_link_tag 'ie7'}<![endif]-->".html_safe if request.env['HTTP_USER_AGENT'] =~ /MSIE/
+
+  = jquery_include_tags(:jquery_ui => false)
+  = javascript_include_tag('jquery-ui-1.8.7.custom.min.js') 
+  = javascript_include_tag('jmenu/jMenu.jquery.js') 
+
   = "<meta name=\"keywords\" content=\"#{@meta.meta_keywords}\" />".html_safe if @meta.meta_keywords.present?
   = "<meta name=\"description\" content=\"#{@meta.meta_description}\" />".html_safe if @meta.meta_description.present?
   = yield :head_libraries

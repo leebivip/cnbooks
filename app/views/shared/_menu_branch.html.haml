@@ -5,9 +5,10 @@
 - hide_children = (defined?(hide_children) && hide_children)
 - children = hide_children ? [] : collection.select { |p| p.parent_id == menu_branch.id && p.in_menu? }
 <li#{['', css, dom_id].join(' ').gsub(/\ *$/, '')}>
-\#{link_to menu_branch.title, menu_branch.url}
+\#{link_to( menu_branch.title, menu_branch.url, {:class => ( classes.include?('first') && menu_branch_counter.zero? && menu_branch.parent_id.nil? ? 'fNiv' : '')} )}
 - if children.present?
-  %ul.clearfix
+  -# was %ul.clearfix
+  %ul
     = render :partial => "/shared/menu_branch", |
       :collection => children,                  |
       :locals => {                              |
@@ -15,3 +16,4 @@
         :collection => collection,              |
         :sibling_count => children.size - 1     |
       }                                         |
+   
