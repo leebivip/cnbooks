@@ -85,3 +85,28 @@ ENGINE EXPANSION
 CLONING PROJECTS
 ===============================================================
 env ARCHFLAGS="-arch x86_64" bundle install
+
+cd <workspace>
+git clone git@github.com:AlexisMasters/gardenia.git
+
+
+JMENU USAGE
+===============================================================
+<ul id="jMenu">
+  <li><a class="fNiv">Niveau 1</a> <!-- Don't forget the 'fNiv' class, only on the first level link !! -->
+    <ul>
+      <li class="arrow"></li> <!-- Only for illustration : arrow_down.png -->
+      <li><a>Niveau 2</a></li>  
+      <li><a>Niveau 2</a></li>  
+      <li><a>Niveau 2</a>  
+        <ul>  
+          <li><a>Niveau 3</a></li>  
+          <li><a>Niveau 3</a></li>  
+          <li><a>Niveau 3</a></li>  
+          <li><a>Niveau 3</a></li>  
+        </ul>  
+      </li>  
+      <li><a>Niveau 2</a></li>  
+    </ul>  
+  </li>  
+</ul>

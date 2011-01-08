@@ -9,8 +9,10 @@
 $BASIC_FG: #333
 $BASIC_BG: #FDF5E6
 $BASIC_NEUTRAL: #8FBC8F
+  
+$PRIMARY_DARK_COLOR: #2F4F4F
 
-$BG_HEADER: #2F4F4F
+$BG_HEADER: $PRIMARY_DARK_COLOR
 $FG_HEADER: #F0FFF0
   
 $BG_NAV: $BG_HEADER   //  #DBD19E
@@ -18,7 +20,7 @@ $FG_NAV: $FG_HEADER
 $HV_NAV: $BASIC_BG
 
 $BG_FOOTER: $BG_HEADER
-$FG_FOOTER: $BASIC_NEUTRAL // #2F4F4F
+$FG_FOOTER: $BASIC_NEUTRAL // $PRIMARY_DARK_COLOR
 
 $BG_MAINPAGE: #FFEFD5 //  #FCEFC1
 $FG_MAINPAGE: $BASIC_FG
@@ -27,23 +29,23 @@ $FG_TITLES: #066
 $BG_SIDEBAR: #F0FFF0
 $FG_SIDEBAR: $BASIC_FG
 
-$HEADER_LT: #2F4F4F  // #DDD068
-$HEADER_DK: #2F4F4F  //  #B5A947
+$HEADER_LT: $PRIMARY_DARK_COLOR  // #DDD068
+$HEADER_DK: $PRIMARY_DARK_COLOR  //  #B5A947
 
 $FG_MENU: #066
 $BG_MENU: $BASIC_BG
 $HV_MENU: #F0FFF0 //  #d8d8d8
 
-$FG_FORMCAPTION:  #2F4F4F
+$FG_FORMCAPTION:  $PRIMARY_DARK_COLOR
 $BG_INPUTFORM:    #FFEBCD // #E2F1FC
-$FG_INPUTLABEL:   #2F4F4F
+$FG_INPUTLABEL:   $PRIMARY_DARK_COLOR
 $FG_INPUTBOX:     #DCDCDC
 $BG_INPUTBOX:     $BG_HEADER
 $HV_INPUTFORM:    #FFE4C4
 $FG_SUBMIT:       $HV_MENU
 $FG_BASICFORM_P:  $BG_HEADER
   
-$BG_FORM_SUBMIT:  #2F4F4F
+$BG_FORM_SUBMIT:  $PRIMARY_DARK_COLOR
 $FG_FORM_SUBMIT:  $BASIC_BG
 
 $FG_INPUTLABEL_DARK: #485751
@@ -208,7 +210,7 @@ body
 
 #body_content
   background: $BG_MAINPAGE url("../images/body_content_bkg.gif") repeat
-  border-bottom: 1px solid #2F4F4F
+  border-bottom: 1px solid $PRIMARY_DARK_COLOR
   min-height: $MAIN_CONTENT_HEIGHT
   padding: $STANDARD_PADDING 0
   
@@ -271,7 +273,7 @@ body
 #masthead
   height: $MASTHEAD_HEIGHT
   background: url("../images/masthead.png") no-repeat
-  border-bottom: 1px solid #2F4F4F
+  border-bottom: 1px solid $PRIMARY_DARK_COLOR
 
 #nav_search_box
   float: right
@@ -303,9 +305,10 @@ body
   padding-top: 15px
 
 // *****************************************************************************
+// REFINERY'S BASIC MENU NAV BAR STYLING
 // *****************************************************************************
 
-#menu
+#refinery_menu  // change back to #menu to enable refinery basic menu
   ul
     margin: 0
     padding: 0
@@ -324,7 +327,7 @@ body
     font-weight: normal
     font-size: 0.85em
     letter-spacing: 0.1em
-    border-right: 1px solid #2F4F4F
+    border-right: 1px solid $PRIMARY_DARK_COLOR
 
   li
     &.selected a, &:hover a, a:hover, ul li a:hover
@@ -358,6 +361,69 @@ body
     float: left
   li:hover ul, div:hover nav
     left: auto
+
+// *****************************************************************************
+// jMENU'S BASIC MENU NAV BAR STYLING
+// *****************************************************************************
+
+#jMenu
+  display: table
+  margin: 0
+  padding: 0
+  
+  .selected a
+    color: $FG_MENU
+    background: $BG_MENU
+    +BEVEL_CORNER($NAV_TAB_BEVEL)
+  
+  li
+    display: table-cell
+    background-color: $PRIMARY_DARK_COLOR // #322f32
+    margin: 0
+    //float:left;
+
+    a
+      padding: 10px
+      display: block
+      background-color: transparent
+      color: $HV_MENU
+      text-transform: uppercase
+      cursor: pointer
+      font-size: 0.85em
+      letter-spacing: 0.1em
+      border-right: 1px solid $PRIMARY_DARK_COLOR
+      
+    ul
+      display: none
+      position: absolute
+      padding: 0
+      margin: 0
+      li
+        background-color: $PRIMARY_DARK_COLOR // #322f32
+        display: block
+        border-bottom: 1px solid #484548
+        padding: 0
+        &:first-child
+          background: $PRIMARY_DARK_COLOR url('../images/arrow_down.png') no-repeat center center
+          height: 1em // 6px
+          padding: 0
+          border-bottom: none
+          padding-bottom: 10px
+        a
+          font-size: 11px
+          text-transform: none
+          padding: 7px
+          display: block
+          border-top: 1px solid transparent
+          border-bottom: 1px solid transparent
+          &.isParent
+            background: #3a3a3a url('../images/arrow_right.png') no-repeat right center
+          &:hover
+            background-color: #514c52
+            border-top: 1px solid $PRIMARY_DARK_COLOR
+            border-bottom: 1px solid $PRIMARY_DARK_COLOR
+
+
     
 // *****************************************************************************
 // *****************************************************************************

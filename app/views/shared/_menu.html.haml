@@ -12,7 +12,7 @@
   - if roots.any?
     - sibling_count = roots.size - 1
     <nav id='#{dom_id}' class='#{%W(#{css} clearfix).join(' ')}'>
-    %ul
+    %ul#jMenu
       = render :partial => "/shared/menu_branch",                                                                                      |
         :collection => roots,                                                                                                          |
         :locals => { :hide_children => hide_children, :sibling_count => sibling_count, :collection => collection, :apply_css => true } |

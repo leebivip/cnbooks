@@ -1,6 +1,25 @@
 !!!
 %html
   = render :partial => "/shared/head", :locals => {:theme => true}
+  :javascript
+    jQuery(document).ready(function(){
+      jQuery("#jMenu").jMenu({
+        ulWidth : 'auto',
+        effects : {
+          effectSpeedOpen : 200,
+          effectSpeedClose : 300,
+          effectTypeOpen : 'fade',
+          effectTypeClose : 'fade',
+          effectOpen : 'easeInCubic',
+          effectClose : 'easeOutQuad'
+        },
+        TimeBeforeOpening : 100,
+        TimeBeforeClosing : 400,
+        animatedText : false,
+        paddingLeft: 1
+      });
+    })
+
   %body
     = render :partial => "/shared/site_bar",   |
       :locals => {                             |
@@ -9,6 +28,7 @@
         :exclude_site_bar_javascript => false, |
         :exclude_jquery => false               |
       }                                        |
+
     #page_container
       #page
         = render :partial => "/shared/ie6check" if request.env['HTTP_USER_AGENT'] =~ /MSIE/

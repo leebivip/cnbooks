@@ -135,14 +135,14 @@ body {
   float: right;
   padding-top: 15px; }
 
-#menu ul {
+#refinery_menu ul {
   margin: 0;
   padding: 0; }
-#menu li, #menu > a, #menu div {
+#refinery_menu li, #refinery_menu > a, #refinery_menu div {
   float: left;
   list-style: none;
   position: relative; }
-#menu a, #menu li:hover ul li a, #menu a:hover nav a {
+#refinery_menu a, #refinery_menu li:hover ul li a, #refinery_menu a:hover nav a {
   color: #f0fff0;
   display: block;
   padding: 6px 12px;
@@ -152,31 +152,31 @@ body {
   font-size: 0.85em;
   letter-spacing: 0.1em;
   border-right: 1px solid #2f4f4f; }
-#menu li.selected a, #menu li:hover a, #menu li a:hover, #menu li ul li a:hover {
+#refinery_menu li.selected a, #refinery_menu li:hover a, #refinery_menu li a:hover, #refinery_menu li ul li a:hover {
   color: #006666;
   background: #fdf5e6;
   border-radius: 0px;
   -moz-border-radius: 0px;
   -webkit-border-radius: 0px; }
-#menu div.selected a {
+#refinery_menu div.selected a {
   color: #006666;
   background: #fdf5e6;
   border-radius: 0px;
   -moz-border-radius: 0px;
   -webkit-border-radius: 0px; }
-#menu a.selected, #menu a:hover {
+#refinery_menu a.selected, #refinery_menu a:hover {
   color: #006666;
   background: #fdf5e6;
   border-radius: 0px;
   -moz-border-radius: 0px;
   -webkit-border-radius: 0px; }
-#menu div:hover > a {
+#refinery_menu div:hover > a {
   color: #006666;
   background: #fdf5e6;
   border-radius: 0px;
   -moz-border-radius: 0px;
   -webkit-border-radius: 0px; }
-#menu li ul, #menu nav {
+#refinery_menu li ul, #refinery_menu nav {
   position: absolute;
   left: -99999px;
   padding: 0px;
@@ -187,10 +187,64 @@ body {
   border-radius: 0px;
   -moz-border-radius: 0px;
   -webkit-border-radius: 0px; }
-#menu li ul li, #menu nav a {
+#refinery_menu li ul li, #refinery_menu nav a {
   float: left; }
-#menu li:hover ul, #menu div:hover nav {
+#refinery_menu li:hover ul, #refinery_menu div:hover nav {
   left: auto; }
+
+#jMenu {
+  display: table;
+  margin: 0;
+  padding: 0; }
+  #jMenu .selected a {
+    color: #006666;
+    background: #fdf5e6;
+    border-radius: 0px;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px; }
+  #jMenu li {
+    display: table-cell;
+    background-color: #2f4f4f;
+    margin: 0; }
+    #jMenu li a {
+      padding: 10px;
+      display: block;
+      background-color: transparent;
+      color: #f0fff0;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-size: 0.85em;
+      letter-spacing: 0.1em;
+      border-right: 1px solid #2f4f4f; }
+    #jMenu li ul {
+      display: none;
+      position: absolute;
+      padding: 0;
+      margin: 0; }
+      #jMenu li ul li {
+        background-color: #2f4f4f;
+        display: block;
+        border-bottom: 1px solid #484548;
+        padding: 0; }
+        #jMenu li ul li:first-child {
+          background: #2f4f4f url("../images/arrow_down.png") no-repeat center center;
+          height: 1em;
+          padding: 0;
+          border-bottom: none;
+          padding-bottom: 10px; }
+        #jMenu li ul li a {
+          font-size: 11px;
+          text-transform: none;
+          padding: 7px;
+          display: block;
+          border-top: 1px solid transparent;
+          border-bottom: 1px solid transparent; }
+          #jMenu li ul li a.isParent {
+            background: #3a3a3a url("../images/arrow_right.png") no-repeat right center; }
+          #jMenu li ul li a:hover {
+            background-color: #514c52;
+            border-top: 1px solid #2f4f4f;
+            border-bottom: 1px solid #2f4f4f; }
 
 .inquiries .field input {
   border: 1px solid #696969;
