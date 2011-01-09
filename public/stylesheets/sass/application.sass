@@ -371,11 +371,6 @@ body
   margin: 0
   padding: 0
   
-  .selected a
-    color: $FG_MENU
-    background: $BG_MENU
-    +BEVEL_CORNER($NAV_TAB_BEVEL)
-  
   li
     display: table-cell
     background-color: $PRIMARY_DARK_COLOR // #322f32
@@ -383,7 +378,7 @@ body
     //float:left;
 
     a
-      padding: 10px
+      padding: $MENU_HV_PADDING_TB $MENU_HV_PADDING_LR
       display: block
       background-color: transparent
       color: $HV_MENU
@@ -391,7 +386,7 @@ body
       cursor: pointer
       font-size: 0.85em
       letter-spacing: 0.1em
-      border-right: 1px solid $PRIMARY_DARK_COLOR
+      // border-right: 1px solid $PRIMARY_DARK_COLOR
       
     ul
       display: none
@@ -404,24 +399,24 @@ body
         border-bottom: 1px solid #484548
         padding: 0
         &:first-child
-          background: $PRIMARY_DARK_COLOR url('../images/arrow_down.png') no-repeat center center
-          height: 1em // 6px
+          background: #322f32 url('../images/arrow_down.png') no-repeat center center
+          height: 1.5em
           padding: 0
           border-bottom: none
           padding-bottom: 10px
         a
-          font-size: 11px
+          // font-size: 11px
           text-transform: none
-          padding: 7px
+          padding: $MENU_HV_PADDING_TB $MENU_HV_PADDING_LR
           display: block
-          border-top: 1px solid transparent
-          border-bottom: 1px solid transparent
+          //border-top: 1px solid transparent
+          //border-bottom: 1px solid transparent
           &.isParent
             background: #3a3a3a url('../images/arrow_right.png') no-repeat right center
           &:hover
             background-color: #514c52
-            border-top: 1px solid $PRIMARY_DARK_COLOR
-            border-bottom: 1px solid $PRIMARY_DARK_COLOR
+            //border-top: 1px solid $PRIMARY_DARK_COLOR
+            //border-bottom: 1px solid $PRIMARY_DARK_COLOR
 
 
     

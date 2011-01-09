@@ -196,26 +196,19 @@ body {
   display: table;
   margin: 0;
   padding: 0; }
-  #jMenu .selected a {
-    color: #006666;
-    background: #fdf5e6;
-    border-radius: 0px;
-    -moz-border-radius: 0px;
-    -webkit-border-radius: 0px; }
   #jMenu li {
     display: table-cell;
     background-color: #2f4f4f;
     margin: 0; }
     #jMenu li a {
-      padding: 10px;
+      padding: 6px 12px;
       display: block;
       background-color: transparent;
       color: #f0fff0;
       text-transform: uppercase;
       cursor: pointer;
       font-size: 0.85em;
-      letter-spacing: 0.1em;
-      border-right: 1px solid #2f4f4f; }
+      letter-spacing: 0.1em; }
     #jMenu li ul {
       display: none;
       position: absolute;
@@ -227,24 +220,19 @@ body {
         border-bottom: 1px solid #484548;
         padding: 0; }
         #jMenu li ul li:first-child {
-          background: #2f4f4f url("../images/arrow_down.png") no-repeat center center;
-          height: 1em;
+          background: #322f32 url("../images/arrow_down.png") no-repeat center center;
+          height: 1.5em;
           padding: 0;
           border-bottom: none;
           padding-bottom: 10px; }
         #jMenu li ul li a {
-          font-size: 11px;
           text-transform: none;
-          padding: 7px;
-          display: block;
-          border-top: 1px solid transparent;
-          border-bottom: 1px solid transparent; }
+          padding: 6px 12px;
+          display: block; }
           #jMenu li ul li a.isParent {
             background: #3a3a3a url("../images/arrow_right.png") no-repeat right center; }
           #jMenu li ul li a:hover {
-            background-color: #514c52;
-            border-top: 1px solid #2f4f4f;
-            border-bottom: 1px solid #2f4f4f; }
+            background-color: #514c52; }
 
 .inquiries .field input {
   border: 1px solid #696969;
