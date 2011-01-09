@@ -1,0 +1,46 @@
+INSTRUCTIONS FOR CLONING GARDENIA
+=================================
+<workspace> is the path to the workspace folder which holds various projects
+<project> is the name of the (new) project to be cloned
+$  [command window commands]
+>> [do something somewhere instruction]
+#  [comment, instruction amplification]
+=================================
+
+$  cd <workspace>
+$  git clone --origin upstream git@github.com:AlexisMasters/gardenia.git <project>
+
+>> @github: create new repository <project> on github
+>> grab the github url for the repository: git@github.com:AlexisMasters/<project>.git
+
+$  cd <project>
+$  git status
+$  git remote add origin git@github.com:AlexisMasters/<project>.git
+$  git push origin master
+#  now the repository has been cloned to local machine & github
+
+>> Open Aptana, have it access the new project 
+>> (you may have to delete its bogus project reference to <project>)
+>> Make local adjustments to GemFile
+	# gem 'pg'
+	gem 'sqlite3-ruby', :require => 'sqlite3'
+>> fix config/database.yml
+	development:
+	  adapter: sqlite3
+	  database: db/development.sqlite3
+	  pool: 5
+	  timeout: 5000
+>> delete Gemfile.lock from local project
+
+$  bundle install
+$  rake db:setup
+$  git add .; git commit -a -m 'ready to init heroku'; git push origin master
+$  rails server
+
+#  if ok, now let's set up new project on heroku
+
+$  heroku create <project>
+$  git push heroku master
+$  heroku rake db:setup
+$  heroku restart
+>> @safari: http://<project>.heroku.com
