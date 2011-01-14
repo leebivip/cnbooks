@@ -17,6 +17,7 @@
 - prepare_content_page(show_empty_sections ||= false, remove_automatic_sections ||= false, hide_sections)
 
 #body_content{ :class => @class_list }
+  %a{:NAME => "top"}
   - @sections.each do |s|
     = s[:html].to_s.html_safe      # = s[:html].to_s.html_safe
 = render :partial => '/shared/draft_page_message' unless @page.nil? or @page.live?
