@@ -118,7 +118,7 @@ GEM
     refinerycms-i18n (0.9.8.12)
       refinerycms (>= 0.9.8)
       routing-filter (~> 0.1.6)
-    refinerycms-inquiries (0.9.8.10)
+    refinerycms-inquiries (0.9.9.9)
       filters_spam (~> 0.2)
     rmagick (2.12.2)
     routing-filter (0.1.7)
@@ -144,6 +144,6 @@ DEPENDENCIES
   refinerycms-blog!
   refinerycms-galleries!
   refinerycms-i18n (~> 0.9.8.9)
-  refinerycms-inquiries (~> 0.9.8.9)
+  refinerycms-inquiries (~> 0.9.9.2)
   refinerycms-news!
   rmagick (~> 2.12.0)
