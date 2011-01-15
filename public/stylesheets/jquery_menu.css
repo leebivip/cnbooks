@@ -1,24 +1,31 @@
 /*
-Syntax error: Undefined variable: "$PRIMARY_DARK_COLOR".
-        on line 7 of /home/daudi/workspace/gardenia/public/stylesheets/sass/jMenu.jquery.sass
+Syntax error: Undefined variable: "$BG_NAV".
+        on line 70 of /home/daudi/workspace/gardenia/public/stylesheets/sass/jquery_menu.sass
 
-2:   display: table
-3:   margin: 0
-4:   padding: 0
-5:   li
-6:     display: table-cell
-7:     background-color: $PRIMARY_DARK_COLOR // #322f32
-8:     margin: 0
-9:     //float:left;
-10:     a
-11:       padding: 10px
-12:       display: block
+65:       float: left
+66:       line-height: 1.1em
+67:       vertical-align: middle
+68:       zoom: 1
+69:       padding: 0
+70:       background-color: $BG_NAV
+71:       color: $FG_TEXT
+72:       
+73:       &.hover, &:hover
+74:         position: relative
+75:         z-index: 599
 
 Backtrace:
-/home/daudi/workspace/gardenia/public/stylesheets/sass/jMenu.jquery.sass:7
+/home/daudi/workspace/gardenia/public/stylesheets/sass/jquery_menu.sass:70
 /usr/lib/ruby/gems/1.8/gems/haml-3.0.22/lib/sass/script/variable.rb:39:in `_perform'
 /usr/lib/ruby/gems/1.8/gems/haml-3.0.22/lib/sass/script/node.rb:61:in `perform'
 /usr/lib/ruby/gems/1.8/gems/haml-3.0.22/lib/sass/tree/prop_node.rb:132:in `perform!'
+/usr/lib/ruby/gems/1.8/gems/haml-3.0.22/lib/sass/tree/node.rb:305:in `_perform'
+/usr/lib/ruby/gems/1.8/gems/haml-3.0.22/lib/sass/tree/node.rb:213:in `perform'
+/usr/lib/ruby/gems/1.8/gems/haml-3.0.22/lib/sass/tree/node.rb:326:in `perform_children'
+/usr/lib/ruby/gems/1.8/gems/haml-3.0.22/lib/sass/tree/node.rb:326:in `map'
+/usr/lib/ruby/gems/1.8/gems/haml-3.0.22/lib/sass/tree/node.rb:326:in `perform_children'
+/usr/lib/ruby/gems/1.8/gems/haml-3.0.22/lib/sass/tree/node.rb:317:in `perform!'
+/usr/lib/ruby/gems/1.8/gems/haml-3.0.22/lib/sass/tree/rule_node.rb:191:in `perform!'
 /usr/lib/ruby/gems/1.8/gems/haml-3.0.22/lib/sass/tree/node.rb:305:in `_perform'
 /usr/lib/ruby/gems/1.8/gems/haml-3.0.22/lib/sass/tree/node.rb:213:in `perform'
 /usr/lib/ruby/gems/1.8/gems/haml-3.0.22/lib/sass/tree/node.rb:326:in `perform_children'
@@ -118,4 +125,4 @@ script/rails:6
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: Undefined variable: \"$PRIMARY_DARK_COLOR\".\A         on line 7 of /home/daudi/workspace/gardenia/public/stylesheets/sass/jMenu.jquery.sass\A \A 2:   display: table\A 3:   margin: 0\A 4:   padding: 0\A 5:   li\A 6:     display: table-cell\A 7:     background-color: $PRIMARY_DARK_COLOR // #322f32\A 8:     margin: 0\A 9:     //float:left;\A 10:     a\A 11:       padding: 10px\A 12:       display: block"; }
+  content: "Syntax error: Undefined variable: \"$BG_NAV\".\A         on line 70 of /home/daudi/workspace/gardenia/public/stylesheets/sass/jquery_menu.sass\A \A 65:       float: left\A 66:       line-height: 1.1em\A 67:       vertical-align: middle\A 68:       zoom: 1\A 69:       padding: 0\A 70:       background-color: $BG_NAV\A 71:       color: $FG_TEXT\A 72:       \A 73:       &.hover, &:hover\A 74:         position: relative\A 75:         z-index: 599"; }

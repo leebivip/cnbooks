@@ -1,0 +1,238 @@
+/**
+ *   Horizontal CSS Drop-Down Menu Module
+ *   MTV.com CSS Drop-Down Menu Theme
+ *   MTV.com Ultimate Linear CSS Drop-Down Menu Theme
+ *  
+ *   @file		dropdown.css
+ *   @package		Dropdown
+ *   @version		0.7.1
+ *   @type		Transitional
+ *   @stacks		597-599
+ *   @browsers	Windows: IE6+, Opera7+, Firefox1+
+ *  				Mac OS: Safari2+, Firefox2+
+ *  
+ *   @link		http://www.lwis.net/
+ *   @copyright	2006-2008 Live Web Institute. All Rights Reserved.
+ *   @copyright	2008 Live Web Institute. All Rights Reserved.
+ *   @copyright	2008 Live Web Institute. All Rights Reserved.
+ *  
+ **
+
+ul
+  &.dropdown
+    list-style: none
+    margin: 0
+    padding: 0
+  
+    li, ul
+      list-style: none
+      margin: 0
+      padding: 0
+    position: relative
+    z-index: 597
+    float: left
+    
+    li
+      float: left
+      line-height: 1.1em
+      vertical-align: middle
+      zoom: 1
+      
+      &.hover, &:hover
+        position: relative
+        z-index: 599
+        cursor: default
+        
+    ul
+      visibility: hidden
+      position: absolute
+      top: 100%
+      left: 0
+      z-index: 598
+      width: 100%
+      
+      li
+        float: none
+        
+      ul
+        top: 1px
+        left: 99%
+        
+    li
+      &:hover > ul
+        visibility: visible
+      padding: 5px
+      
+    *.dir
+      padding-right: 30px
+      background-image: none
+      background-position: 100% 50%
+      background-repeat: no-repeat
+      
+    ul
+      *.dir
+        padding-right: 15px
+        background-image: url(../images/nav-arrow-right.png)
+        background-position: 100% 50%
+        background-repeat: no-repeat
+        
+      ul *.dir
+        background-image: url(../images/nav-arrow-right2.png)
+        
+  &.dropdown-vertical *.dir
+    background-image: url(../images/nav-arrow-right.png)
+    
+  &.dropdown-vertical-rtl *.dir
+    padding-right: 15px
+    background-image: url(../images/nav-arrow-left.png)
+    background-position: 0 50%
+    
+  &.dropdown
+    font: normal 14px / normal Arial, Helvetica, sans-serif
+    
+    li
+      background-color: #333
+      color: #fff
+      &.hover, &:hover
+      
+    a
+      &:link, &:visited
+        color: #fff
+        text-decoration: none
+        
+      &:hover
+        border-top-color: #5db1e0 !important
+        border-left-color: #5db1e0
+        background-color: #4498c7
+        color: #fff
+          
+    ul a.dir:hover
+      /* proposal
+      background-color: #4698ca
+      background-image: url(../images/comnav-arrowon.png)
+      color: #fff
+        
+    a:active
+      background: #058acf url(../images/nav-sub-press.png) 0 0 repeat-x !important
+      color: #fff
+        
+    ul
+      left: auto
+      right: 0
+      width: 150px
+      margin-top: -1px
+      border-top: 1px solid #1a1a1a
+      border-left: solid 1px #4c4c4c
+      font: normal 11px / 1em Tahoma, Geneva, Verdana, sans-serif
+      
+      li
+        background-color: #3a3a3a
+          
+      ul
+        top: 0
+        right: auto
+        left: 100%
+        margin-top: 0
+        border-top: none
+        border-left: none
+        font-weight: normal
+        
+        li
+          background-color: #4c4c4c
+            
+        ul li
+          background-color: #595959
+            
+    li a, *.dir
+      border-style: solid
+      border-width: 1px
+      border-color: #404040 #1a1a1a #1a1a1a #505050
+        
+    ul
+      li a, *.dir
+        border-color: #4a4a4a #242424 #242424
+        border-left: none
+        
+      ul
+        li a, *.dir
+          border-color: #595959 #333 #333
+            
+        ul
+          li a, *.dir
+            border-color: #767676 #404040 #404040
+              
+    a, span
+      display: block
+      padding: 5px 30px
+      
+    li
+      padding: 0
+      
+    ul
+      a, span
+        /* POI, proposal: override abstract a, span
+        padding: 8px
+        
+    *.dir
+      /* POI
+      padding: 5px 30px
+      
+    ul
+      *.dir
+        padding: 8px 30px 8px 8px
+        
+      a
+        width: 133px
+        
+        &.dir
+          width: 111px
+          
+    *.open
+      background-color: #3d3d3d
+        
+    ul
+      *.open
+        background-color: #4c4c4c
+        background-image: url(../images/comnav-arrowover.png)
+        color: #fff
+          
+      ul *.open
+        background-color: #595959
+        background-image: url(../images/comnav-arrowover2.png)
+        color: #fff
+          
+    a.open:hover
+      background-color: #4698ca
+      color: #fff
+        
+    ul a.open:hover
+      background-image: url(../images/comnav-arrowon.png)
+      color: #fff
+        
+    li:hover > *.dir
+      background-color: #3d3d3d
+        
+    ul
+      li:hover > *.dir
+        background-color: #4c4c4c
+        background-image: url(../images/comnav-arrowover.png)
+        
+      ul li:hover > *.dir
+        background-color: #595959
+        background-image: url(../images/comnav-arrowover2.png)
+        color: #fff
+          
+    li:hover > a.dir:hover
+      background-color: #4698ca
+      color: #fff
+        
+    ul li:hover > a.dir:hover
+      background-image: url(../images/comnav-arrowon.png)
+      color: #fff
+
+    .selected
+      a
+        color: $FG_MENU
+      background: $BG_MENU
+      +BEVEL_CORNER($NAV_TAB_BEVEL)
+    

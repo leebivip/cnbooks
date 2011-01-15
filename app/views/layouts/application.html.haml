@@ -2,23 +2,25 @@
 %html
   = render :partial => "/shared/head", :locals => {:theme => true}
   :javascript
-    jQuery(document).ready(function(){
-      jQuery("#jMenu").jMenu({
-        ulWidth : 'auto',
-        effects : {
-          effectSpeedOpen : 200,
-          effectSpeedClose : 300,
-          effectTypeOpen : 'fade',
-          effectTypeClose : 'fade',
-          effectOpen : 'easeInCubic',
-          effectClose : 'easeOutQuad'
-        },
-        TimeBeforeOpening : 100,
-        TimeBeforeClosing : 400,
-        animatedText : false,
-        paddingLeft: 1
-      });
-    })
+    $(document).ready(function(){
+    
+    	$("ul.dropdown li").dropdown();
+    
+    });
+    
+    $.fn.dropdown = function() {
+    
+    	$(this).hover(function(){
+    		$(this).addClass("hover");
+    		$('> .dir',this).addClass("open");
+    		$('ul:first',this).css('visibility', 'visible');
+    	},function(){
+    		$(this).removeClass("hover");
+    		$('.open',this).removeClass("open");
+    		$('ul:first',this).css('visibility', 'hidden');
+    	});
+    
+    }
 
   %body
     = render :partial => "/shared/site_bar",   |

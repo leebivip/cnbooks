@@ -306,6 +306,8 @@ body
 
 // *****************************************************************************
 // REFINERY'S BASIC MENU NAV BAR STYLING
+// "refinery_menu" is not correct id from view; "menu" is
+// deprecated in favor of jquery fancy menus
 // *****************************************************************************
 
 #refinery_menu  // change back to #menu to enable refinery basic menu
@@ -363,67 +365,10 @@ body
     left: auto
 
 // *****************************************************************************
-// jMENU'S BASIC MENU NAV BAR STYLING
+// JQUERY MENU HANDLING BASIC MENU NAV BAR STYLING
 // *****************************************************************************
 
-#jMenu
-  display: table
-  margin: 0
-  padding: 0
-  
-  .selected a
-    color: $FG_MENU
-    background: $BG_MENU
-    +BEVEL_CORNER($NAV_TAB_BEVEL)
-  
-  li
-    display: table-cell
-    background-color: $PRIMARY_DARK_COLOR // #322f32
-    margin: 0
-    //float:left;
-
-    a
-      padding: 10px
-      display: block
-      background-color: transparent
-      color: $HV_MENU
-      text-transform: uppercase
-      cursor: pointer
-      font-size: 0.85em
-      letter-spacing: 0.1em
-      border-right: 1px solid $PRIMARY_DARK_COLOR
-      
-    ul
-      display: none
-      position: absolute
-      padding: 0
-      margin: 0
-      li
-        background-color: $PRIMARY_DARK_COLOR // #322f32
-        display: block
-        border-bottom: 1px solid #484548
-        padding: 0
-        &:first-child
-          background: $PRIMARY_DARK_COLOR url('../images/arrow_down.png') no-repeat center center
-          height: 1em // 6px
-          padding: 0
-          border-bottom: none
-          padding-bottom: 10px
-        a
-          font-size: 11px
-          text-transform: none
-          padding: 7px
-          display: block
-          border-top: 1px solid transparent
-          border-bottom: 1px solid transparent
-          &.isParent
-            background: #3a3a3a url('../images/arrow_right.png') no-repeat right center
-          &:hover
-            background-color: #514c52
-            border-top: 1px solid $PRIMARY_DARK_COLOR
-            border-bottom: 1px solid $PRIMARY_DARK_COLOR
-
-
+@import 'jquery_menu'
     
 // *****************************************************************************
 // *****************************************************************************

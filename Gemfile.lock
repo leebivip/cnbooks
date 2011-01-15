@@ -135,6 +135,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  authlogic
   aws-s3
   haml
   pg
