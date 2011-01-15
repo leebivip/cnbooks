@@ -35,7 +35,7 @@ gem 'aws-s3', :require => 'aws/s3'
 gem 'refinerycms',              '= 0.9.8.9'
 
 # Specify additional Refinery CMS Engines here (all optional):
-gem 'refinerycms-inquiries',    '~> 0.9.8.9'
+gem 'refinerycms-inquiries',    '~> 0.9.9.2'
 gem 'refinerycms-news', :git => 'git://github.com/dsaronin/refinerycms-news', :branch => 'master'
 # gem 'refinerycms-portfolio',  '~> 0.9.8'
 # gem 'refinerycms-theming',    '~> 0.9.8'
