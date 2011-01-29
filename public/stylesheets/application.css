@@ -51,9 +51,8 @@ body {
   margin: 0px; }
 
 #page {
-  padding: 10px;
-  margin: 10px;
-  border: 10px solid red; }
+  padding: 0px;
+  margin: 0px; }
 
 #body, #masthead, #header_content, #footer_content, #site_bar_content {
   width: 990px;
