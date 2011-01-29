@@ -45,10 +45,15 @@ body {
   padding: 0px;
   background: #ffe4c4 url("../images/body_background.png") repeat; }
 
-#page {
+#page_container {
   width: 100%;
   padding: 0px;
   margin: 0px; }
+
+#page {
+  padding: 10px;
+  margin: 10px;
+  border: 10px solid red; }
 
 #body, #masthead, #header_content, #footer_content, #site_bar_content {
   width: 990px;
@@ -65,9 +70,9 @@ body {
   padding: 0; }
 
 #sidebar_content {
-	background: red;
   width: 260px;
-  padding: 0 15px 0 30px; }
+  padding: 0 15px 0 30px;
+  background: blue; }
 
 #body_content_title {
   width: 615px;
@@ -78,7 +83,6 @@ body {
   padding: 0 30px; }
 
 #body_content_right {
-	background: blue;
   margin: 0px; }
 
 #footer {
