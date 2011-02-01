@@ -45,8 +45,12 @@ body {
   padding: 0px;
   background: #ffe4c4 url("../images/body_background.png") repeat; }
 
-#page {
+#page_container {
   width: 100%;
+  padding: 0px;
+  margin: 0px; }
+
+#page {
   padding: 0px;
   margin: 0px; }
 
@@ -66,7 +70,8 @@ body {
 
 #sidebar_content {
   width: 260px;
-  padding: 0 15px 0 30px; }
+  padding: 0 15px 0 30px;
+  background: blue; }
 
 #body_content_title {
   width: 615px;
