@@ -59,12 +59,14 @@ end
 # END REFINERY CMS ============================================================
 
 # USER DEFINED
-gem 'haml'# Specify additional Refinery CMS Engines here (all optional):
-gem 'refinerycms-inquiries',    '~> 0.9.9.2'
-gem 'refinerycms-news', :git => 'git://github.com/dsaronin/refinerycms-news', :branch => 'master'
+gem 'haml'
+
+# Specify additional Refinery CMS Engines here (all optional):
 # gem 'refinerycms-portfolio',  '~> 0.9.8'
 # gem 'refinerycms-theming',    '~> 0.9.8'
 
+gem 'refinerycms-inquiries',    '~> 0.9.9.2'
+gem 'refinerycms-news', :git => 'git://github.com/dsaronin/refinerycms-news', :branch => 'master'
 gem 'refinerycms-blog', :git => 'git://github.com/dsaronin/refinerycms-blog', :branch => 'master'
 gem 'refinerycms-galleries', :require => 'galleries', :git => 'git://github.com/dsaronin/refinerycms-galleries', :branch => 'master'
 
