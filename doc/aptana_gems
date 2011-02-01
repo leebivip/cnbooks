@@ -1,0 +1,3 @@
+#!/bin/sh
+gem install rails -v 2.3.5 
+gem install sqlite3-ruby mongrel ruby-debug-ide ruby-debug-base linecache fastthread gem_plugin
