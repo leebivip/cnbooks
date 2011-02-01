@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Refinery::Application.config.secret_token = '88fc4a1a936161a3f3f827c67219a823672bff90e73087c02c40e6ea14bebf5bc4cc77bd3c34493c8942329656bac5929e92f2166df14fa4913c4e56336eced8'
+Gardenia::Application.config.secret_token = '4185acb0a696b8e6a36c0b1e1f1d151251f9da42783a51645554acdb1f2d283df3029c4475cbb596644550b20d80f7f546f23a542792ea8c776b1c7ec9e37f78'

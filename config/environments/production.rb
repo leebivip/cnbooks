@@ -1,5 +1,5 @@
-Refinery::Application.configure do
-  # Settings specified here will take precedence over those in config/environment.rb
+Gardenia::Application.configure do
+  # Settings specified here will take precedence over those in config/application.rb
 
   # The production environment is meant for finished, "live" apps.
   # Code is not reloaded between requests
@@ -25,14 +25,11 @@ Refinery::Application.configure do
   # config.logger = SyslogLogger.new
 
   # Use a different cache store in production
-  config.cache_store = :memory_store
+  # config.cache_store = :mem_cache_store
 
-  # Disable Rails's static asset server (Rails default)
+  # Disable Rails's static asset server
   # In production, Apache or nginx will already do this
-  # Warning: Refinery CMS has enabled this setting.
-  # Disabling this will means files in your public directly
-  # won't override core assets that are served from the plugin public directories.
-  config.serve_static_assets = true
+  config.serve_static_assets = true # Refinery CMS requires this to be true
 
   # Enable serving of images, stylesheets, and javascripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
@@ -50,8 +47,4 @@ Refinery::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 end
-
-# When true will use Amazon's Simple Storage Service on your production machine
-# instead of the default file system for resources and images
-# Make sure to your bucket info is correct in amazon_s3.yml
-Refinery.s3_backend = !(ENV['S3_KEY'].nil? || ENV['S3_SECRET'].nil?)
+Refinery.rescue_not_found = true

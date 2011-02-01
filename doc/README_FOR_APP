@@ -1,16 +1,2 @@
-# Use this README file to introduce your application and point to useful places in the API for learning more.
-# Run "rake doc:app" to generate API documentation for your models, controllers, helpers, and libraries.
-# ---
-# = Gardenia design
-	
-# == Expected settings (via main admin)
-# * version -- current version number of gardenia
-# * hf_stretch -- true if use stretch headers & footers; false (nil) otherwise
-# * nav_search -- true if place a search form in nav area
-# * side_search -- true if place a search form in sidebar area
-
-# these settings are created in config/initializers/application.rb if not yet 
-# existent, which means that new settings can be added to the app on the fly and
-# they will be functional. See comments in application.rb for details.
-
- 
+Use this README file to introduce your application and point to useful places in the API for learning more.
+Run "rake doc:app" to generate API documentation for your models, controllers, helpers, and libraries.
