@@ -1,9 +1,9 @@
 GIT
   remote: git://github.com/dsaronin/refinerycms-blog
-  revision: 8029e476c4b78aca90445ee035d2a842f637aca2
+  revision: 86b8346e67453a95a95965be4444025b0a674324
   branch: master
   specs:
-    refinerycms-blog (1.1)
+    refinerycms-blog (1.2)
       filters_spam (~> 0.2)
       refinerycms (>= 0.9.8)
 
@@ -16,7 +16,7 @@ GIT
 
 GIT
   remote: git://github.com/dsaronin/refinerycms-news
-  revision: ae8d54dcc4c95047e7474254f9e380195f55036f
+  revision: 4c169af5bad6e554503d52f898a5c7b722b134bd
   branch: master
   specs:
     refinerycms-news (1.0)
