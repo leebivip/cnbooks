@@ -54,6 +54,8 @@ group :development, :test do
   gem 'autotest'
   gem 'autotest-rails'
   gem 'autotest-notification'
+  # server
+  gem 'mongrel'
 end
 
 # END REFINERY CMS ============================================================
