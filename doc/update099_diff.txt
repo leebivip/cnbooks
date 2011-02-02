@@ -1,4 +1,4 @@
-diff --git a/.gitignore b/.gitignore
+***** diff --git a/.gitignore b/.gitignore
 index ba980e9..09d4a21 100644
 --- a/.gitignore
 +++ b/.gitignore
@@ -81,7 +81,7 @@ index ba980e9..09d4a21 100644
 +
 
 
-diff --git a/Gemfile b/Gemfile
+*****diff --git a/Gemfile b/Gemfile
 index fb4131a..4c1c84a 100644
 --- a/Gemfile
 +++ b/Gemfile
@@ -180,7 +180,7 @@ index ccb4af9..e8065d9 100644
  end
 
 
-diff --git a/app/helpers/application_helper.rb b/app/helpers/application_helper.rb
+*****diff --git a/app/helpers/application_helper.rb b/app/helpers/application_helper.rb
 index 7dc3c14..de6be79 100644
 --- a/app/helpers/application_helper.rb
 +++ b/app/helpers/application_helper.rb
@@ -882,7 +882,7 @@ index 43f4122..57035b1 100644
 +# Gardenia::Application.config.session_store :active_record_store
 
 
-diff --git a/config/locales/en.yml b/config/locales/en.yml
+*****diff --git a/config/locales/en.yml b/config/locales/en.yml
 index 567f0a8..a747bfa 100644
 --- a/config/locales/en.yml
 +++ b/config/locales/en.yml
@@ -1586,7 +1586,7 @@ index abb38a1..3828b06 100644
 \ No newline at end of file
 
 
-diff --git a/doc/README_FOR_APP b/doc/README_FOR_APP
+*****diff --git a/doc/README_FOR_APP b/doc/README_FOR_APP
 index 7d64015..fe41f5c 100644
 --- a/doc/README_FOR_APP
 +++ b/doc/README_FOR_APP
@@ -1612,7 +1612,7 @@ index 7d64015..fe41f5c 100644
 +Run "rake doc:app" to generate API documentation for your models, controllers, helpers, and libraries.
 
 
-diff --git a/public/favicon.ico b/public/favicon.ico
+*****diff --git a/public/favicon.ico b/public/favicon.ico
 index 6a937e0..e69de29 100644
 Binary files a/public/favicon.ico and b/public/favicon.ico differ
 
