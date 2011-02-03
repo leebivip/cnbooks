@@ -55,7 +55,13 @@ group :development, :test do
   gem 'autotest-rails'
   gem 'autotest-notification'
   # server
-  gem 'mongrel'
+    gem 'mongrel'
+	gem 'tzinfo'
+	gem 'mail'
+	gem 'heroku'
+	gem 'columnize'
+	gem 'thor'
+	gem 'taps'
 end
 
 # END REFINERY CMS ============================================================
@@ -67,13 +73,13 @@ gem 'haml'
 # gem 'refinerycms-portfolio',  '~> 0.9.8'
 # gem 'refinerycms-theming',    '~> 0.9.8'
 
-gem 'refinerycms-inquiries',    '~> 0.9.9.2'
+gem 'refinerycms-inquiries',    '~> 0.9.9.9'
 gem 'refinerycms-news', :git => 'git://github.com/dsaronin/refinerycms-news', :branch => 'master'
 gem 'refinerycms-blog', :git => 'git://github.com/dsaronin/refinerycms-blog', :branch => 'master'
 gem 'refinerycms-galleries', :require => 'galleries', :git => 'git://github.com/dsaronin/refinerycms-galleries', :branch => 'master'
 
 # Add i18n support (optional, you can remove this if you really want to).
-gem 'refinerycms-i18n',         '~> 0.9.8.9'
+gem 'refinerycms-i18n',         '~> 0.9'
 
 # Figure out how to get RMagick:
 rmagick_options = {:require => false}
