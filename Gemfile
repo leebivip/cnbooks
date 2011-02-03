@@ -62,5 +62,7 @@ gem 'authlogic'
 
 # USER DEFINED
 gem 'haml'
+gem 'tzinfo'
+gem 'mongrel'
 
 # END USER DEFINED
