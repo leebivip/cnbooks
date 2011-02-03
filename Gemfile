@@ -64,5 +64,10 @@ gem 'authlogic'
 gem 'haml'
 gem 'tzinfo'
 gem 'mongrel'
+gem 'mail'
+gem 'columnize'
+gem 'heroku'
+gem 'thor'
+gem 'taps'
 
 # END USER DEFINED
