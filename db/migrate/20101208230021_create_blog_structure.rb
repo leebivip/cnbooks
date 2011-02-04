@@ -36,14 +36,15 @@ class CreateBlogStructure < ActiveRecord::Migration
       
     end
 
-    
-    load(Rails.root.join('db', 'seeds', 'refinerycms_blog.rb').to_s)
+# gardenia 0.9.8.9 > 0.9.9 alteration (here and below)
+#    load(Rails.root.join('db', 'seeds', 'refinerycms_blog.rb').to_s)
   end
 
   def self.down
     UserPlugin.destroy_all({:name => "refinerycms_blog"})
 
-    Page.delete_all({:link_url => "/blog"})
+# gardenia 0.9.8.9 > 0.9.9 alteration (here and below)
+#    Page.delete_all({:link_url => "/blog"})
 
     drop_table :blog_posts
     drop_table :blog_comments

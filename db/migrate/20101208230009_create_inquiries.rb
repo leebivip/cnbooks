@@ -25,13 +25,14 @@ class CreateInquiries < ActiveRecord::Migration
       t.datetime "updated_at"
     end unless ::InquirySetting.table_exists?
 
-    load(Rails.root.join('db', 'seeds', 'pages_for_inquiries.rb').to_s)
+# gardenia 0.9.8.9 > 0.9.9 alteration (here and below)
+#    load(Rails.root.join('db', 'seeds', 'pages_for_inquiries.rb').to_s)
   end
 
   def self.down
      drop_table ::Inquiry.table_name
      # todo: remove at 1.0
      drop_table ::InquirySetting.table_name
-     Page.delete_all({:link_url => ("/contact" || "/contact/thank_you")})
+#     Page.delete_all({:link_url => ("/contact" || "/contact/thank_you")})
   end
 end

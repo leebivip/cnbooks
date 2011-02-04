@@ -23,13 +23,15 @@ class CreateGalleriesGalleryEntries < ActiveRecord::Migration
 
     add_index :gallery_entries, :id
 
-    load(Rails.root.join('db', 'seeds', 'galleries.rb'))
+# gardenia 0.9.8.9 > 0.9.9 alteration (here and below)
+#    load(Rails.root.join('db', 'seeds', 'galleries.rb'))
   end
 
   def self.down
     UserPlugin.destroy_all({:name => "galleries"})
 
-    Page.delete_all({:link_url => "/galleries"})
+# gardenia 0.9.8.9 > 0.9.9 alteration (here and below)
+#    Page.delete_all({:link_url => "/galleries"})
 
     drop_table :galleries
     drop_table :gallery_entries
