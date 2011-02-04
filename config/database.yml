@@ -11,9 +11,9 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: up099_dev
+  database: gardenia_dev
   pool: 5
-#  username: up099
+#  username: gardenia
 #  password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -37,15 +37,15 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: up099_test
+  database: gardenia_test
   pool: 5
-#  username: up099
+#  username: gardenia
 #  password:
 
 production:
   adapter: postgresql
   encoding: unicode
-  database: up099_dev
+  database: gardenia_dev
   pool: 5
-#  username: up099
+#  username: gardenia
 #  password:

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110202050639) do
+ActiveRecord::Schema.define(:version => 20101209231011) do
 
   create_table "blog_categories", :force => true do |t|
     t.string   "title"
@@ -89,12 +89,12 @@ ActiveRecord::Schema.define(:version => 20110202050639) do
     t.string   "email"
     t.string   "phone"
     t.text     "message"
+    t.integer  "position"
+    t.boolean  "open",       :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "spam",       :default => false
   end
-
-  add_index "inquiries", ["id"], :name => "index_inquiries_on_id"
 
   create_table "inquiry_settings", :force => true do |t|
     t.string   "name"
@@ -104,39 +104,15 @@ ActiveRecord::Schema.define(:version => 20110202050639) do
     t.datetime "updated_at"
   end
 
-  create_table "news_item_translations", :force => true do |t|
-    t.integer  "news_item_id"
-    t.string   "locale"
-    t.string   "external_url"
-    t.string   "title"
-    t.text     "body"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "news_item_translations", ["news_item_id"], :name => "index_news_item_translations_on_news_item_id"
-
   create_table "news_items", :force => true do |t|
     t.string   "title"
     t.text     "body"
     t.datetime "publish_date"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "image_id"
-    t.string   "external_url"
   end
 
   add_index "news_items", ["id"], :name => "index_news_items_on_id"
-
-  create_table "page_part_translations", :force => true do |t|
-    t.integer  "page_part_id"
-    t.string   "locale"
-    t.text     "body"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "page_part_translations", ["page_part_id"], :name => "index_page_part_translations_on_page_part_id"
 
   create_table "page_parts", :force => true do |t|
     t.integer  "page_id"
@@ -149,19 +125,6 @@ ActiveRecord::Schema.define(:version => 20110202050639) do
 
   add_index "page_parts", ["id"], :name => "index_page_parts_on_id"
   add_index "page_parts", ["page_id"], :name => "index_page_parts_on_page_id"
-
-  create_table "page_translations", :force => true do |t|
-    t.integer  "page_id"
-    t.string   "locale"
-    t.string   "meta_keywords"
-    t.string   "browser_title"
-    t.text     "meta_description"
-    t.string   "title"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "page_translations", ["page_id"], :name => "index_page_translations_on_page_id"
 
   create_table "pages", :force => true do |t|
     t.string   "title"
@@ -184,6 +147,7 @@ ActiveRecord::Schema.define(:version => 20110202050639) do
     t.integer  "lft"
     t.integer  "rgt"
     t.integer  "depth"
+    t.string   "cached_slug"
   end
 
   add_index "pages", ["depth"], :name => "index_pages_on_depth"
@@ -225,6 +189,9 @@ ActiveRecord::Schema.define(:version => 20110202050639) do
     t.integer "role_id"
   end
 
+  add_index "roles_users", ["role_id", "user_id"], :name => "index_roles_users_on_role_id_and_user_id"
+  add_index "roles_users", ["user_id", "role_id"], :name => "index_roles_users_on_user_id_and_role_id"
+
   create_table "slugs", :force => true do |t|
     t.string   "name"
     t.integer  "sluggable_id"
@@ -232,11 +199,9 @@ ActiveRecord::Schema.define(:version => 20110202050639) do
     t.string   "sluggable_type", :limit => 40
     t.string   "scope",          :limit => 40
     t.datetime "created_at"
-    t.string   "locale"
   end
 
-  add_index "slugs", ["locale"], :name => "index_slugs_on_locale"
-  add_index "slugs", ["name", "sluggable_type", "scope", "sequence"], :name => "index_slugs_on_name_sluggable_type_scope_and_sequence", :unique => true
+  add_index "slugs", ["name", "sluggable_type", "scope", "sequence"], :name => "index_slugs_on_name_and_sluggable_type_and_scope_and_sequence", :unique => true
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
 
   create_table "user_plugins", :force => true do |t|
@@ -249,22 +214,14 @@ ActiveRecord::Schema.define(:version => 20110202050639) do
   add_index "user_plugins", ["user_id", "name"], :name => "index_unique_user_plugins", :unique => true
 
   create_table "users", :force => true do |t|
-    t.string   "username",             :null => false
-    t.string   "email",                :null => false
-    t.string   "encrypted_password",   :null => false
-    t.string   "password_salt",        :null => false
+    t.string   "login",             :null => false
+    t.string   "email",             :null => false
+    t.string   "crypted_password",  :null => false
+    t.string   "password_salt",     :null => false
     t.string   "persistence_token"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "perishable_token"
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.integer  "sign_in_count"
-    t.string   "remember_token"
-    t.string   "reset_password_token"
-    t.datetime "remember_created_at"
   end
 
   add_index "users", ["id"], :name => "index_users_on_id"
