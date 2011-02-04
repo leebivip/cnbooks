@@ -38,6 +38,7 @@ gem 'refinerycms-generators',   '~> 0.9'
 group :development, :test do
   # RSpec
   gem 'rspec-rails',            '= 2.3'
+
   # Cucumber
   gem 'capybara'
   gem 'database_cleaner'
@@ -47,13 +48,20 @@ group :development, :test do
   gem 'spork' unless Bundler::WINDOWS
   gem 'rack-test',              '~> 0.5.6'
   gem 'json_pure'
+
   # Factory Girl
   gem 'factory_girl'
   gem "#{'j' if RUBY_PLATFORM == 'java'}ruby-prof" unless defined?(RUBY_ENGINE) and RUBY_ENGINE == 'rbx'
+
   # Autotest
+  gem 'ZenTest'
   gem 'autotest'
+  gem 'autotest-inotify'
   gem 'autotest-rails'
+  gem 'rb-inotify'
   gem 'autotest-notification'
+  gem 'redgreen'
+
   # server
     gem 'mongrel'
 	gem 'tzinfo'
@@ -70,10 +78,10 @@ end
 gem 'haml'
 
 # Specify additional Refinery CMS Engines here (all optional):
-# gem 'refinerycms-portfolio',  '~> 0.9.8'
-# gem 'refinerycms-theming',    '~> 0.9.8'
+# gem 'refinerycms-portfolio',  '~> 0.9'
+# gem 'refinerycms-theming',    '~> 0.9'
 
-gem 'refinerycms-inquiries',    '~> 0.9.9.9'
+gem 'refinerycms-inquiries',    '~> 0.9'
 gem 'refinerycms-news', :git => 'git://github.com/dsaronin/refinerycms-news', :branch => 'master'
 gem 'refinerycms-blog', :git => 'git://github.com/dsaronin/refinerycms-blog', :branch => 'master'
 gem 'refinerycms-galleries', :require => 'galleries', :git => 'git://github.com/dsaronin/refinerycms-galleries', :branch => 'master'
