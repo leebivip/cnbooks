@@ -11,7 +11,7 @@
     [:gardenia_disable_repeat_title, false],
   ].each{|setting,default| RefinerySetting.set(setting,default) if RefinerySetting.get(setting).nil?}
   
-  parts_list = RefinerySetting.get(:default_page_parts)
+  parts_list = RefinerySetting.get(:default_page_parts) || []
   ['Recent Posts', 'Recent News'].each do |parts_name|
     unless parts_list.include?(parts_name)
       parts_list << parts_name

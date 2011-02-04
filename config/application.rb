@@ -1,12 +1,17 @@
 require File.expand_path('../boot', __FILE__)
 
-require 'rails/all'
+# Pick the frameworks you want:
+# require "active_record/railtie"
+require "action_controller/railtie"
+require "action_mailer/railtie"
+require "active_resource/railtie"
+require "rails/test_unit/railtie"
 
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env) if defined?(Bundler)
 
-module Refinery
+module Gardenia
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -38,9 +43,10 @@ module Refinery
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
-    
+
     # add video tags to sanitize permitted tags
     config.action_view.sanitized_allowed_tags = 'table', 'tr', 'td', 'iframe'
     config.action_view.sanitized_allowed_attributes = 'id', 'class', 'style', 'src', 'width', 'height', 'frameborder'
+   
   end
 end

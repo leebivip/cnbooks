@@ -1,20 +1,4 @@
-Refinery::Application.routes.draw do
-
-  # REFINERY CMS ================================================================
-
-  filter(:refinery_locales) if defined?(RoutingFilter::RefineryLocales) # optionally use i18n.
-
-  root :to => 'pages#home'
-
-  scope(:path => 'refinery', :as => 'admin', :module => 'admin') do
-    root :to => 'dashboard#index'
-  end
-
-  # Marketable URLs should be appended to routes by the Pages Engine.
-  # Catch all routes should be appended to routes by the Core Engine.
-
-  # END REFINERY CMS ============================================================
-
+Gardenia::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -32,12 +16,12 @@ Refinery::Application.routes.draw do
   # Sample resource route with options:
   #   resources :products do
   #     member do
-  #       get :short
-  #       post :toggle
+  #       get 'short'
+  #       post 'toggle'
   #     end
   #
   #     collection do
-  #       get :sold
+  #       get 'sold'
   #     end
   #   end
 
@@ -51,7 +35,7 @@ Refinery::Application.routes.draw do
   #   resources :products do
   #     resources :comments
   #     resources :sales do
-  #       get :recent, :on => :collection
+  #       get 'recent', :on => :collection
   #     end
   #   end
 

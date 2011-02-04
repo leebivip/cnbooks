@@ -1,5 +1,5 @@
-Refinery::Application.configure do
-  # Settings specified here will take precedence over those in config/environment.rb
+Gardenia::Application.configure do
+  # Settings specified here will take precedence over those in config/application.rb
 
   # In the development environment your application's code is reloaded on
   # every request.  This slows down response time but is perfect for development
@@ -24,3 +24,4 @@ Refinery::Application.configure do
   config.action_dispatch.best_standards_support = :builtin
 end
 
+Refinery.rescue_not_found = false
