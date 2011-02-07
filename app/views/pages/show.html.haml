@@ -1,1 +1,7 @@
+- content_for :body_image_gallery do
+  %ul#gallery
+    - @page.images.each do |i|
+      %li
+        = link_to image_tag(i.thumbnail("100x100#c").url), i.thumbnail("900x600").url
+
 = render :partial => "/shared/content_page"
