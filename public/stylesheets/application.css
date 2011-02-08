@@ -83,6 +83,11 @@ body {
 #body_content_right {
   margin: 0px; }
 
+#page_image_gallery {
+  margin: 0;
+  padding: 0;
+  width: 100%; }
+
 #footer {
   height: 65px;
   background: #2f4f4f url("../images/footer_background.png") no-repeat; }
@@ -590,3 +595,14 @@ img.image-align-right {
 
 #body_content_left p {
   line-height: 1.6em; }
+
+#page_image_gallery ul#gallery, #page_image_gallery ul {
+  margin: 0;
+  padding: 0; }
+#page_image_gallery li {
+  float: left;
+  list-style: none;
+  position: relative; }
+#page_image_gallery #gallery {
+  margin: 0;
+  padding: 0; }
