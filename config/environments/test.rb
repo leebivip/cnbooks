@@ -1,5 +1,5 @@
-Refinery::Application.configure do
-  # Settings specified here will take precedence over those in config/environment.rb
+Gardenia::Application.configure do
+  # Settings specified here will take precedence over those in config/application.rb
 
   # The test environment is used exclusively to run your application's
   # test suite.  You never need to work with it otherwise.  Remember that
@@ -33,3 +33,4 @@ Refinery::Application.configure do
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
 end
+Refinery.rescue_not_found = false

@@ -199,8 +199,14 @@ body
   padding: 0px
   background: $HV_INPUTFORM  url("../images/body_background.png") repeat
 
-#page
+#page_container
   width: 100%
+  padding: 0px
+  margin: 0px
+
+// #page wraps the entire content area, including headers (masthead & nav), content,
+// sidebars, and footer.
+#page
   padding: 0px
   margin: 0px
 
@@ -225,6 +231,7 @@ body
 #sidebar_content
   width: $SIDEBAR_INNER_WIDTH
   padding: 0 $STANDARD_PADDING/2 0 $STANDARD_PADDING
+  // background: blue
 
 #body_content_title
   width: $MAIN_TITLE_WIDTH
@@ -239,6 +246,11 @@ body
 
 #body_content_right
   margin: 0px
+  
+#page_image_gallery
+  margin: 0
+  padding: 0
+  width: 100%
   
 // *****************************************************************************
 // *****************************************************************************
@@ -684,6 +696,19 @@ img.image-align-right
     line-height: 1.6em
 
 // *****************************************************************************
+// page-image formatting here
 // *****************************************************************************
+#page_image_gallery
+  ul#gallery, ul
+    margin:  0
+    padding: 0
 
+  li
+    float: left
+    list-style: none
+    position: relative
+
+  #gallery
+    margin:  0
+    padding: 0
     

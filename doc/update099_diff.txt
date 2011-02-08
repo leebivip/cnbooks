@@ -1,0 +1,1724 @@
+***** diff --git a/.gitignore b/.gitignore
+index ba980e9..09d4a21 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -61,3 +61,76 @@ capybara-*html
+ 
+ # SASS
+ .sass-cache
++# Rails
++.bundle
++db/*.sqlite3
++db/*.sqlite3-journal
++*.log
++tmp/**/*
++
++# Documentation
++doc/api
++doc/app
++doc/*
++.yardoc
++.yardopts
++
++# Public Uploads
++public/system/*
++public/themes/*
++
++# Public Cache
++public/javascripts/cache
++public/stylesheets/cache
++
++# Vendor Cache
++vendor/cache
++
++# Acts as Indexed
++index/**/*
++
++# Refinery Specific
++*.tmproj
++*.autobackupbyrefinery.*
++/refinerycms-*.gem
++.autotest
++
++# Mac
++.DS_Store
++
++# Windows
++Thumbs.db
++
++# NetBeans
++nbproject
++
++# Eclipse
++.project
++
++# Redcar
++.redcar
++
++# Rubinius
++*.rbc
++
++# Vim
++*.swp
++*.swo
++
++# RubyMine
++.idea
++
++# Backup
++*~
++
++# Capybara Bug
++capybara-*html
++
++# sass
++.sass-cache
++.sass-cache/*
++
++#rvm
++.rvmrc
++.rvmrc.*
++
+
+
+*****diff --git a/Gemfile b/Gemfile
+index fb4131a..4c1c84a 100644
+--- a/Gemfile
++++ b/Gemfile
+@@ -32,9 +32,34 @@ gem 'aws-s3', :require => 'aws/s3'
+ # REFINERY CMS ================================================================
+ 
+ # Specify the Refinery CMS core:
+-gem 'refinerycms',              '= 0.9.8.9'
++gem 'refinerycms',              '= 0.9.9'
++gem 'refinerycms-generators',   '~> 0.9'
++
++group :development, :test do
++  # RSpec
++  gem 'rspec-rails',            '= 2.3'
++  # Cucumber
++  gem 'capybara'
++  gem 'database_cleaner'
++  gem 'cucumber-rails'
++  gem 'launchy'
++  gem 'gherkin'
++  gem 'spork' unless Bundler::WINDOWS
++  gem 'rack-test',              '~> 0.5.6'
++  gem 'json_pure'
++  # Factory Girl
++  gem 'factory_girl'
++  gem "#{'j' if RUBY_PLATFORM == 'java'}ruby-prof" unless defined?(RUBY_ENGINE) and RUBY_ENGINE == 'rbx'
++  # Autotest
++  gem 'autotest'
++  gem 'autotest-rails'
++  gem 'autotest-notification'
++end
+ 
+-# Specify additional Refinery CMS Engines here (all optional):
++# END REFINERY CMS ============================================================
++
++# USER DEFINED
++gem 'haml'# Specify additional Refinery CMS Engines here (all optional):
+ gem 'refinerycms-inquiries',    '~> 0.9.9.2'
+ gem 'refinerycms-news', :git => 'git://github.com/dsaronin/refinerycms-news', :branch => 'master'
+ # gem 'refinerycms-portfolio',  '~> 0.9.8'
+@@ -58,9 +83,4 @@ gem 'rmagick',                  '~> 2.12.0', rmagick_options
+ 
+ gem 'authlogic'
+ 
+-# END REFINERY CMS ============================================================
+-
+-# USER DEFINED
+-gem 'haml'
+-
+ # END USER DEFINED
+
+
+diff --git a/Rakefile b/Rakefile
+index 19e4d33..cdf5a33 100644
+--- a/Rakefile
++++ b/Rakefile
+@@ -4,4 +4,4 @@
+ require File.expand_path('../config/application', __FILE__)
+ require 'rake'
+ 
+-Refinery::Application.load_tasks
++Gardenia::Application.load_tasks
+
+
+diff --git a/app/controllers/admin/base_controller.rb b/app/controllers/admin/base_controller.rb
+index 5e72c8e..4a8ff24 100644
+--- a/app/controllers/admin/base_controller.rb
++++ b/app/controllers/admin/base_controller.rb
+@@ -1,8 +1,8 @@
+ # Filters added to this controller apply to all controllers in the refinery backend.
+ # Likewise, all the methods added will be available for all controllers in the refinery backend.
+ 
+-# You can extend refinery backend with your own functions here and they will likely not get overriden in an update.
+ 
+-class Admin::BaseController < Refinery::AdminBaseController
++
++class Admin::BaseController < ActionController::Base
+ 
+ end
+
+
+diff --git a/app/controllers/application_controller.rb b/app/controllers/application_controller.rb
+index ccb4af9..e8065d9 100644
+--- a/app/controllers/application_controller.rb
++++ b/app/controllers/application_controller.rb
+@@ -1,9 +1,3 @@
+-# Filters added to this controller apply to all controllers in the application.
+-# Likewise, all the methods added will be available for all controllers.
+-
+-# You can extend refinery with your own functions here and they will likely not get overriden in an update.
+-
+ class ApplicationController < ActionController::Base
+-  include Refinery::ApplicationController
+-
++  protect_from_forgery
+ end
+
+
+*****diff --git a/app/helpers/application_helper.rb b/app/helpers/application_helper.rb
+index 7dc3c14..de6be79 100644
+--- a/app/helpers/application_helper.rb
++++ b/app/helpers/application_helper.rb
+@@ -1,139 +1,2 @@
+-# Methods added to this helper will be available to all templates in the application.
+-
+-# You can extend refinery with your own functions here and they will likely not get overriden in an update.
+ module ApplicationHelper
+-  include Refinery::ApplicationHelper # leave this line in to include all of Refinery's core helper methods.
+-
+-# -----------------------------------------------------------------------------  
+-# choose_body_floats -- dynamically choose float for body content sides of page
+-# this allows admin to change refinery setting (:gardenia_main_content_side)
+-# to make the sides switch selectable .. but that means we must dynamically 
+-# set the css float style for the sections
+-# -----------------------------------------------------------------------------  
+-  def choose_body_floats( section )
+-    main_is_left = (RefinerySetting.get(:gardenia_main_content_side) =~ /left/i)
+-    case section
+-      when :body_content_title,:body_content_left  then (main_is_left ? 'left' : 'right' )
+-      when :body_content_right then  (main_is_left ? 'right' : 'left' )
+-    else
+-      'right'
+-    end  # case
+-      
+-  end
+-
+-# -----------------------------------------------------------------------------
+-# select_outer_div -- returns the outer div for properly selecting content sides of page
+-# -----------------------------------------------------------------------------  
+-  def select_outer_div( section )
+-    return "<div id = '#{section == :body_content_left ?  "main_content" : "sidebar_content" }' style = 'float: #{choose_body_floats( section )};'>"    
+-  end
+-
+-# -----------------------------------------------------------------------------
+-# prep_dom_section -- prepatory stuff for an individual section; returns dom_id
+-# preps the fall back stuff
+-# ----------------------------------------------------------------------------- 
+-  def prep_dom_section(section, need_fallback )
+-    section[:html] = ( content_for( section[:yield] ) ) # renders here
+-    
+-    if section[:html].blank? and need_fallback and
+-        section.keys.include?(:fallback) and
+-        section[:fallback].present?
+-        
+-      section[:html] = section[:fallback].to_s.html_safe
+-      
+-    end  # if
+-
+-    return ( section[:id] ||= section[:yield].to_s.downcase )  # dom_id
+-  end
+-# -----------------------------------------------------------------------------  
+-# prepare_content_page -- replaces *ALL* the erb/haml code on shared/content_page
+-# args: assumed to be local variables prior to invoking the view?
+-# expected (from controller?)
+-#   @page
+-# RESULTS & SIDE EFFECTS:
+-#   @sections -- array of section hashes (used by calling view)
+-#   @class_list -- list of css classes required
+-# -----------------------------------------------------------------------------  
+-  def prepare_content_page(show_empty_sections, remove_automatic_sections , hide_sections)
+-  
+-    need_fallback = (!show_empty_sections and !remove_automatic_sections)
+-    
+-    @sections = [ 
+-        {:yield => :body_content_right, :fallback => (@page.present? ? @page[Page.default_parts.second.to_sym] : nil)},
+-        {:yield => :body_content_title, :fallback => page_title, :id => 'body_content_page_title', :title => true},
+-        {:yield => :body_content_left, :fallback => (@page.present? ? @page[Page.default_parts.first.to_sym] : nil)},
+-      ]
+-    
+-    # if there is no title, then the order of sections presented to browser must reverse, otherwise
+-    # things won't float correctly .. yeah, I know this repetitive code looks like a kludge below .. maybe clean up someday?
+-    
+-#    if content_for(:body_content_title).blank? || RefinerySetting.get(:gardenia_disable_repeat_title)
+-#      @sections.concat [ 
+-#        {:yield => :body_content_left, :fallback => (@page.present? ? @page[Page.default_parts.first.to_sym] : nil)},
+-#        {:yield => :body_content_right, :fallback => (@page.present? ? @page[Page.default_parts.second.to_sym] : nil)},
+-#      ]
+-#    else
+-#      @sections.concat [ 
+-#        {:yield => :body_content_right, :fallback => (@page.present? ? @page[Page.default_parts.second.to_sym] : nil)},
+-#        {:yield => :body_content_title, :fallback => page_title, :id => 'body_content_page_title', :title => true},
+-#        {:yield => :body_content_left, :fallback => (@page.present? ? @page[Page.default_parts.first.to_sym] : nil)},
+-#      ]
+-#    end
+-  
+-    @sections.delete_if{ |section| hide_sections.include?( section[:yield] ) }
+-    
+-    if @page.present? && Page.default_parts.size > 2  # need any sidebar boxes?
+-      
+-      sidebar_sections = Page.default_parts[2,Page.default_parts.size - 2].inject([]) do |list, part|
+-        list << {:yield => part.to_sym, :fallback => @page[part.to_sym] }
+-      end  # do each page part
+-        
+-      sidebar_sections.reject{ |section| hide_sections.include?( section[:yield] ) }
+-      
+-    else
+-      
+-      sidebar_sections = []   # no further sidebar sections
+-          
+-    end  # if..else for sidebars
+-    
+-    css = []
+-  
+-    @sections.each do |section|
+-
+-      dom_id = prep_dom_section(section, need_fallback )
+-      
+-      unless section[:html].blank?
+-      # see application_helper.rb for select_outer_div and choose_body_floats
+-    
+-        if section[:title]
+-          section[:html] = "<div id = 'body_content_title' style = 'float: #{choose_body_floats( section[:yield] )};'> <h1 id='#{dom_id}'>#{section[:html]}</h1> </div>"
+-        else
+-          section[:html] = "#{select_outer_div( section[:yield] )} <div class='clearfix' id='#{dom_id}'>#{section[:html]} </div> "
+-          
+-            # if this is the sidebar area, then also insert subsidiary boxes to sidebar
+-          if section[:yield] == :body_content_right
+-            sidebar_sections.each do |sub_section|
+-              sub_dom_id = prep_dom_section(sub_section, need_fallback )
+-              unless sub_section[:html].blank?
+-                section[:html] << "<div class='sidebar_box clearfix' id='#{sub_dom_id}'>#{sub_section[:html]} </div> "
+-              end  # sub_section unless
+-            end  # each sub_section
+-          end # special sidebar handling
+-          
+-          section[:html] << "</div>" # attach trailing div closure
+-        end  # innermost unless .. else
+-        
+-      else
+-        css << "no_#{dom_id}"
+-      end  # outermost unless .. else
+-      
+-    end   # do each section
+-    
+-    @class_list = "clearfix#{" #{css.join(' ')}" if css.any?}"
+-
+-  end
+-
+-
+-# -----------------------------------------------------------------------------  
+-# -----------------------------------------------------------------------------  
+-end # class helpers
++end
+
+
+diff --git a/app/views/sitemap/index.xml.builder b/app/views/sitemap/index.xml.builder
+new file mode 100644
+index 0000000..d019eb8
+--- /dev/null
++++ b/app/views/sitemap/index.xml.builder
+@@ -0,0 +1,22 @@
++xml.instruct!
++
++xml.urlset "xmlns" => "http://www.sitemaps.org/schemas/sitemap/0.9" do
++
++  @pages.each do |page|
++   # exclude sites that are external to our own domain.
++   page_url = if page.url.is_a?(Hash)
++     # This is how most pages work without being overriden by link_url
++     page.url.merge({:only_path => false})
++   elsif page.url.to_s !~ /^http/
++     # handle relative link_url addresses.
++     "#{request.protocol}#{request.host_with_port}#{page.url}"
++   end
++
++   # Add XML entry only if there is a valid page_url found above.
++   xml.url do
++     xml.loc url_for(page_url)
++     xml.lastmod page.updated_at.to_date
++   end if page_url.present?
++  end
++
++end
+
+
+diff --git a/autotest/autotest.rb b/autotest/autotest.rb
+new file mode 100644
+index 0000000..09f5b8a
+--- /dev/null
++++ b/autotest/autotest.rb
+@@ -0,0 +1,17 @@
++###  uncomment any of the following requires applicable for your system
++###  and then copy this to .autotest if you are using the ZenTest autotest.
++# require "autotest/restart"
++# require "test_notifier/runner/autotest"
++# require "redgreen/autotest"
++# require "autotest/timestamp"
++
++# adds exceptions from .gitignore file, please modify exceptions there!
++imported_exceptions =  IO.readlines('.gitignore').inject([]) do |acc, line|
++  acc << line.strip if line.to_s[0] != '#' && line.strip != ''; acc
++end
++
++Autotest.add_hook :initialize do |autotest|
++  imported_exceptions.each do |exception|
++    autotest.add_exception(exception)
++  end
++end
+
+
+diff --git a/autotest/discover.rb b/autotest/discover.rb
+new file mode 100644
+index 0000000..f421dc5
+--- /dev/null
++++ b/autotest/discover.rb
+@@ -0,0 +1,2 @@
++Autotest.add_discovery { "rails" }
++Autotest.add_discovery { "rspec2" }
+
+
+diff --git a/config.ru b/config.ru
+index d1c95b1..b2c95be 100644
+--- a/config.ru
++++ b/config.ru
+@@ -1,4 +1,4 @@
+ # This file is used by Rack-based servers to start the application.
+ 
+ require ::File.expand_path('../config/environment',  __FILE__)
+-run Refinery::Application
++run Gardenia::Application
+
+
+diff --git a/config/application.rb b/config/application.rb
+index e2f1b45..a9d4d44 100644
+--- a/config/application.rb
++++ b/config/application.rb
+@@ -1,12 +1,17 @@
+ require File.expand_path('../boot', __FILE__)
+ 
+-require 'rails/all'
++# Pick the frameworks you want:
++# require "active_record/railtie"
++require "action_controller/railtie"
++require "action_mailer/railtie"
++require "active_resource/railtie"
++require "rails/test_unit/railtie"
+ 
+ # If you have a Gemfile, require the gems listed there, including any gems
+ # you've limited to :test, :development, or :production.
+ Bundler.require(:default, Rails.env) if defined?(Bundler)
+ 
+-module Refinery
++module Gardenia
+   class Application < Rails::Application
+     # Settings in config/environments/* take precedence over those specified here.
+     # Application configuration should go into files in config/initializers
+@@ -38,9 +43,5 @@ module Refinery
+ 
+     # Configure sensitive parameters which will be filtered from the log file.
+     config.filter_parameters += [:password]
+-    
+-    # add video tags to sanitize permitted tags
+-    config.action_view.sanitized_allowed_tags = 'table', 'tr', 'td', 'iframe'
+-    config.action_view.sanitized_allowed_attributes = 'id', 'class', 'style', 'src', 'width', 'height', 'frameborder'
+   end
+ end
+
+
+diff --git a/config/cucumber.yml b/config/cucumber.yml
+new file mode 100644
+index 0000000..22e6e43
+--- /dev/null
++++ b/config/cucumber.yml
+@@ -0,0 +1,15 @@
++<%
++ENV["RAILS_ENV"] ||= "test"
++require ::File.expand_path('../config/environment',  __FILE__)
++rerun = File.file?('rerun.txt') ? IO.read('rerun.txt') : ""
++rerun_opts = rerun.to_s.strip.empty? ? "--format #{ENV['CUCUMBER_FORMAT'] || 'progress'} features" : "--format #{ENV['CUCUMBER_FORMAT'] || 'pretty'} #{rerun}"
++std_opts = "--format #{ENV['CUCUMBER_FORMAT'] || 'progress'} --strict --tags ~@wip "
++features_globs = []
++(::Refinery::Plugins.registered.pathnames << Rails.root).map{|p| p.join('features')}.reject{|d| !d.directory?}.each do |features|
++  features_globs << Dir[features.to_s].flatten.join(' ')
++end
++std_opts << features_globs.join(' ')
++%>
++default: <%= std_opts %>
++wip: --tags @wip:3 --wip features
++rerun: <%= rerun_opts %> --format rerun --out rerun.txt --strict --tags ~@wip
+
+
+diff --git a/config/database.yml.mysql b/config/database.yml.mysql
+new file mode 100644
+index 0000000..81fae10
+--- /dev/null
++++ b/config/database.yml.mysql
+@@ -0,0 +1,20 @@
++login: &login
++  adapter: mysql
++  host: localhost
++  username: root
++  password:
++
++development: &development
++  database: your_local_database
++  <<: *login
++
++test: &test
++  database: your_test_database
++  <<: *login
++
++production: &production
++  adapter: mysql
++  host: localhost
++  database: your_production_database
++  username: your_production_database_login
++  password: your_production_database_password
+
+
+diff --git a/config/database.yml.postgresql b/config/database.yml.postgresql
+new file mode 100644
+index 0000000..d92576d
+--- /dev/null
++++ b/config/database.yml.postgresql
+@@ -0,0 +1,57 @@
++# PostgreSQL. Versions 7.4 and 8.x are supported.
++#
++# Install the ruby-postgres driver:
++#   gem install ruby-postgres
++# On Mac OS X:
++#   gem install ruby-postgres -- --include=/usr/local/pgsql
++# On Windows:
++#   gem install ruby-postgres
++#       Choose the win32 build.
++#       Install PostgreSQL and put its /bin directory on your path.
++login: &login
++  adapter: postgresql
++  encoding: unicode
++  username: postgres
++  password: postgres
++  pool: 5
++  
++development: &development
++  database: your_local_database
++  <<: *login
++
++  # Connect on a TCP socket. Omitted by default since the client uses a
++  # domain socket that doesn't need configuration. Windows does not have
++  # domain sockets, so uncomment these lines.
++  #host: localhost
++  #port: 5432
++
++  # Schema search path. The server defaults to $user,public
++  #schema_search_path: myapp,sharedapp,public
++
++  # Minimum log levels, in increasing order:
++  #   debug5, debug4, debug3, debug2, debug1,
++  #   log, notice, warning, error, fatal, and panic
++  # The server defaults to notice.
++  #min_messages: warning
++
++# Warning: The database defined as "test" will be erased and
++# re-generated from your development database when you run "rake".
++# Do not set this db to the same as development or production.
++test: &test
++  database: your_test_database
++  <<: *login
++
++# Warning: The database defined as "cucumber" will be erased and
++# re-generated from your development database when you run "rake".
++# Do not set this db to the same as development or production.
++cucumber: &cucumber
++  database: your_cucumber_database
++  <<: *login
++
++production: &production
++  adapter: postgresql
++  encoding: unicode
++  pool: 5
++  database: your_production_database
++  username: your_production_database_login
++  password: your_production_database_password
+
+
+diff --git a/config/database.yml.sqlite3 b/config/database.yml.sqlite3
+new file mode 100644
+index 0000000..c2da158
+--- /dev/null
++++ b/config/database.yml.sqlite3
+@@ -0,0 +1,26 @@
++# SQLite version 3.x
++development:
++  adapter: <%= "jdbc" if defined?(JRUBY_PLATFORM) %>sqlite3
++  database: db/development.sqlite3
++  timeout: 5000
++
++# Warning: The database defined as 'test' will be erased and
++# re-generated from your development database when you run 'rake'.
++# Do not set this db to the same as development or production.
++test:
++  adapter: <%= "jdbc" if defined?(JRUBY_PLATFORM) %>sqlite3
++  database: db/test.sqlite3
++  timeout: 5000
++
++# Warning: The database defined as 'cucumber' will be erased and
++# re-generated from your development database when you run 'rake'.
++# Do not set this db to the same as development or production.
++cucumber:
++  adapter: <%= "jdbc" if defined?(JRUBY_PLATFORM) %>sqlite3
++  database: db/cucumber.sqlite3
++  timeout: 5000
++
++production:
++  adapter: <%= "jdbc" if defined?(JRUBY_PLATFORM) %>sqlite3
++  database: db/production.sqlite3
++  timeout: 5000
+\ No newline at end of file
+
+
+diff --git a/config/environment.rb b/config/environment.rb
+index 60ca260..b20533f 100644
+--- a/config/environment.rb
++++ b/config/environment.rb
+@@ -2,5 +2,4 @@
+ require File.expand_path('../application', __FILE__)
+ 
+ # Initialize the rails application
+-Refinery::Application.initialize!
+-RefinerySetting.set(:gardenia_version,'0.2-5') if RefinerySetting.table_exists?
+\ No newline at end of file
++Gardenia::Application.initialize!
+
+
+diff --git a/config/environments/development.rb b/config/environments/development.rb
+index 1f3ad58..6c750db 100644
+--- a/config/environments/development.rb
++++ b/config/environments/development.rb
+@@ -1,5 +1,5 @@
+-Refinery::Application.configure do
+-  # Settings specified here will take precedence over those in config/environment.rb
++Gardenia::Application.configure do
++  # Settings specified here will take precedence over those in config/application.rb
+ 
+   # In the development environment your application's code is reloaded on
+   # every request.  This slows down response time but is perfect for development
+@@ -24,3 +24,4 @@ Refinery::Application.configure do
+   config.action_dispatch.best_standards_support = :builtin
+ end
+ 
++Refinery.rescue_not_found = false
+\ No newline at end of file
+
+
+diff --git a/config/environments/production.rb b/config/environments/production.rb
+index 9cd1017..875ff95 100644
+--- a/config/environments/production.rb
++++ b/config/environments/production.rb
+@@ -1,5 +1,5 @@
+-Refinery::Application.configure do
+-  # Settings specified here will take precedence over those in config/environment.rb
++Gardenia::Application.configure do
++  # Settings specified here will take precedence over those in config/application.rb
+ 
+   # The production environment is meant for finished, "live" apps.
+   # Code is not reloaded between requests
+@@ -25,14 +25,11 @@ Refinery::Application.configure do
+   # config.logger = SyslogLogger.new
+ 
+   # Use a different cache store in production
+-  config.cache_store = :memory_store
++  # config.cache_store = :mem_cache_store
+ 
+-  # Disable Rails's static asset server (Rails default)
++  # Disable Rails's static asset server
+   # In production, Apache or nginx will already do this
+-  # Warning: Refinery CMS has enabled this setting.
+-  # Disabling this will means files in your public directly
+-  # won't override core assets that are served from the plugin public directories.
+-  config.serve_static_assets = true
++  config.serve_static_assets = true # Refinery CMS requires this to be true
+ 
+   # Enable serving of images, stylesheets, and javascripts from an asset server
+   # config.action_controller.asset_host = "http://assets.example.com"
+@@ -50,8 +47,4 @@ Refinery::Application.configure do
+   # Send deprecation notices to registered listeners
+   config.active_support.deprecation = :notify
+ end
+-
+-# When true will use Amazon's Simple Storage Service on your production machine
+-# instead of the default file system for resources and images
+-# Make sure to your bucket info is correct in amazon_s3.yml
+-Refinery.s3_backend = !(ENV['S3_KEY'].nil? || ENV['S3_SECRET'].nil?)
++Refinery.rescue_not_found = true
+\ No newline at end of file
+
+
+diff --git a/config/environments/test.rb b/config/environments/test.rb
+index 635179d..89c883a 100644
+--- a/config/environments/test.rb
++++ b/config/environments/test.rb
+@@ -1,5 +1,5 @@
+-Refinery::Application.configure do
+-  # Settings specified here will take precedence over those in config/environment.rb
++Gardenia::Application.configure do
++  # Settings specified here will take precedence over those in config/application.rb
+ 
+   # The test environment is used exclusively to run your application's
+   # test suite.  You never need to work with it otherwise.  Remember that
+@@ -33,3 +33,4 @@ Refinery::Application.configure do
+   # Print deprecation notices to the stderr
+   config.active_support.deprecation = :stderr
+ end
++Refinery.rescue_not_found = false
+\ No newline at end of file
+
+
+diff --git a/config/i18n-js.yml b/config/i18n-js.yml
+new file mode 100644
+index 0000000..69a5aed
+--- /dev/null
++++ b/config/i18n-js.yml
+@@ -0,0 +1,6 @@
++# Find more details about this configuration file at http://github.com/fnando/i18n-js
++i18n_dir: "public/javascripts"
++translations:
++  javascript:
++    file: "public/javascripts/i18n-messages.js"
++    only: "*.js.*"
+
+
+diff --git a/config/initializers/devise.rb b/config/initializers/devise.rb
+new file mode 100644
+index 0000000..ffe524d
+--- /dev/null
++++ b/config/initializers/devise.rb
+@@ -0,0 +1,142 @@
++# Use this hook to configure devise mailer, warden hooks and so forth. The first
++# four configuration values can also be set straight in your models.
++Devise.setup do |config|
++  # ==> Mailer Configuration
++  # Configure the e-mail address which will be shown in DeviseMailer.
++  config.mailer_sender = "please-change-me@config-initializers-devise.com"
++
++  # Configure the class responsible to send e-mails.
++  # config.mailer = "Devise::Mailer"
++
++  # ==> ORM configuration
++  # Load and configure the ORM. Supports :active_record (default) and
++  # :mongoid (bson_ext recommended) by default. Other ORMs may be
++  # available as additional gems.
++  require 'devise/orm/active_record'
++
++  # ==> Configuration for any authentication mechanism
++  # Configure which keys are used when authenticating an user. By default is
++  # just :email. You can configure it to use [:username, :subdomain], so for
++  # authenticating an user, both parameters are required. Remember that those
++  # parameters are used only when authenticating and not when retrieving from
++  # session. If you need permissions, you should implement that in a before filter.
++  config.authentication_keys = [ :login ] # Required to login using username or email
++
++  # Tell if authentication through request.params is enabled. True by default.
++  # config.params_authenticatable = true
++
++  # Tell if authentication through HTTP Basic Auth is enabled. False by default.
++  # config.http_authenticatable = false
++
++  # Set this to true to use Basic Auth for AJAX requests.  True by default.
++  # config.http_authenticatable_on_xhr = true
++
++  # The realm used in Http Basic Authentication
++  # config.http_authentication_realm = "Application"
++
++  # ==> Configuration for :database_authenticatable
++  # For bcrypt, this is the cost for hashing the password and defaults to 10. If
++  # using other encryptors, it sets how many times you want the password re-encrypted.
++  # config.stretches = 20
++
++  # Define which will be the encryption algorithm. Devise also supports encryptors
++  # from others authentication tools as :clearance_sha1, :authlogic_sha512 (then
++  # you should set stretches above to 20 for default behavior) and :restful_authentication_sha1
++  # (then you should set stretches to 10, and copy REST_AUTH_SITE_KEY to pepper)
++  config.encryptor = :bcrypt
++
++  # Setup a pepper to generate the encrypted password.
++  config.pepper = "2e20a8abdd34d729ba6d05f679e513cfea9fbb1e83c81f84b29e9e4fdbd4ee59b56a32200064082a15a72b05a4d4a6a2c3784a09c0554b3a47a67cc8333ccbc7"
++
++  # ==> Configuration for :confirmable
++  # The time you want to give your user to confirm his account. During this time
++  # he will be able to access your application without confirming. Default is nil.
++  # When confirm_within is zero, the user won't be able to sign in without confirming.
++  # You can use this to let your user access some features of your application
++  # without confirming the account, but blocking it after a certain period
++  # (ie 2 days).
++  # config.confirm_within = 2.days
++
++  # ==> Configuration for :rememberable
++  # The time the user will be remembered without asking for credentials again.
++  # config.remember_for = 2.weeks
++
++  # If true, a valid remember token can be re-used between multiple browsers.
++  # config.remember_across_browsers = true
++
++  # If true, extends the user's remember period when remembered via cookie.
++  # config.extend_remember_period = false
++
++  # ==> Configuration for :validatable
++  # Range for password length
++  config.password_length = 4..20
++
++  # Regex to use to validate the email address
++  # config.email_regexp = /^([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})$/i
++
++  # ==> Configuration for :timeoutable
++  # The time you want to timeout the user session without activity. After this
++  # time the user will be asked for credentials again.
++  # config.timeout_in = 10.minutes
++
++  # ==> Configuration for :lockable
++  # Defines which strategy will be used to lock an account.
++  # :failed_attempts = Locks an account after a number of failed attempts to sign in.
++  # :none            = No lock strategy. You should handle locking by yourself.
++  # config.lock_strategy = :failed_attempts
++
++  # Defines which strategy will be used to unlock an account.
++  # :email = Sends an unlock link to the user email
++  # :time  = Re-enables login after a certain amount of time (see :unlock_in below)
++  # :both  = Enables both strategies
++  # :none  = No unlock strategy. You should handle unlocking by yourself.
++  # config.unlock_strategy = :both
++
++  # Number of authentication tries before locking an account if lock_strategy
++  # is failed attempts.
++  # config.maximum_attempts = 20
++
++  # Time interval to unlock the account if :time is enabled as unlock_strategy.
++  # config.unlock_in = 1.hour
++
++  # ==> Configuration for :token_authenticatable
++  # Defines name of the authentication token params key
++  # config.token_authentication_key = :auth_token
++
++  # ==> Scopes configuration
++  # Turn scoped views on. Before rendering "sessions/new", it will first check for
++  # "users/sessions/new". It's turned off by default because it's slower if you
++  # are using only default views.
++  # config.scoped_views = true
++
++  # Configure the default scope given to Warden. By default it's the first
++  # devise role declared in your routes.
++  # config.default_scope = :user
++
++  # Configure sign_out behavior.
++  # By default sign_out is scoped (i.e. /users/sign_out affects only :user scope).
++  # In case of sign_out_all_scopes set to true any logout action will sign out all active scopes.
++  # config.sign_out_all_scopes = false
++
++  # ==> Navigation configuration
++  # Lists the formats that should be treated as navigational. Formats like
++  # :html, should redirect to the sign in page when the user does not have
++  # access, but formats like :xml or :json, should return 401.
++  # If you have any extra navigational formats, like :iphone or :mobile, you
++  # should add them to the navigational formats lists. Default is [:html]
++  # config.navigational_formats = [:html, :iphone]
++
++  # ==> Warden configuration
++  # If you want to use other strategies, that are not (yet) supported by Devise,
++  # you can configure them inside the config.warden block. The example below
++  # allows you to setup OAuth, using http://github.com/roman/warden_oauth
++  #
++  # config.warden do |manager|
++  #   manager.oauth(:twitter) do |twitter|
++  #     twitter.consumer_secret = <YOUR CONSUMER SECRET>
++  #     twitter.consumer_key  = <YOUR CONSUMER KEY>
++  #     twitter.options :site => 'http://twitter.com'
++  #   end
++  #   manager.default_strategies(:scope => :user).unshift :twitter_oauth
++  # end
++end
+
+
+diff --git a/config/initializers/secret_token.rb b/config/initializers/secret_token.rb
+index 6e31ce1..76049f7 100644
+--- a/config/initializers/secret_token.rb
++++ b/config/initializers/secret_token.rb
+@@ -4,4 +4,4 @@
+ # If you change this key, all old signed cookies will become invalid!
+ # Make sure the secret is at least 30 characters and all random,
+ # no regular words or you'll be exposed to dictionary attacks.
+-Refinery::Application.config.secret_token = '88fc4a1a936161a3f3f827c67219a823672bff90e73087c02c40e6ea14bebf5bc4cc77bd3c34493c8942329656bac5929e92f2166df14fa4913c4e56336eced8'
++Gardenia::Application.config.secret_token = '4185acb0a696b8e6a36c0b1e1f1d151251f9da42783a51645554acdb1f2d283df3029c4475cbb596644550b20d80f7f546f23a542792ea8c776b1c7ec9e37f78'
+
+
+diff --git a/config/initializers/session_store.rb b/config/initializers/session_store.rb
+index 43f4122..57035b1 100644
+--- a/config/initializers/session_store.rb
++++ b/config/initializers/session_store.rb
+@@ -1,8 +1,8 @@
+ # Be sure to restart your server when you modify this file.
+ 
+-Refinery::Application.config.session_store :cookie_store, :key => '_gardenia_session'
++Gardenia::Application.config.session_store :cookie_store, :key => '_gardenia_session'
+ 
+ # Use the database for sessions instead of the cookie-based default,
+ # which shouldn't be used to store highly confidential information
+-# (create the session table with "rake db:sessions:create")
+-# Refinery::Application.config.session_store :active_record_store
++# (create the session table with "rails generate session_migration")
++# Gardenia::Application.config.session_store :active_record_store
+
+
+*****diff --git a/config/locales/en.yml b/config/locales/en.yml
+index 567f0a8..a747bfa 100644
+--- a/config/locales/en.yml
++++ b/config/locales/en.yml
+@@ -2,61 +2,4 @@
+ # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+ 
+ en:
+-  admin:
+-    refinery_settings:
+-      form:
+-        help:
+-          gardenia_version: This is the developer's current version number; please do not change.
+-          gardenia_hf_stretch: "Header/footer stretches width of viewport: true if stretch, false if contained within margins"
+-          gardenia_nav_search: Optional search form appears within navigation bar if true; false prevents appearance.
+-          gardenia_side_search: Optional search form appears within sidebar area if true; false prevents appearance.
+-          gardenia_main_content_side: Which side of the page should the widest part of the content be ('main content' vs 'sidebar')? Choices are left or right (not case sensitive)
+-          gardenia_parts_allow_widgets: Which page parts should by-pass WymEditor and permit widget insertion. Case sensitive names must match names of Page Parts.
+-          gardenia_disable_repeat_title: True if do not show section body_content_title which repeats tab field as page title. 
+-  plugins:
+-    galleries:
+-      title: Galleries
+-  admin:
+-    gallery_entries:
+-      index:
+-        create_new: Create a new Gallery Entry
+-        reorder: Reorder Gallery Entries
+-        reorder_done: Done Reordering Gallery Entries
+-        sorry_no_results: Sorry! There are no results found.
+-        no_items_yet: There are no Gallery Entries yet. Click "Create a new Gallery Entry" to add your first gallery entry.
+-      gallery_entry:
+-        view_live: View this gallery entry live <br/><em>(opens in a new window)</em>
+-        edit: Edit this gallery entry
+-        delete: Remove this gallery entry forever
+-      form:
+-        help_video: 'If you want to add a video, you can add the thumbnail as image, and in the body of the entry, the embed code.'
+-    galleries:
+-      existing_galleries:
+-        button_text: "Insert"
+-      insert:
+-        existing_gallery: Existing gallery
+-      index:
+-        create_new: Create a new Gallery
+-        reorder: Reorder Galleries
+-        reorder_done: Done Reordering Galleries
+-        sorry_no_results: Sorry! There are no results found.
+-        no_items_yet: There are no Galleries yet. Click "Create a new Gallery" to add your first gallery entry.
+-        no_images_yet: There are no Galleries yet. You have to create a new Galery to add it to a feature.
+-      gallery:
+-        video: video
+-        videos: videos
+-        image: image
+-        images: images
+-        view_live: View this gallery live <br/><em>(opens in a new window)</em>
+-        edit: Edit this gallery
+-        delete: Remove this gallery forever
+-  gallery_entries:
+-    show:
+-      other: Gallery items
+-  galleries:
+-    show:
+-      other: Galleries
+-  shared:
+-    admin:
+-      image_picker:
+-        image: "Image" 
++  hello: "Hello world"
+
+
+diff --git a/config/routes.rb b/config/routes.rb
+index 96980fb..422041b 100644
+--- a/config/routes.rb
++++ b/config/routes.rb
+@@ -1,20 +1,4 @@
+-Refinery::Application.routes.draw do
+-
+-  # REFINERY CMS ================================================================
+-
+-  filter(:refinery_locales) if defined?(RoutingFilter::RefineryLocales) # optionally use i18n.
+-
+-  root :to => 'pages#home'
+-
+-  scope(:path => 'refinery', :as => 'admin', :module => 'admin') do
+-    root :to => 'dashboard#index'
+-  end
+-
+-  # Marketable URLs should be appended to routes by the Pages Engine.
+-  # Catch all routes should be appended to routes by the Core Engine.
+-
+-  # END REFINERY CMS ============================================================
+-
++Gardenia::Application.routes.draw do
+   # The priority is based upon order of creation:
+   # first created -> highest priority.
+ 
+@@ -32,12 +16,12 @@ Refinery::Application.routes.draw do
+   # Sample resource route with options:
+   #   resources :products do
+   #     member do
+-  #       get :short
+-  #       post :toggle
++  #       get 'short'
++  #       post 'toggle'
+   #     end
+   #
+   #     collection do
+-  #       get :sold
++  #       get 'sold'
+   #     end
+   #   end
+ 
+@@ -51,7 +35,7 @@ Refinery::Application.routes.draw do
+   #   resources :products do
+   #     resources :comments
+   #     resources :sales do
+-  #       get :recent, :on => :collection
++  #       get 'recent', :on => :collection
+   #     end
+   #   end
+ 
+
+
+diff --git a/db/migrate/20110201093836_create_refinerycms_authentication_schema.rb b/db/migrate/20110201093836_create_refinerycms_authentication_schema.rb
+new file mode 100644
+index 0000000..bf90973
+--- /dev/null
++++ b/db/migrate/20110201093836_create_refinerycms_authentication_schema.rb
+@@ -0,0 +1,43 @@
++class CreateRefinerycmsAuthenticationSchema < ActiveRecord::Migration
++  def self.up
++    # Postgres apparently requires the roles_users table to exist before creating the roles table.
++    create_table ::RolesUsers.table_name, :id => false, :force => true do |t|
++      t.integer "user_id"
++      t.integer "role_id"
++    end
++
++    create_table ::Role.table_name, :force => true do |t|
++      t.string "title"
++    end
++
++    create_table ::UserPlugin.table_name, :force => true do |t|
++      t.integer "user_id"
++      t.string  "name"
++      t.integer "position"
++    end
++
++    add_index ::UserPlugin.table_name, ["name"], :name => "index_#{::UserPlugin.table_name}_on_title"
++    add_index ::UserPlugin.table_name, ["user_id", "name"], :name => "index_unique_#{::UserPlugin.table_name}", :unique => true
++
++    create_table ::User.table_name, :force => true do |t|
++      t.string   "login",             :null => false
++      t.string   "email",             :null => false
++      t.string   "crypted_password",  :null => false
++      t.string   "password_salt",     :null => false
++      t.string   "persistence_token"
++      t.datetime "created_at"
++      t.datetime "updated_at"
++      t.string   "perishable_token"
++    end
++
++    add_index ::User.table_name, ["id"], :name => "index_#{::User.table_name}_on_id"
++  end
++
++  def self.down
++    [::User].reject{|m|
++      !(defined?(m) and m.respond_to?(:table_name))
++    }.each do |model|
++      drop_table model.table_name
++    end
++  end
++end
+
+
+diff --git a/db/migrate/20110201093837_change_to_devise_users_table.rb b/db/migrate/20110201093837_change_to_devise_users_table.rb
+new file mode 100644
+index 0000000..d799c82
+--- /dev/null
++++ b/db/migrate/20110201093837_change_to_devise_users_table.rb
+@@ -0,0 +1,27 @@
++class ChangeToDeviseUsersTable < ActiveRecord::Migration
++  def self.up
++    add_column ::User.table_name, :current_sign_in_at, :datetime
++    add_column ::User.table_name, :last_sign_in_at, :datetime
++    add_column ::User.table_name, :current_sign_in_ip, :string
++    add_column ::User.table_name, :last_sign_in_ip, :string
++    add_column ::User.table_name, :sign_in_count, :integer
++    add_column ::User.table_name, :remember_token, :string
++    add_column ::User.table_name, :reset_password_token, :string
++
++    rename_column ::User.table_name, :crypted_password, :encrypted_password
++    rename_column ::User.table_name, :login, :username
++  end
++
++  def self.down
++    remove_column ::User.table_name, :current_sign_in_at
++    remove_column ::User.table_name, :last_sign_in_at
++    remove_column ::User.table_name, :current_sign_in_ip
++    remove_column ::User.table_name, :last_sign_in_ip
++    remove_column ::User.table_name, :sign_in_count
++    remove_column ::User.table_name, :remember_token
++    remove_column ::User.table_name, :reset_password_token
++
++    rename_column ::User.table_name, :encrypted_password, :crypted_password
++    rename_column ::User.table_name, :username, :login
++  end
++end
+
+
+diff --git a/db/migrate/20110201093838_add_remember_created_at_to_users.rb b/db/migrate/20110201093838_add_remember_created_at_to_users.rb
+new file mode 100644
+index 0000000..3ce3b40
+--- /dev/null
++++ b/db/migrate/20110201093838_add_remember_created_at_to_users.rb
+@@ -0,0 +1,9 @@
++class AddRememberCreatedAtToUsers < ActiveRecord::Migration
++  def self.up
++    add_column :users, :remember_created_at, :datetime
++  end
++
++  def self.down
++    remove_column :users, :remember_created_at
++  end
++end
+
+
+diff --git a/db/migrate/20110201093839_create_refinerycms_core_schema.rb b/db/migrate/20110201093839_create_refinerycms_core_schema.rb
+new file mode 100644
+index 0000000..c6c192f
+--- /dev/null
++++ b/db/migrate/20110201093839_create_refinerycms_core_schema.rb
+@@ -0,0 +1,23 @@
++class CreateRefinerycmsCoreSchema < ActiveRecord::Migration
++  def self.up
++    create_table ::Slug.table_name, :force => true do |t|
++      t.string   "name"
++      t.integer  "sluggable_id"
++      t.integer  "sequence",                     :default => 1, :null => false
++      t.string   "sluggable_type", :limit => 40
++      t.string   "scope",          :limit => 40
++      t.datetime "created_at"
++    end
++
++    add_index ::Slug.table_name, ["name", "sluggable_type", "scope", "sequence"], :name => "index_#{::Slug.table_name}_on_name_sluggable_type_scope_and_sequence", :unique => true
++    add_index ::Slug.table_name, ["sluggable_id"], :name => "index_#{::Slug.table_name}_on_sluggable_id"
++  end
++
++  def self.down
++    [::Slug].reject{|m|
++      !(defined?(m) and m.respond_to?(:table_name))
++    }.each do |model|
++      drop_table model.table_name
++    end
++  end
++end
+
+
+diff --git a/db/migrate/20110201093840_add_locale_to_slugs.rb b/db/migrate/20110201093840_add_locale_to_slugs.rb
+new file mode 100644
+index 0000000..50b295f
+--- /dev/null
++++ b/db/migrate/20110201093840_add_locale_to_slugs.rb
+@@ -0,0 +1,13 @@
++class AddLocaleToSlugs < ActiveRecord::Migration
++  def self.up
++    add_column :slugs, :locale, :string
++
++    add_index :slugs, :locale
++  end
++
++  def self.down
++    remove_column :slugs, :locale
++
++    remove_index :slugs, :locale
++  end
++end
+
+
+diff --git a/db/migrate/20110201093841_create_refinerycms_images_schema.rb b/db/migrate/20110201093841_create_refinerycms_images_schema.rb
+new file mode 100644
+index 0000000..c00d8fc
+--- /dev/null
++++ b/db/migrate/20110201093841_create_refinerycms_images_schema.rb
+@@ -0,0 +1,23 @@
++class CreateRefinerycmsImagesSchema < ActiveRecord::Migration
++  def self.up
++    create_table ::Image.table_name, :force => true do |t|
++      t.string   "image_mime_type"
++      t.string   "image_name"
++      t.integer  "image_size"
++      t.integer  "image_width"
++      t.integer  "image_height"
++      t.datetime "created_at"
++      t.datetime "updated_at"
++      t.string   "image_uid"
++      t.string   "image_ext"
++    end
++  end
++
++  def self.down
++    [::Image].reject{|m|
++      !(defined?(m) and m.respond_to?(:table_name))
++    }.each do |model|
++      drop_table model.table_name
++    end
++  end
++end
+
+
+diff --git a/db/migrate/20110201093842_create_refinerycms_pages_schema.rb b/db/migrate/20110201093842_create_refinerycms_pages_schema.rb
+new file mode 100644
+index 0000000..61c9691
+--- /dev/null
++++ b/db/migrate/20110201093842_create_refinerycms_pages_schema.rb
+@@ -0,0 +1,53 @@
++class CreateRefinerycmsPagesSchema < ActiveRecord::Migration
++  def self.up
++    create_table ::PagePart.table_name, :force => true do |t|
++      t.integer  "page_id"
++      t.string   "title"
++      t.text     "body"
++      t.integer  "position"
++      t.datetime "created_at"
++      t.datetime "updated_at"
++    end
++
++    add_index ::PagePart.table_name, ["id"], :name => "index_#{::PagePart.table_name}_on_id"
++    add_index ::PagePart.table_name, ["page_id"], :name => "index_#{::PagePart.table_name}_on_page_id"
++
++    create_table ::Page.table_name, :force => true do |t|
++      t.string   "title"
++      t.integer  "parent_id"
++      t.integer  "position"
++      t.string   "path"
++      t.datetime "created_at"
++      t.datetime "updated_at"
++      t.string   "meta_keywords"
++      t.text     "meta_description"
++      t.boolean  "show_in_menu",        :default => true
++      t.string   "link_url"
++      t.string   "menu_match"
++      t.boolean  "deletable",           :default => true
++      t.string   "custom_title"
++      t.string   "custom_title_type",   :default => "none"
++      t.boolean  "draft",               :default => false
++      t.string   "browser_title"
++      t.boolean  "skip_to_first_child", :default => false
++      t.integer  "lft"
++      t.integer  "rgt"
++      t.integer  "depth"
++      t.string   "cached_slug"
++    end
++
++    add_index ::Page.table_name, ["depth"], :name => "index_#{::Page.table_name}_on_depth"
++    add_index ::Page.table_name, ["id"], :name => "index_#{::Page.table_name}_on_id"
++    add_index ::Page.table_name, ["lft"], :name => "index_#{::Page.table_name}_on_lft"
++    add_index ::Page.table_name, ["parent_id"], :name => "index_#{::Page.table_name}_on_parent_id"
++    add_index ::Page.table_name, ["rgt"], :name => "index_#{::Page.table_name}_on_rgt"
++  end
++
++  def self.down
++    [::Page, ::PagePart].reject{|m|
++      !(defined?(m) and m.respond_to?(:table_name))
++    }.each do |model|
++      drop_table model.table_name
++    end
++  end
++end
+
+
+diff --git a/db/migrate/20110201093843_translate_page_plugin.rb b/db/migrate/20110201093843_translate_page_plugin.rb
+new file mode 100644
+index 0000000..fc48554
+--- /dev/null
++++ b/db/migrate/20110201093843_translate_page_plugin.rb
+@@ -0,0 +1,29 @@
++class TranslatePagePlugin < ActiveRecord::Migration
++  def self.up
++    PagePart.create_translation_table!({
++      :body => :text
++    }, {
++      :migrate_data => true
++    })
++
++    Page.create_translation_table!({
++      :title => :string,
++      :meta_keywords => :string,
++      :meta_description => :text,
++      :browser_title => :string
++    }, {
++      :migrate_data => true
++    })
++
++    if (seed_file = Rails.root.join('db', 'seeds', 'pages.rb')).file?
++      load seed_file.to_s unless Page.where(:link_url => '/').any?
++    end
++
++    Slug.update_all(:locale => ::I18n.locale)
++  end
++
++  def self.down
++    Page.drop_translation_table! :migrate_data => true
++    PagePart.drop_translation_table! :migrate_data => true
++  end
++end
+
+
+diff --git a/db/migrate/20110201093844_remove_cached_slug_from_pages.rb b/db/migrate/20110201093844_remove_cached_slug_from_pages.rb
+new file mode 100644
+index 0000000..834ffde
+--- /dev/null
++++ b/db/migrate/20110201093844_remove_cached_slug_from_pages.rb
+@@ -0,0 +1,9 @@
++class RemoveCachedSlugFromPages < ActiveRecord::Migration
++  def self.up
++    remove_column :pages, :cached_slug
++  end
++
++  def self.down
++    add_column :pages, :cached_slug, :string
++  end
++end
+
+
+diff --git a/db/migrate/20110201093923_create_refinerycms_resources_schema.rb b/db/migrate/20110201093923_create_refinerycms_resources_schema.rb
+new file mode 100644
+index 0000000..5f7a14a
+--- /dev/null
++++ b/db/migrate/20110201093923_create_refinerycms_resources_schema.rb
+@@ -0,0 +1,21 @@
++class CreateRefinerycmsResourcesSchema < ActiveRecord::Migration
++  def self.up
++    create_table ::Resource.table_name, :force => true do |t|
++      t.string   "file_mime_type"
++      t.string   "file_name"
++      t.integer  "file_size"
++      t.datetime "created_at"
++      t.datetime "updated_at"
++      t.string   "file_uid"
++      t.string   "file_ext"
++    end
++  end
++
++  def self.down
++    [::Resource].reject{|m|
++      !(defined?(m) and m.respond_to?(:table_name))
++    }.each do |model|
++      drop_table model.table_name
++    end
++  end
++end
+
+
+diff --git a/db/migrate/20110201093924_create_refinerycms_settings_schema.rb b/db/migrate/20110201093924_create_refinerycms_settings_schema.rb
+new file mode 100644
+index 0000000..15f0481
+--- /dev/null
++++ b/db/migrate/20110201093924_create_refinerycms_settings_schema.rb
+@@ -0,0 +1,24 @@
++class CreateRefinerycmsSettingsSchema < ActiveRecord::Migration
++  def self.up
++    create_table ::RefinerySetting.table_name, :force => true do |t|
++      t.string   "name"
++      t.text     "value"
++      t.boolean  "destroyable",             :default => true
++      t.datetime "created_at"
++      t.datetime "updated_at"
++      t.string   "scoping"
++      t.boolean  "restricted",              :default => false
++      t.string   "callback_proc_as_string"
++    end
++
++    add_index ::RefinerySetting.table_name, ["name"], :name => "index_#{::RefinerySetting.table_name}_on_name"
++  end
++
++  def self.down
++    [::RefinerySetting].reject{|m|
++      !(defined?(m) and m.respond_to?(:table_name))
++    }.each do |model|
++      drop_table model.table_name
++    end
++  end
++end
+
+
+diff --git a/db/migrate/20110201093925_create_inquiries.rb b/db/migrate/20110201093925_create_inquiries.rb
+new file mode 100644
+index 0000000..831277c
+--- /dev/null
++++ b/db/migrate/20110201093925_create_inquiries.rb
+@@ -0,0 +1,37 @@
++class CreateInquiries < ActiveRecord::Migration
++  def self.up
++    unless ::Inquiry.table_exists?
++      create_table ::Inquiry.table_name, :force => true do |t|
++        t.string   "name"
++        t.string   "email"
++        t.string   "phone"
++        t.text     "message"
++        t.integer  "position"
++        t.boolean  "open",       :default => true
++        t.datetime "created_at"
++        t.datetime "updated_at"
++        t.boolean  "spam",       :default => false
++      end
++
++      add_index ::Inquiry.table_name, :id
++    end
++
++    # todo: remove at 1.0
++    create_table ::InquirySetting.table_name, :force => true do |t|
++      t.string   "name"
++      t.text     "value"
++      t.boolean  "destroyable"
++      t.datetime "created_at"
++      t.datetime "updated_at"
++    end unless ::InquirySetting.table_exists?
++
++    load(Rails.root.join('db', 'seeds', 'pages_for_inquiries.rb').to_s)
++  end
++
++  def self.down
++     drop_table ::Inquiry.table_name
++     # todo: remove at 1.0
++     drop_table ::InquirySetting.table_name
++     Page.delete_all({:link_url => ("/contact" || "/contact/thank_you")})
++  end
++end
+\ No newline at end of file
+
+
+diff --git a/db/migrate/20110201093926_remove_position_and_open_from_inquiries.rb b/db/migrate/20110201093926_remove_position_and_open_from_inquiries.rb
+new file mode 100644
+index 0000000..3b23048
+--- /dev/null
++++ b/db/migrate/20110201093926_remove_position_and_open_from_inquiries.rb
+@@ -0,0 +1,11 @@
++class RemovePositionAndOpenFromInquiries < ActiveRecord::Migration
++  def self.up
++    remove_column :inquiries, :position
++    remove_column :inquiries, :open
++  end
++
++  def self.down
++    add_column :inquiries, :position, :integer
++    add_column :inquiries, :open,     :boolean, :default => true
++  end
++end
+
+
+diff --git a/db/seeds.rb b/db/seeds.rb
+index f740c80..e0213aa 100644
+--- a/db/seeds.rb
++++ b/db/seeds.rb
+@@ -1,4 +1,12 @@
+-# Refinery settings
+-Dir[Rails.root.join('db', 'seeds','*.rb').to_s].each do |file|
++# This file should contain all the record creation needed to seed the database with its default values.
++# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
++#
++# Examples:
++#
++#   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
++#   Mayor.create(:name => 'Daley', :city => cities.first)
++# Refinery seeds
++Dir[Rails.root.join('db', 'seeds', '*.rb').to_s].each do |file|
++  puts "Loading db/seeds/#{file.split(File::SEPARATOR).last}"
+   load(file)
+ end
+
+
+diff --git a/db/seeds/pages.rb b/db/seeds/pages.rb
+index d9f9983..4a9a340 100644
+--- a/db/seeds/pages.rb
++++ b/db/seeds/pages.rb
+@@ -41,42 +41,3 @@ about_us_page.parts.create({
+               :body => "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus fringilla nisi a elit. Duis ultricies orci ut arcu. Ut ac nibh. Duis blandit rhoncus magna. Pellentesque semper risus ut magna. Etiam pulvinar tellus eget diam. Morbi blandit. Donec pulvinar mauris at ligula. Sed pellentesque, ipsum id congue molestie, lectus risus egestas pede, ac viverra diam lacus ac urna. Aenean elit.</p>",
+               :position => 1
+             })
+-
+-#contact_us_page = Page.create(:title => "Contact",
+-#            :link_url => "/contact",
+-#            :menu_match => "^/(inquiries|contact).*$",
+-#            :deletable => false,
+-#            :position => (page_position += 1))
+-#contact_us_page.parts.create({
+-#              :title => "Body",
+-#              :body => "<p>Get in touch with us. Just use the form below and we'll get back to you as soon as we can.</p>",
+-#              :position => 0
+-#            })
+-#contact_us_page.parts.create({
+-#              :title => "Side Body",
+-#              :body => "<p>163 Evergreen Terrace<br/>Happyville<br/>USA.<br/>Phone: 1-800 CALLUSNOW</p>",
+-#              :position => 1
+-#            })
+-#contact_us_page_position = -1
+-#
+-#thank_you_page = contact_us_page.children.create(:title => "Thank You",
+-#            :link_url => "/contact/thank_you",
+-#            :menu_match => "^/(inquiries|contact)/thank_you$",
+-#            :show_in_menu => false,
+-#            :deletable => false,
+-#            :position => (contact_us_page_position += 1))
+-#thank_you_page.parts.create({
+-#              :title => "Body",
+-#              :body => "<p>We've received your inquiry and will get back to you with a response shortly.</p><p><a href='/'>Return to the home page</a></p>",
+-#              :position => 0
+-#            })
+-#
+-#privacy_policy_page = contact_us_page.children.create(:title => "Privacy Policy",
+-#            :deletable => true,
+-#            :show_in_menu => false,
+-#            :position => (contact_us_page_position += 1))
+-#privacy_policy_page.parts.create({
+-#              :title => "Body",
+-#              :body => "<p>We respect your privacy. We do not market, rent or sell our email list to any outside parties.</p><p>We need your e-mail address so that we can ensure that the people using our forms are bona fide. It also allows us to send you e-mail newsletters and other communications, if you opt-in. Your postal address is required in order to send you information and pricing, if you request it.</p><p>Please call us at 123 456 7890 if you have any questions or concerns.</p>",
+-#              :position => 0
+-#            })
+
+
+diff --git a/db/seeds/pages_for_inquiries.rb b/db/seeds/pages_for_inquiries.rb
+index abb38a1..3828b06 100644
+--- a/db/seeds/pages_for_inquiries.rb
++++ b/db/seeds/pages_for_inquiries.rb
+@@ -1,40 +1,46 @@
+ page_position = (Page.maximum(:position, :conditions => {:parent_id => nil}) || -1)
+ 
+-contact_us_page = Page.create(:title => "Contact",
+-            :link_url => "/contact",
+-            :menu_match => "^/(inquiries|contact).*$",
+-            :deletable => false,
+-            :position => (page_position += 1))
++contact_us_page = Page.create({
++  :title => "Contact",
++  :link_url => "/contact",
++  :menu_match => "^/(inquiries|contact).*$",
++  :deletable => false,
++  :position => (page_position += 1)
++})
+ contact_us_page.parts.create({
+-              :title => "Body",
+-              :body => "<p>Get in touch with us. Just use the form below and we'll get back to you as soon as we can.</p>",
+-              :position => 0
+-            })
++  :title => "Body",
++  :body => "<p>Get in touch with us. Just use the form below and we'll get back to you as soon as we can.</p>",
++  :position => 0
++})
+ contact_us_page.parts.create({
+-              :title => "Side Body",
+-              :body => "<p>163 Evergreen Terrace<br/>Happyville<br/>USA.<br/>Phone: 1-800 CALLUSNOW</p>",
+-              :position => 1
+-            })
++  :title => "Side Body",
++  :body => "<p>163 Evergreen Terrace<br/>Happyville<br/>USA.<br/>Phone: 1-800 CALLUSNOW</p>",
++  :position => 1
++})
+ contact_us_page_position = -1
+ 
+-thank_you_page = contact_us_page.children.create(:title => "Thank You",
+-            :link_url => "/contact/thank_you",
+-            :menu_match => "^/(inquiries|contact)/thank_you$",
+-            :show_in_menu => false,
+-            :deletable => false,
+-            :position => (contact_us_page_position += 1))
++thank_you_page = contact_us_page.children.create({
++  :title => "Thank You",
++  :link_url => "/contact/thank_you",
++  :menu_match => "^/(inquiries|contact)/thank_you$",
++  :show_in_menu => false,
++  :deletable => false,
++  :position => (contact_us_page_position += 1)
++})
+ thank_you_page.parts.create({
+-              :title => "Body",
+-              :body => "<p>We've received your inquiry and will get back to you with a response shortly.</p><p><a href='/'>Return to the home page</a></p>",
+-              :position => 0
+-            })
++  :title => "Body",
++  :body => "<p>We've received your inquiry and will get back to you with a response shortly.</p><p><a href='/'>Return to the home page</a></p>",
++  :position => 0
++})
+ 
+-privacy_policy_page = contact_us_page.children.create(:title => "Privacy Policy",
+-            :deletable => true,
+-            :show_in_menu => false,
+-            :position => (contact_us_page_position += 1))
++privacy_policy_page = contact_us_page.children.create({
++  :title => "Privacy Policy",
++  :deletable => true,
++  :show_in_menu => false,
++  :position => (contact_us_page_position += 1)
++})
+ privacy_policy_page.parts.create({
+-              :title => "Body",
+-              :body => "<p>We respect your privacy. We do not market, rent or sell our email list to any outside parties.</p><p>We need your e-mail address so that we can ensure that the people using our forms are bona fide. It also allows us to send you e-mail newsletters and other communications, if you opt-in. Your postal address is required in order to send you information and pricing, if you request it.</p><p>Please call us at 123 456 7890 if you have any questions or concerns.</p>",
+-              :position => 0
+-            })
++  :title => "Body",
++  :body => "<p>We respect your privacy. We do not market, rent or sell our email list to any outside parties.</p><p>We need your e-mail address so that we can ensure that the people using our forms are bona fide. It also allows us to send you e-mail newsletters and other communications, if you opt-in. Your postal address is required in order to send you information and pricing, if you request it.</p><p>Please call us at 123 456 7890 if you have any questions or concerns.</p>",
++  :position => 0
++})
+\ No newline at end of file
+
+
+*****diff --git a/doc/README_FOR_APP b/doc/README_FOR_APP
+index 7d64015..fe41f5c 100644
+--- a/doc/README_FOR_APP
++++ b/doc/README_FOR_APP
+@@ -1,16 +1,2 @@
+-# Use this README file to introduce your application and point to useful places in the API for learning more.
+-# Run "rake doc:app" to generate API documentation for your models, controllers, helpers, and libraries.
+-# ---
+-# = Gardenia design
+-	
+-# == Expected settings (via main admin)
+-# * version -- current version number of gardenia
+-# * hf_stretch -- true if use stretch headers & footers; false (nil) otherwise
+-# * nav_search -- true if place a search form in nav area
+-# * side_search -- true if place a search form in sidebar area
+-
+-# these settings are created in config/initializers/application.rb if not yet 
+-# existent, which means that new settings can be added to the app on the fly and
+-# they will be functional. See comments in application.rb for details.
+-
+- 
+\ No newline at end of file
++Use this README file to introduce your application and point to useful places in the API for learning more.
++Run "rake doc:app" to generate API documentation for your models, controllers, helpers, and libraries.
+
+
+*****diff --git a/public/favicon.ico b/public/favicon.ico
+index 6a937e0..e69de29 100644
+Binary files a/public/favicon.ico and b/public/favicon.ico differ
+
+
+diff --git a/script/rails b/script/rails
+index f138a34..f8da2cf 100755
+--- a/script/rails
++++ b/script/rails
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env ruby1.8
++#!/usr/bin/env ruby
+ # This command will automatically be run when you run "rails" with Rails 3 gems installed from the root of your application.
+ 
+ APP_PATH = File.expand_path('../../config/application',  __FILE__)
+
+
+diff --git a/spec/rcov.opts b/spec/rcov.opts
+new file mode 100644
+index 0000000..274ed51
+--- /dev/null
++++ b/spec/rcov.opts
+@@ -0,0 +1,2 @@
++--exclude "spec/*,gems/*"
++--rails
+\ No newline at end of file
+
+
+diff --git a/spec/spec_helper.rb b/spec/spec_helper.rb
+new file mode 100644
+index 0000000..cdb099f
+--- /dev/null
++++ b/spec/spec_helper.rb
+@@ -0,0 +1,76 @@
++require 'rbconfig'
++def setup_environment
++  # This file is copied to ~/spec when you run 'rails generate rspec'
++  # from the project root directory.
++  ENV["RAILS_ENV"] ||= 'test'
++  require File.expand_path("../../config/environment", __FILE__)
++  require 'rspec/rails'
++
++  # Requires supporting files with custom matchers and macros, etc,
++  # in ./support/ and its subdirectories.
++  Dir[File.expand_path('../support/**/*.rb', __FILE__)].each {|f| require f}
++
++  RSpec.configure do |config|
++    # == Mock Framework
++    #
++    # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
++    #
++    # config.mock_with :mocha
++    # config.mock_with :flexmock
++    # config.mock_with :rr
++    config.mock_with :rspec
++
++    config.fixture_path = ::Rails.root.join('spec', 'fixtures').to_s
++
++    # If you're not using ActiveRecord, or you'd prefer not to run each of your
++    # examples within a transaction, comment the following line or assign false
++    # instead of true.
++    config.use_transactional_fixtures = true
++    config.use_instantiated_fixtures  = false
++  end
++end
++
++def each_run
++end
++
++unless RbConfig::CONFIG["host_os"] =~ %r!(msdos|mswin|djgpp|mingw)!
++  require 'rubygems'
++  require 'spork'
++
++  Spork.prefork do
++    # Loading more in this block will cause your tests to run faster. However,
++    # if you change any configuration or code from libraries loaded here, you'll
++    # need to restart spork for it take effect.
++    setup_environment
++  end
++
++  Spork.each_run do
++    # This code will be run each time you run your specs.
++    each_run
++  end
++
++  # --- Instructions ---
++  # - Sort through your spec_helper file. Place as much environment loading
++  #   code that you don't normally modify during development in the
++  #   Spork.prefork block.
++  # - Place the rest under Spork.each_run block
++  # - Any code that is left outside of the blocks will be ran during preforking
++  #   and during each_run!
++  # - These instructions should self-destruct in 10 seconds.  If they don't,
++  #   feel free to delete them.
++  #
++else
++  setup_environment
++  each_run
++end
++
++def capture_stdout(&block)
++  original_stdout = $stdout
++  $stdout = fake = StringIO.new
++  begin
++    yield
++  ensure
++    $stdout = original_stdout
++  end
++ fake.string
++end
