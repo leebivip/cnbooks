@@ -82,6 +82,7 @@ gem 'haml'
 # gem 'refinerycms-theming',    '~> 0.9'
 
 gem 'refinerycms-inquiries',    '~> 0.9'
+gem 'refinerycms-page-images', '~> 1.0.2'
 gem 'refinerycms-news', :git => 'git://github.com/dsaronin/refinerycms-news', :branch => 'master'
 gem 'refinerycms-blog', :git => 'git://github.com/dsaronin/refinerycms-blog', :branch => 'master'
 gem 'refinerycms-galleries', :require => 'galleries', :git => 'git://github.com/dsaronin/refinerycms-galleries', :branch => 'master'

@@ -192,6 +192,8 @@ GEM
       routing-filter (>= 0.2.3)
     refinerycms-inquiries (0.9.9.9)
       filters_spam (~> 0.2)
+    refinerycms-page-images (1.0.2)
+      refinerycms (>= 0.9.9)
     rest-client (1.6.1)
       mime-types (>= 1.16)
     rmagick (2.12.2)
@@ -279,6 +281,7 @@ DEPENDENCIES
   refinerycms-i18n (~> 0.9)
   refinerycms-inquiries (~> 0.9)
   refinerycms-news!
+  refinerycms-page-images (~> 1.0.2)
   rmagick (~> 2.12.0)
   rspec-rails (= 2.3)
   ruby-prof

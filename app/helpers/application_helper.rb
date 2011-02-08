@@ -32,8 +32,10 @@ module ApplicationHelper
 # preps the fall back stuff
 # ----------------------------------------------------------------------------- 
   def prep_dom_section(section, need_fallback )
-    section[:html] = ( content_for( section[:yield] ) ) # renders here
     
+       # actual rendering occurs here
+    section[:html] = ( content_for( section[:yield] ) )
+      
     if section[:html].blank? and need_fallback and
         section.keys.include?(:fallback) and
         section[:fallback].present?
@@ -107,7 +109,7 @@ module ApplicationHelper
         if section[:title]
           section[:html] = "<div id = 'body_content_title' style = 'float: #{choose_body_floats( section[:yield] )};'> <h1 id='#{dom_id}'>#{section[:html]}</h1> </div>"
         else
-          section[:html] = "#{select_outer_div( section[:yield] )} <div class='clearfix' id='#{dom_id}'>#{section[:html]} </div> "
+          section[:html] = "#{select_outer_div( section[:yield] )} <div class='clearfix' id='#{dom_id}'> #{section[:html]} #{( section[:yield] == :body_content_left && !@_page_image_gallery.blank? ? @_page_image_gallery : '' )} </div> "
           
             # if this is the sidebar area, then also insert subsidiary boxes to sidebar
           if section[:yield] == :body_content_right
