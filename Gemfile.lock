@@ -22,6 +22,14 @@ GIT
     refinerycms-news (1.0)
       refinerycms (~> 0.9.8)
 
+GIT
+  remote: git@github.com:AlexisMasters/banner-rotator.git
+  revision: 267343c0d8bceec9014706799e0f19352b445c01
+  branch: master
+  specs:
+    banner-rotator (0.1.0)
+      refinerycms-page-images (~> 1.0.3)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -257,6 +265,7 @@ DEPENDENCIES
   autotest-notification
   autotest-rails
   aws-s3
+  banner-rotator!
   capybara
   columnize
   cucumber-rails
