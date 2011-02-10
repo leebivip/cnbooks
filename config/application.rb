@@ -44,8 +44,8 @@ module Gardenia
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
     
-    config.logger    = Logger.new(STDOUT)
-    config.log_level = :info    
+    # config.logger    = Logger.new(STDOUT)
+    # config.log_level = :info
 
     # add video tags to sanitize permitted tags
     config.action_view.sanitized_allowed_tags = 'table', 'tr', 'td', 'iframe'

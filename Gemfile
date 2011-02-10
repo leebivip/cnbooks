@@ -35,6 +35,26 @@ gem 'aws-s3', :require => 'aws/s3'
 gem 'refinerycms',              '= 0.9.9'
 gem 'refinerycms-generators',   '~> 0.9'
 
+group :test do
+
+  # Autotest
+  gem 'ZenTest'
+  gem 'autotest'
+  gem 'autotest-inotify'
+  gem 'autotest-rails'
+  gem 'rb-inotify'
+  gem 'autotest-notification'
+  gem 'redgreen'
+
+end
+
+group :development do
+
+	gem 'heroku'
+    gem 'mongrel'
+
+end
+
 group :development, :test do
   # RSpec
   gem 'rspec-rails',            '= 2.3'
@@ -53,20 +73,9 @@ group :development, :test do
   gem 'factory_girl'
   gem "#{'j' if RUBY_PLATFORM == 'java'}ruby-prof" unless defined?(RUBY_ENGINE) and RUBY_ENGINE == 'rbx'
 
-  # Autotest
-  gem 'ZenTest'
-  gem 'autotest'
-  gem 'autotest-inotify'
-  gem 'autotest-rails'
-  gem 'rb-inotify'
-  gem 'autotest-notification'
-  gem 'redgreen'
-
-  # server
-    gem 'mongrel'
+  # other
 	gem 'tzinfo'
 	gem 'mail'
-	gem 'heroku'
 	gem 'columnize'
 	gem 'thor'
 	gem 'taps'

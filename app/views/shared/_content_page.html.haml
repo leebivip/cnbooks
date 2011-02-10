@@ -14,10 +14,19 @@
     - @news_items = NewsItem.latest
     = render(:partial => "/news_items/recent_posts")
 
+- if !@page.images.empty? 
+  - @_page_image_gallery = capture do
+    #page_image_gallery
+      %ul#gallery
+        - @page.images.each do |i|
+          %li
+            = link_to image_tag(i.thumbnail("100x100#c").url), i.thumbnail("900x600").url
+
 - prepare_content_page(show_empty_sections ||= false, remove_automatic_sections ||= false, hide_sections)
 
 #body_content{ :class => @class_list }
   %a{:NAME => "top"}
   - @sections.each do |s|
     = s[:html].to_s.html_safe      # = s[:html].to_s.html_safe
+
 = render :partial => '/shared/draft_page_message' unless @page.nil? or @page.live?
