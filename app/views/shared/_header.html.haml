@@ -1,5 +1,14 @@
+
 #masthead.clearfix
-  &nbsp;
+  - if @need_banner
+    #banner-rotator.container
+      .wt-rotator
+        %ul
+          - @banner_gallery.each do |image|
+            %li
+              = link_to( '', image.thumbnail("825x300").url )
+  - else
+    &nbsp;
 #header_content
   - if RefinerySetting.get(:gardenia_nav_search)  # comes first because float right
     #nav_search_box

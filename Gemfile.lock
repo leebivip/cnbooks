@@ -24,7 +24,7 @@ GIT
 
 GIT
   remote: git@github.com:AlexisMasters/banner-rotator.git
-  revision: 267343c0d8bceec9014706799e0f19352b445c01
+  revision: 9e7a1f1b6f12dfc92c0c0f2f8feb198b4aa57d77
   branch: master
   specs:
     banner-rotator (0.1.0)

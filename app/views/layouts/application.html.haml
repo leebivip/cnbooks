@@ -1,10 +1,16 @@
 !!!
+- use_rotator = Module.constants.include? 'BannerRotator'
+- @banner_gallery = ( use_rotator ? get_banner_gallery( nil )  :  [] )
+- @need_banner = true # ( use_rotator && !@banner_gallery.empty? )
+
 %html
   = render :partial => "/shared/head", :locals => {:theme => true}
   :javascript
     $(document).ready(function(){
     
     	$("ul.dropdown li").dropdown();
+    	
+    	#{'$(".container").wtRotator();' if @need_banner }
     
     });
     
