@@ -1,7 +1,11 @@
 !!!
-- use_rotator = Module.constants.include? 'BannerRotator'
-- @banner_gallery = ( use_rotator ? get_banner_gallery( nil )  :  [] )
-- @need_banner = true # ( use_rotator && !@banner_gallery.empty? )
+-# set up variables used in other (later) views testing for banner-rotator
+- # @use_rotator is true if the gem continaing banner-rotator is installed
+- @use_rotator = Module.constants.include? 'BannerRotator'
+- # @banner_gallery is list of page-images within the gallery
+- @banner_gallery = ( @use_rotator ? get_banner_gallery( nil )  :  [] )
+- # @need_banner will be true if banner-rotator installed and the gallery is non empty
+- @need_banner =  ( @use_rotator && !@banner_gallery.empty? )
 
 %html
   = render :partial => "/shared/head", :locals => {:theme => true}
