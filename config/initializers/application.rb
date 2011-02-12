@@ -9,6 +9,13 @@
     [:gardenia_main_content_side,'left'],
     [:gardenia_parts_allow_widgets, %w(Widgets)],
     [:gardenia_disable_repeat_title, false],
+    
+    [:gardenia_banner_width,  987],
+    [:gardenia_banner_height, 334],
+    [:gardenia_banner_nominal,"990x336"],
+    [:gardenia_banner_transition,  "fade"],
+    [:gardenia_banner_delay,  7000],
+
   ].each{|setting,default| RefinerySetting.set(setting,default) if RefinerySetting.get(setting).nil?}
   
   parts_list = RefinerySetting.get(:default_page_parts) || []

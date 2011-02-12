@@ -3,9 +3,10 @@
 - # @use_rotator is true if the gem continaing banner-rotator is installed
 - @use_rotator = Module.constants.include? 'BannerRotator'
 - # @banner_gallery is list of page-images within the gallery
-- @banner_gallery = ( @use_rotator ? get_banner_gallery( nil )  :  [] )
+- @banner_gallery = ( @use_rotator ? get_banner_gallery( @page )  :  [] )
 - # @need_banner will be true if banner-rotator installed and the gallery is non empty
 - @need_banner =  ( @use_rotator && !@banner_gallery.empty? )
+- @_banner_nominal = RefinerySetting.get(:gardenia_banner_nominal)
 
 %html
   = render :partial => "/shared/head", :locals => {:theme => true}
@@ -15,14 +16,14 @@
     	$("ul.dropdown li").dropdown();
     	
     	var rotator_options = {
-            width:987,
-            height:334,
+            width:#{RefinerySetting.get(:gardenia_banner_width)},
+            height:#{RefinerySetting.get(:gardenia_banner_height)},
             button_width:24,
             button_height:24,
             button_margin:4,
             auto_start:true,
-            delay:7000,
-            transition:"fade",
+            delay:#{RefinerySetting.get(:gardenia_banner_delay)},
+            transition:"#{RefinerySetting.get(:gardenia_banner_transition)}",
             transition_speed:800,
             auto_center:false,
             cpanel_align:"BR",

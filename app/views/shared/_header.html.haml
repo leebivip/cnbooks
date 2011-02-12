@@ -5,7 +5,6 @@
       .wt-rotator
         .screen
           %noscript
-            =image_tag( "gardenia_logo_1.png" )
         .c-panel
           .buttons
             .prev-btn
@@ -15,8 +14,7 @@
             %ul
               - @banner_gallery.each do |image|
                 %li
-                  = link_to( image_tag(image.thumbnail("100x100#c").url) , image.thumbnail("990x336").url)
-                  = link_to( '', "http://gardenia.heroku.com")
+                  = link_to( image_tag(image.thumbnail("100x100#c").url) , image.thumbnail( @_banner_nominal ).url)
                   
   - else
     &nbsp;
