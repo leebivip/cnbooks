@@ -14,7 +14,41 @@
     
     	$("ul.dropdown li").dropdown();
     	
-    	#{'$(".container").wtRotator();' if @need_banner }
+    	var rotator_options = {
+            width:987,
+            height:334,
+            button_width:24,
+            button_height:24,
+            button_margin:4,
+            auto_start:true,
+            delay:7000,
+            transition:"fade",
+            transition_speed:800,
+            auto_center:false,
+            cpanel_align:"BR",
+            cpanel_position:"inside",
+            timer_align:"top",
+            display_thumbs:true,
+            display_dbuttons:true,
+            display_playbutton:true,           
+            display_numbers:true,
+            display_timer:false,
+            tooltip_type:"image",
+            mouseover_pause:false,
+            cpanel_mouseover:true,
+            text_mouseover:false,
+            text_effect:"fade",
+            text_sync:true,
+            shuffle:false,
+            block_size:75,
+            vert_size:55,
+            horz_size:50,
+            block_delay:25,
+            vstripe_delay:75,
+            hstripe_delay:75
+    	};
+    	
+    	#{'$(".container").wtRotator( rotator_options );' if @need_banner }
     
     });
     

@@ -3,10 +3,21 @@
   - if @need_banner  # conditional section to set up images for banner-rotator jquery
     #banner-rotator.container
       .wt-rotator
-        %ul
-          - @banner_gallery.each do |image|
-            %li
-              = link_to( '', image.thumbnail("825x300").url )
+        .screen
+          %noscript
+            =image_tag( "gardenia_logo_1.png" )
+        .c-panel
+          .buttons
+            .prev-btn
+            .play-btn
+            .next-btn
+          .thumbnails
+            %ul
+              - @banner_gallery.each do |image|
+                %li
+                  = link_to( image_tag(image.thumbnail("100x100#c").url) , image.thumbnail("990x336").url)
+                  = link_to( '', "http://gardenia.heroku.com")
+                  
   - else
     &nbsp;
 #header_content
