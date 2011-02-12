@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/dsaronin/banner-rotator.git
+  revision: 15515285022891d039cf705988c978d0017601ec
+  branch: master
+  specs:
+    banner-rotator (0.1.5)
+      refinerycms-page-images (~> 1.0.3)
+
+GIT
   remote: git://github.com/dsaronin/refinerycms-blog
   revision: 86b8346e67453a95a95965be4444025b0a674324
   branch: master
@@ -21,14 +29,6 @@ GIT
   specs:
     refinerycms-news (1.0)
       refinerycms (~> 0.9.8)
-
-GIT
-  remote: git@github.com:dsaronin/banner-rotator.git
-  revision: 15515285022891d039cf705988c978d0017601ec
-  branch: master
-  specs:
-    banner-rotator (0.1.5)
-      refinerycms-page-images (~> 1.0.3)
 
 GEM
   remote: http://rubygems.org/
