@@ -113,5 +113,6 @@ rmagick_options.update({
 gem 'rmagick',                  '~> 2.12.0', rmagick_options
 
 gem 'authlogic'
+gem "recaptcha", :require => "recaptcha/rails"
 
 # END USER DEFINED

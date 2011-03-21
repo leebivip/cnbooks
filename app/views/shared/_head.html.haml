@@ -13,10 +13,10 @@
   = "<!--[if IE 7]>#{stylesheet_link_tag 'ie7'}<![endif]-->".html_safe if request.env['HTTP_USER_AGENT'] =~ /MSIE/
 
   = jquery_include_tags(:jquery_ui => false)
+  -# = javascript_include_tag 'jquery-ui.js'
   = javascript_include_tag 'jquery.colorbox-min.js'
   = javascript_include_tag 'jquery.quovolver.js'
-  = javascript_include_tag 'QapTcha.jquery.js'
-  = stylesheet_link_tag 'colorbox.css', 'QapTcha.jquery.css', 'Quovolver.style.css'
+  = stylesheet_link_tag 'colorbox.css', 'Quovolver.style.css'
 
   = "<meta name=\"keywords\" content=\"#{@meta.meta_keywords}\" />".html_safe if @meta.meta_keywords.present?
   = "<meta name=\"description\" content=\"#{@meta.meta_description}\" />".html_safe if @meta.meta_description.present?

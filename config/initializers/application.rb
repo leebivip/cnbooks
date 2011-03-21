@@ -26,3 +26,7 @@
     RefinerySetting.set(:default_page_parts, parts_list)
   end  # do each special gardenia box
  end
+ 
+ENV['RECAPTCHA_PUBLIC_KEY']    = '6LeYrMISAAAAAHsPYB8dFTY6tsVTxXOICou6dKpT'
+ENV['RECAPTCHA_PRIVATE_KEY']  = '6LeYrMISAAAAAD8VGDKFtn5gb-6dkhBzsBb1gQBv'
+ 

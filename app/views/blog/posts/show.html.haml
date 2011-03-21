@@ -33,9 +33,8 @@
             %share
               = render( :partial => "/blog/shared/shared", :locals => {:share_url => blog_post_url(@blog_post) } )
             %br
+            = recaptcha_tags( )  # :ssl => true if using SSL
             = submit_tag( 'send', :class => "submit modal-submit", :value => "send" )
-            -# .actions
-              = f.submit t('.send')
 
 - content_for :body_content_right do
   = render :partial => "/blog/shared/posts"
