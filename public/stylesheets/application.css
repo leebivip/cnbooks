@@ -62,7 +62,8 @@ body {
   background: #ffefd5 url("../images/body_content_bkg.gif") repeat;
   border-bottom: 1px solid #2f4f4f;
   min-height: 380px;
-  padding: 30px 0; }
+  padding: 30px 0;
+  margin: 0; }
 
 #main_content {
   width: 675px;
@@ -74,7 +75,8 @@ body {
 
 #body_content_title {
   width: 615px;
-  padding: 0 30px; }
+  padding: 0 30px;
+  margin: 0; }
 
 #body_content_left {
   margin: 0px;
