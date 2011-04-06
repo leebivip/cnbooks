@@ -18,9 +18,9 @@
   - @_page_image_gallery = capture do
     #page_image_gallery
       %ul#gallery
-        - @page.images.each do |i|
+        - @page.image_pages.each do |i|
           %li
-            = link_to( image_tag(i.thumbnail("100x100#c").url), i.thumbnail("900x600").url, {:rel => 'image-gallery'} )
+            = link_to( image_tag(i.image.thumbnail("100x100#c").url), i.image.thumbnail("900x600").url, {:rel => 'image-gallery', :title => raw(i.caption) } )
 
 - prepare_content_page(show_empty_sections ||= false, remove_automatic_sections ||= false, hide_sections)
 
