@@ -262,6 +262,7 @@ DEPENDENCIES
   columnize
   cucumber-rails
   database_cleaner
+  devise (= 1.1.8)
   factory_girl
   gherkin
   haml

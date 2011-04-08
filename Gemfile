@@ -86,6 +86,8 @@ end
 # USER DEFINED
 gem 'haml'
 
+gem 'devise', '=1.1.8'
+
 # Specify additional Refinery CMS Engines here (all optional):
 # gem 'refinerycms-portfolio',  '~> 0.9'
 # gem 'refinerycms-theming',    '~> 0.9'
