@@ -110,3 +110,13 @@ JMENU USAGE
     </ul>  
   </li>  
 </ul>
+
+GOOGLE ANALYTICS
+====================================
+How to setup Google Analytics
+Default Refinery layouts have Google Analytics support built in. 
+
+To start using Google Analytics on your site go into the “Settings” area and edit the setting called “Analytics Page Code”. Replace “UA-XXXXXX-X” with your Google Analytics code, then click SAVE.
+
+Note: this setting only appears in production. So you won’t see this setting in your development environment.
+
