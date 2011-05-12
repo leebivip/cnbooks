@@ -98,6 +98,7 @@ GEM
       cucumber (>= 0.8.0)
     culerity (0.2.15)
     daemons (1.1.0)
+    dalli (1.0.3)
     database_cleaner (0.6.1)
     devise (1.1.8)
       bcrypt-ruby (~> 2.1.2)
@@ -261,6 +262,7 @@ DEPENDENCIES
   capybara
   columnize
   cucumber-rails
+  dalli
   database_cleaner
   devise (= 1.1.8)
   factory_girl
@@ -289,6 +291,7 @@ DEPENDENCIES
   rspec-rails (= 2.3)
   ruby-prof
   spork
+  sqlite3-ruby
   taps
   thor
   tzinfo
