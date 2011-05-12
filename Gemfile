@@ -91,6 +91,7 @@ end
 gem 'haml'
 
 gem 'devise', '=1.1.8'
+gem 'dalli'   # used for heroku memcache
 
 # Specify additional Refinery CMS Engines here (all optional):
 # gem 'refinerycms-portfolio',  '~> 0.9'
