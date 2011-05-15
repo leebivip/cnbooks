@@ -1,0 +1,30 @@
+if [ -z $1 ]
+then
+echo "OOOPS! project name missing from command line .. try again!"
+exit 1
+fi
+export project=$1
+
+export workspace=code/Alexis/public
+export gempath=/usr/local
+export fullpath=/Users/Alexis/$workspace/$project
+export basefile=${project}DB
+export wkday=`date +"%w"`
+export dumpfile=${basefile}_${wkday}.dump
+
+cd $fullpath
+
+if [ -z $gempath ]
+then
+export gempath=`rvm gemdir`
+fi
+
+export herokupath=$gempath/bin/heroku
+
+echo "$project backup to $dumpfile starting in `pwd`"
+echo "using $fullpath and $herokupath ..."
+
+$herokupath pgbackups:capture --expire --app $1
+/usr/bin/curl -o $fullpath/$dumpfile `$herokupath pgbackups:url --app $1`
+
+echo "... finished"

@@ -52,6 +52,10 @@ $ $ heroku config:add BUNDLE_WITHOUT="development:test:linux:mac"
 HEROKU ADD-ONS
 =============================================
 $ heroku addons:add memcache
-sendgrid
-logging
+$ heroku addons:add sendgrid:free
+$ heroku addons:add custom_domains:basic
+$ heroku addons:add releases:basic
+$ heroku addons:add pgbackups:basic
+$ heroku addons:add logging:basic
+$ heroku addons:add zerigo_dns:basic  
 

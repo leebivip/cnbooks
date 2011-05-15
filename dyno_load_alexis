@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# runs heroku dyno balancing, turning on, off based on arg
+# command line arg is the project name and dyno count
+
+if [ -z $1 ]
+then
+  echo "OOPS .. please specify projectname on command line"
+  exit 1
+fi
+
+
+if [ -z $2 ]
+then
+  echo "OOPS .. please specify dyno count on command line"
+  exit 1
+fi
+
+
+export project=$1
+
+export workspace=code/Alexis/public
+export gempath=/usr/local
+export fullpath=/Users/Alexis/$workspace/$project
+export basefile=${project}DB
+export wkday=`date +"%w"`
+
+cd $fullpath
+
+if [ -z $gempath ]
+then
+  export gempath=`rvm gemdir`
+fi
+
+export herokupath=$gempath/bin/heroku
+
+echo "$project dynos changing to $2 on $fullpath..."
+echo "$herokupath dynos $2"
+
+$herokupath dynos $2
