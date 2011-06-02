@@ -18,15 +18,15 @@
  *  
  **
 
-$FG_TEXT:    #ddd        // how foreground looks w/o any cursor effects
-$HV_FOREGROUND:  #fff     // how foreground will light up on cursor hover
-$LINK_ACTIVE: #058acf     // link color during click select
+$FG_TEXT:    $BASIC_BG        // how foreground looks w/o any cursor effects
+$HV_FOREGROUND:  #FFF8DC     // how foreground will light up on cursor hover
+$LINK_ACTIVE: #F0E68C     // link color during click select
  
-$HV_BACKGROUND:  #555  // how background will light up on cursor hover
-$HV_BACKGROUND_2:  #666  // how background will light up on cursor hover
-$HV_BACKGROUND_3:  #4c4c4c  // 2d level dropdown 
-$HV_BACKGROUND_4:  #3a3a3a  // 3d level dropdown 
-$HV_BACKGROUND_5:  #595959  // 4th level dropdown
+$HV_BACKGROUND:  $PRIMARY_DARK_COLOR  // how background will light up on cursor hover
+$HV_BACKGROUND_2:  $PRIMARY_DARK_COLOR  // how background will light up on cursor hover
+$HV_BACKGROUND_3:  $PRIMARY_DARK_COLOR  // 2d level dropdown 
+$HV_BACKGROUND_4:  $PRIMARY_DARK_COLOR  // 3d level dropdown 
+$HV_BACKGROUND_5:  $PRIMARY_DARK_COLOR  // 4th level dropdown
 
 $DROPDOWN_BORDER_LT_1:  #505050
 $DROPDOWN_BORDER_LT_2:  #404040
@@ -67,7 +67,7 @@ ul
       vertical-align: middle
       zoom: 1
       padding: 0
-      background-color: $BG_NAV
+      +GRADIENT_BAR_BOX($PRIMARY_DARK_COLOR, $BASIC_NEUTRAL, $BASIC_NEUTRAL)
       color: $FG_TEXT
       
       &.hover, &:hover
@@ -194,8 +194,8 @@ ul
         
     a, span
       display: block
-      padding: 5px 30px
+      padding: 5px 20px
 
     *.dir
       /* POI
-      padding: 5px 30px
+      padding: 5px 20px

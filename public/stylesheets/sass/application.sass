@@ -1,60 +1,61 @@
 
 // ---------------------------------------------------------------------
-// standard color & other variables
+// Gardenia standard color & other variables
 // ---------------------------------------------------------------------
 
 // *****************************************************************************
 // *****************************************************************************
-
 $BASIC_FG: #333
-$BASIC_BG: #FDF5E6
-$BASIC_NEUTRAL: #8FBC8F
+$BASIC_BG: #EEE8AA
+$BASIC_NEUTRAL: #030
   
-$PRIMARY_DARK_COLOR: #2F4F4F
+$PRIMARY_DARK_COLOR: #6B8E23
 
 $BG_HEADER: $PRIMARY_DARK_COLOR
-$FG_HEADER: #F0FFF0
+$FG_HEADER: #FFF
   
-$BG_NAV: $BG_HEADER   //  #DBD19E
+$BG_NAV: $BG_HEADER   
 $FG_NAV: $FG_HEADER
 $HV_NAV: $BASIC_BG
 
 $BG_FOOTER: $BG_HEADER
-$FG_FOOTER: $BASIC_NEUTRAL // $PRIMARY_DARK_COLOR
+$FG_FOOTER: $BASIC_BG 
 
-$BG_MAINPAGE: #FFEFD5 //  #FCEFC1
+$BG_MAINPAGE: $BASIC_BG 
 $FG_MAINPAGE: $BASIC_FG
-$FG_TITLES: #066 
+$FG_TITLES: $BASIC_NEUTRAL
 
-$BG_SIDEBAR: #F0FFF0
+$BG_SIDEBAR: $BASIC_BG
 $FG_SIDEBAR: $BASIC_FG
 
-$HEADER_LT: $PRIMARY_DARK_COLOR  // #DDD068
-$HEADER_DK: $PRIMARY_DARK_COLOR  //  #B5A947
+$HEADER_LT: #FFF // Used for Gradient header?
+$HEADER_DK: #FFF  //  
 
-$FG_MENU: #066
+$FG_MENU: $BASIC_BG
 $BG_MENU: $BASIC_BG
-$HV_MENU: #F0FFF0 //  #d8d8d8
+$HV_MENU: $BASIC_BG
 
 $FG_FORMCAPTION:  $PRIMARY_DARK_COLOR
-$BG_INPUTFORM:    #FFEBCD // #E2F1FC
+$BG_INPUTFORM:    $BASIC_BG
 $FG_INPUTLABEL:   $PRIMARY_DARK_COLOR
 $FG_INPUTBOX:     #DCDCDC
 $BG_INPUTBOX:     $BG_HEADER
-$HV_INPUTFORM:    #FFE4C4
-$FG_SUBMIT:       $HV_MENU
+$HV_INPUTFORM:    #EEE8AA
+$FG_SUBMIT:       $BASIC_BG
 $FG_BASICFORM_P:  $BG_HEADER
   
-$BG_FORM_SUBMIT:  $PRIMARY_DARK_COLOR
+$BG_FORM_SUBMIT:  $BASIC_NEUTRAL
 $FG_FORM_SUBMIT:  $BASIC_BG
 
-$FG_INPUTLABEL_DARK: #485751
+$FG_INPUTLABEL_DARK: $BASIC_NEUTRAL
   
-$FG_ANCHOR_LINK:    #066
-$FG_ANCHOR_VISITED: #66CDAA
-$HV_ANCHOR_LINK:    #20B2AA
-$BG_ANCHOR_HOVER:   #DCDCDC
+$FG_ANCHOR_LINK:    $PRIMARY_DARK_COLOR
+$FG_ANCHOR_VISITED: #666
+$HV_ANCHOR_LINK:    $BASIC_NEUTRAL
+$BG_ANCHOR_HOVER:   #F0E68C
+
 // *****************************************************************************
+
 
 // DIMENSIONS
 
@@ -66,15 +67,15 @@ $VIEWPORT_HEIGHT: 768px
 $INNER_MARGIN: 0px
 $INNER_CONTENT_AREAS_WIDTH: $VIEWPORT_WIDTH - $INNER_MARGIN - $INNER_MARGIN
 
-$MASTHEAD_HEIGHT: 336px
-$MASTHEAD_PHANTOM_HEIGHT: 24px    // >0 reveals background image
-$NAV_HEIGHT: 28px
+$MASTHEAD_HEIGHT: 225px
+$MASTHEAD_PHANTOM_HEIGHT: 25px    // >0 reveals background image
+$NAV_HEIGHT: 25px
 
 $HEADER_HEIGHT: $MASTHEAD_HEIGHT + $NAV_HEIGHT
 
-$FOOTER_HEIGHT: 65px
+$FOOTER_HEIGHT: 45px
 
-$STANDARD_MARGIN: 36px    // unused
+$STANDARD_MARGIN: 0px    // unused
 
 $STANDARD_PADDING: 30px
 
@@ -90,19 +91,19 @@ $MAIN_RIGHT_MARGIN: 0
 $MAIN_TOP_MARGIN: 0
 $MAIN_BTM_MARGIN: 0
 
-$MAIN_CONTENT_INNER_WIDTH: 615px
+$MAIN_CONTENT_INNER_WIDTH: 600px
 $MAIN_CONTENT_WIDTH: $MAIN_CONTENT_INNER_WIDTH + $STANDARD_PADDING + $STANDARD_PADDING
 $MAIN_TITLE_WIDTH: $MAIN_CONTENT_INNER_WIDTH
 
 $MAIN_CONTENT_HEIGHT: $VIEWPORT_HEIGHT - $MASTHEAD_PHANTOM_HEIGHT - $HEADER_HEIGHT
 
-$INQUIRY_TEXT_WIDTH:  425px
+$INQUIRY_TEXT_WIDTH:  475px
 
 // *****************************************************************************
 // *****************************************************************************
 // Other common settings
 
-$FONT_SIZE_NOMINAL_EM: 14px    // this determines what 1em is: ok to use %
+$FONT_SIZE_NOMINAL_EM: 13px    // this determines what 1em is: ok to use %
 
 // reference Hx used in main content area; sidebar sets the Hx to one size lower 
 // main h1 $FONT_SIZE_REF_H1, sidebar h1 $FONT_SIZE_REF_H2, etc
@@ -118,8 +119,8 @@ $FONT_SIZE_REF_H7: 0.7em       // main content reference size for h7
 
 $MENU_MIN_WIDTH: 140px
 $MENU_MAX_WIDTH: 300px
-$MENU_HV_PADDING_TB: 6px
-$MENU_HV_PADDING_LR: 12px
+$MENU_HV_PADDING_TB: 0px
+$MENU_HV_PADDING_LR:  0px
 
 $NAV_TAB_BEVEL: 0px    // radius curvature for menu tab areas
 
@@ -149,24 +150,25 @@ $NAV_TAB_BEVEL: 0px    // radius curvature for menu tab areas
 // *****************************************************************************
 
 body, input, textarea, select, p, li, blockquote
-  font-family: Verdana, Arial, Helvetica, sans-serif
-  font-size: 14px
+  font-family: Geneva, Arial, Helvetica, sans-serif
+  font-size: 13px
 
 ul, li
   -webkit-padding-start: 0
   margin: 0
-  padding: 0
-  list-style: none inside
-  
+  padding-left: 5px
+  list-style: inside
+  line-height: 1.3em  
 p
   margin: 0
   padding: 0.5em 0
 
+
 h1, h2, h3, h4
   color: $FG_TITLES
+  font-family: Trajan Pro, Times Roman, Baskerville, Georgia, serif
   letter-spacing: 0.1em
   font-weight: lighter
-  line-height: 0.8em
 
 h1
   font-size: $FONT_SIZE_REF_H1
@@ -197,7 +199,7 @@ a
 body
   margin: 0px
   padding: 0px
-  background: $HV_INPUTFORM  url("../images/body_background.png") repeat
+  background: $BASIC_BG  url("../images/body_background.png") repeat
 
 #page_container
   width: 100%
@@ -207,19 +209,22 @@ body
 // #page wraps the entire content area, including headers (masthead & nav), content,
 // sidebars, and footer.
 #page
+  width: 990px
   padding: 0px
-  margin: 0px
+  margin: 0px auto
+  margin-top: 24px
+  border: 1px solid $BASIC_NEUTRAL
 
 #body, #masthead, #header_content, #footer_content, #site_bar_content
   width: $INNER_CONTENT_AREAS_WIDTH
   margin: 0px auto
 
 #body_content
-  background: $BG_MAINPAGE url("../images/body_content_bkg.gif") repeat
-  border-bottom: 1px solid $PRIMARY_DARK_COLOR
+  background: $BASIC_BG  url("../images/body_content_bkg.jpg") repeat
   min-height: $MAIN_CONTENT_HEIGHT
   padding: $STANDARD_PADDING 0
-  margin: 0
+  border-top: 1px solid $BASIC_NEUTRAL
+  border-bottom: 1px solid $BASIC_NEUTRAL
   
 //******************************************************************************
 // NOTE: DO NOT SPECIFY float: xxxx for main_content, sidebar_content, body_content_title
@@ -236,9 +241,7 @@ body
 
 #body_content_title
   width: $MAIN_TITLE_WIDTH
-  padding: 0 $STANDARD_PADDING
-  margin: 0
-  
+  padding: 0 $STANDARD_PADDING  
 //******************************************************************************
 // *****************************************************************************
 
@@ -257,42 +260,34 @@ body
 // *****************************************************************************
 // *****************************************************************************
 #footer
-  height: $FOOTER_HEIGHT
-  background: $BG_FOOTER   url("../images/footer_background.png") no-repeat
+  +GRADIENT_BAR_BOX($PRIMARY_DARK_COLOR, $BASIC_NEUTRAL, $BASIC_NEUTRAL)
   
 #footer_inner_content
   color: $FG_FOOTER
   p
-    padding: 20px 20px
+    padding: 10px 20px
     text-align: left
-  
-  img
-    float: right
-    margin-top: -1em
-    margin-left: 0.5em
-    margin-right: 0.5em
+  a:hover
+    color: $HV_ANCHOR_LINK
+    background: $BG_ANCHOR_HOVER
 
 // *****************************************************************************
 // *****************************************************************************
 
 #header
-  +GRADIENT_BAR_BOX($HEADER_LT, $HEADER_DK, $BG_NAV)
-  margin-top: $MASTHEAD_PHANTOM_HEIGHT
-
+  margin-top: 0px
 #header_content
-  //background: $BG_HEADER // url('../images/header_background.png') repeat-x
-  background: $BG_NAV
   height: $NAV_HEIGHT
+  +GRADIENT_BAR_BOX($PRIMARY_DARK_COLOR, $BASIC_NEUTRAL, $BASIC_NEUTRAL)
 
 #masthead
   height: $MASTHEAD_HEIGHT
-  background: url("../images/masthead.png") no-repeat
-  border-bottom: 1px solid $PRIMARY_DARK_COLOR
+  background: #FFF  url("../images/masthead.png") no-repeat
 
 #nav_search_box
   float: right
   width: $SIDEBAR_INNER_WIDTH
-  line-height: 4em
+  line-height: 1em
   color:  $FG_HEADER
 
 #header_inner_content
@@ -614,8 +609,11 @@ input
     font-size: small
     text-transform: uppercase
     width: auto
+    margin-left: 60px
+    margin-top: 10px
+    padding: 5px 15px
     color:       $FG_SUBMIT
-    background:  $BG_HEADER 
+    +GRADIENT_BAR_BOX($PRIMARY_DARK_COLOR, $BASIC_NEUTRAL, $BASIC_NEUTRAL)
     border:     2px solid $FG_INPUTBOX
     +BEVEL_CORNER(10px)
 
@@ -624,8 +622,8 @@ input
     margin-top: 10px
     padding: 5px 15px
     color:       $FG_SUBMIT
-    background:  $BG_HEADER 
-    border:     2px solid $FG_INPUTBOX
+    +GRADIENT_BAR_BOX($PRIMARY_DARK_COLOR, $BASIC_NEUTRAL, $BASIC_NEUTRAL) 
+    border:     1px solid $FG_INPUTBOX
     +BEVEL_CORNER(10px)
 
   &.submit-rightmost
@@ -634,7 +632,7 @@ input
 
   &.submit:hover
     color:       $FG_INPUTLABEL
-    background:  $HV_INPUTFORM
+    background:  $BG_NAV
 
 input[type="hidden"]
   display: none
@@ -650,10 +648,7 @@ input[type="hidden"]
 // *****************************************************************************
 // SPECIFIC FORMATTING OVERRIDES GO HERE
 // *****************************************************************************
- 
-#footer_content *
-  color: $FG_FOOTER
-  font-size: 0.95em
+
 
 // *****************************************************************************
 // *****************************************************************************
