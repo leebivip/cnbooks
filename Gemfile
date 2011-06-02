@@ -8,9 +8,11 @@ gem 'rails', '3.0.3'
 group :linux do
   gem 'pg'
 end
+
 group :mac do
   gem 'sqlite3-ruby', :require => 'sqlite3'
 end
+
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -37,7 +39,8 @@ gem 'aws-s3', :require => 'aws/s3'
 
 # Specify the Refinery CMS core:
 gem 'refinerycms',              '= 0.9.9'
-gem 'refinerycms-generators',   '~> 0.9'
+gem 'refinerycms-generators',   '= 0.9.9.1'
+
 
 group :test do
 
@@ -54,8 +57,8 @@ end
 
 group :development do
 
-	gem 'heroku'
-    gem 'mongrel'
+  gem 'heroku'
+  gem 'mongrel'
 
 end
 
@@ -69,8 +72,8 @@ group :development, :test do
   gem 'cucumber-rails'
   gem 'launchy'
   gem 'gherkin'
-  gem 'spork' unless Bundler::WINDOWS
-  gem 'rack-test',              '~> 0.5.6'
+  gem 'spork', "~>0.8.5" unless Bundler::WINDOWS
+  gem 'rack-test', '~> 0.5.6'
   gem 'json_pure'
 
   # Factory Girl
@@ -78,13 +81,12 @@ group :development, :test do
   gem "#{'j' if RUBY_PLATFORM == 'java'}ruby-prof" unless defined?(RUBY_ENGINE) and RUBY_ENGINE == 'rbx'
 
   # other
-	gem 'tzinfo'
-	gem 'mail'
-	gem 'columnize'
-	gem 'thor'
-	gem 'taps'
+  gem 'tzinfo'
+  gem 'mail'
+  gem 'columnize'
+  gem 'thor'
+  gem 'taps'
 end
-
 # END REFINERY CMS ============================================================
 
 # USER DEFINED
@@ -97,8 +99,8 @@ gem 'dalli'   # used for heroku memcache
 # gem 'refinerycms-portfolio',  '~> 0.9'
 # gem 'refinerycms-theming',    '~> 0.9'
 
-gem 'refinerycms-inquiries',    '~> 0.9'
-gem 'refinerycms-page-images', '~> 1.0.2'
+gem 'refinerycms-inquiries',    '= 0.9.9.9'
+gem 'refinerycms-page-images', '= 1.0.3'
 gem 'refinerycms-news', :git => 'git://github.com/dsaronin/refinerycms-news', :branch => 'master'
 gem 'refinerycms-blog', :git => 'git://github.com/dsaronin/refinerycms-blog', :branch => 'master'
 gem 'refinerycms-galleries', :require => 'galleries', :git => 'git://github.com/dsaronin/refinerycms-galleries', :branch => 'master'
@@ -107,7 +109,7 @@ gem 'refinerycms-galleries', :require => 'galleries', :git => 'git://github.com/
 # gem 'banner-rotator', :git => 'git://github.com/dsaronin/banner-rotator.git', :branch => 'master'
 
 # Add i18n support (optional, you can remove this if you really want to).
-gem 'refinerycms-i18n',         '~> 0.9'
+gem 'refinerycms-i18n',         '= 0.9.9.7'
 
 # Figure out how to get RMagick:
 rmagick_options = {:require => false}
