@@ -91,6 +91,7 @@ end
 
 # USER DEFINED
 gem 'haml'
+gem 'sass'
 
 gem 'devise', '=1.1.8'
 gem 'dalli'   # used for heroku memcache
