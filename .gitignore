@@ -74,4 +74,7 @@ capybara-*html
 # backup dump files
 *.dump
 
+# database yml files
+config/database.yml
+
 #####################################################################################
