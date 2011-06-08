@@ -36,6 +36,7 @@ gem 'aws-s3', :require => 'aws/s3'
 # end
 
 # REFINERY CMS ================================================================
+gem 'friendly_id_globalize3', '=3.2.1'
 
 # Specify the Refinery CMS core:
 gem 'refinerycms',              '= 0.9.9'
