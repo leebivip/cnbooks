@@ -6,6 +6,9 @@ db/*.sqlite3-journal
 *.log
 tmp/**/*
 
+# database yml files
+config/database.yml
+
 # Documentation
 doc/api
 doc/app
@@ -73,8 +76,5 @@ capybara-*html
 
 # backup dump files
 *.dump
-
-# database yml files
-config/database.yml
 
 #####################################################################################
