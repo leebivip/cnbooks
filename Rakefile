@@ -4,14 +4,18 @@
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
 
-module ::Gardenia
-  class Application
-    include Rake::DSL
+unless `rake --version` =~ /0\.9\.0/
+  
+  module ::Gardenia
+    class Application
+      include Rake::DSL
+    end
   end
-end
- 
-module ::RakeFileUtils
-  extend Rake::FileUtilsExt
+   
+  module ::RakeFileUtils
+    extend Rake::FileUtilsExt
+  end
+  
 end
 
 Gardenia::Application.load_tasks
