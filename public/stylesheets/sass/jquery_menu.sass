@@ -18,41 +18,38 @@
  *  
  **
 
-$FG_TEXT:    $BASIC_BG        // how foreground looks w/o any cursor effects
-$HV_FOREGROUND:  #FFF8DC     // how foreground will light up on cursor hover
-$LINK_ACTIVE: #F0E68C     // link color during click select
+$FG_TEXT:    #ADFF2F       // how foreground looks w/o any cursor effects
+$HV_FOREGROUND:  #DAA520    // how foreground will light up on cursor hover
+$LINK_ACTIVE: $PRIMARY_DARK_COLOR    // link color during click select
  
 $HV_BACKGROUND:  $PRIMARY_DARK_COLOR  // how background will light up on cursor hover
 $HV_BACKGROUND_2:  $PRIMARY_DARK_COLOR  // how background will light up on cursor hover
-$HV_BACKGROUND_3:  $PRIMARY_DARK_COLOR  // 2d level dropdown 
+$HV_BACKGROUND_3:  $BASIC_NEUTRAL  // 2d level dropdown 
 $HV_BACKGROUND_4:  $PRIMARY_DARK_COLOR  // 3d level dropdown 
 $HV_BACKGROUND_5:  $PRIMARY_DARK_COLOR  // 4th level dropdown
 
-$DROPDOWN_BORDER_LT_1:  #505050
-$DROPDOWN_BORDER_LT_2:  #404040
-$DROPDOWN_BORDER_LT_3:  #606060
-$DROPDOWN_BORDER_LT_4:  #4a4a4a
-$DROPDOWN_BORDER_LT_5:  #767676
-$DROPDOWN_BORDER_LT_6:  #113  // this is the highlight border on cursor hover
+$DROPDOWN_BORDER_LT_1:  $PRIMARY_DARK_COLOR
+$DROPDOWN_BORDER_LT_2:  $PRIMARY_DARK_COLOR
+$DROPDOWN_BORDER_LT_3:  $PRIMARY_DARK_COLOR
+$DROPDOWN_BORDER_LT_4:  $PRIMARY_DARK_COLOR
+$DROPDOWN_BORDER_LT_5:  $PRIMARY_DARK_COLOR
+$DROPDOWN_BORDER_LT_6:  $HV_FOREGROUND // this is the highlight border on cursor hover
   
-$DROPDOWN_BORDER_DK_1:  #1a1a1a
-$DROPDOWN_BORDER_DK_2:  #242424
+$DROPDOWN_BORDER_DK_1:  $PRIMARY_DARK_COLOR
+$DROPDOWN_BORDER_DK_2:  $PRIMARY_DARK_COLOR
   
 
 ul
   &.dropdown
-    font-size: 0.85em
-    letter-spacing: 0.1em
+    letter-spacing: 0.2em
     list-style: none
     margin: 0
-    padding: 0
     position: relative
     z-index: 597
     float: left
     
     *.dir
       padding-right: 30px
-      background-image: none
       background-position: 100% 50%
       background-repeat: no-repeat
         
@@ -63,12 +60,13 @@ ul
     
     li              // this selects all uppermost li (main tabs) themselves
       float: left
-      line-height: 1.1em
+      line-height: 1.5em
       vertical-align: middle
       zoom: 1
-      padding: 0
-      +GRADIENT_BAR_BOX($PRIMARY_DARK_COLOR, $BASIC_NEUTRAL, $BASIC_NEUTRAL)
-      color: $FG_TEXT
+      padding: 5px
+      margin: 2px
+      background-color: $BASIC_NEUTRAL
+      border: 1px solid $PRIMARY_DARK_COLOR
       
       &.hover, &:hover
         position: relative
@@ -79,22 +77,19 @@ ul
         visibility: visible
         
       a, *.dir  // this selects all uppermost li links in the main tabs
-        border-style: solid
-        border-width: 1px
-        border-color: $DROPDOWN_BORDER_LT_2 $DROPDOWN_BORDER_DK_1 $DROPDOWN_BORDER_DK_1 $DROPDOWN_BORDER_LT_1
-        
+        font-family: verdana, arial, helvetica, san serif
+
       a.selected    // this is the currently selected tab, at whatever level
-        background: $BG_MENU
-        +BEVEL_CORNER($NAV_TAB_BEVEL)
-        color: $BG_NAV
+        background: $PRIMARY_DARK_COLOR
+        color: $FG_TEXT
         
       &:hover > *.dir    // this selects uppermost li (main tabs) AFTER cursor proceeds to dropdown
-        background-color: $BG_MENU
-        color: $FG_MENU
+        background-color: $HV_BACKGROUND
+        color: $FG_TEXT
           
       &:hover > a.dir:hover  // this selects uppermost li (main tabs) DURING cursor hover IFF there's a dropdown
         background-color: $HV_BACKGROUND
-        color: $HV_FOREGROUND
+        color: $FG_TEXT
         
     ul    // this is the 2d level dropdown menus beneath main tabs
       visibility: hidden
@@ -103,27 +98,23 @@ ul
       z-index: 598
       left: 0       //  causes sub-menu left side to align with left of parent
       right: auto   // causes sub-menu right side to extend variable to the right
-      width: 150px  // basic width of submenu
-      margin-top: -1px
-      border-top: 1px solid $DROPDOWN_BORDER_DK_1  // subtle dark border at top
-      border-left: solid 1px $HV_BACKGROUND_3  // subtle left border
-
+      width: 178px  // basic width of submenu
+      margin-top: 0px
+      
       li:hover > *.dir    // this selects mid-level having another dropdown AFTER cursor proceeds to dropdown
-        background-color: $HV_BACKGROUND_3
-        background-image: url(../images/comnav-arrowover.png)
-        color: $FG_TEXT
         
       li:hover > a.dir:hover // this selects mid-level DURING cursor hover IFF there's a dropdown
-        background-image: url(../images/comnav-arrowon.png)
-        color: $HV_FOREGROUND    // color when sub-menu item hover
+        background: transparent  url(../images/submenu.png)
+        color: $HV_FOREGROUND   // color when sub-menu item hover
 
       li    // mid-level dropdown items
         float: none
-        background-color: $HV_BACKGROUND_4
-        
+        background: transparent  url(../images/submenu.png)
+        color: $HV_FOREGROUND        
         a, *.dir
           border-color: $DROPDOWN_BORDER_LT_4 $DROPDOWN_BORDER_DK_2 $DROPDOWN_BORDER_DK_2
           border-left: none
+          color: $HV_FOREGROUND
         
       ul    // 3rd level dropdown menu ul
         right: auto
@@ -135,14 +126,16 @@ ul
         left: 99%
         
         li    // selects single 3rd level menu item
-          background-color: $HV_BACKGROUND_3
+          background-color: $BASIC_NEUTRAL
+          color: $HV_FOREGROUND
 
           a, *.dir
             border-color: $HV_BACKGROUND_5 $BG_NAV $BG_NAV
-                          
+            background-color: $BASIC_NEUTRAL
+            color: $HV_FOREGROUND                          
           &:hover > *.dir    // this selects 3rd level having another dropdown AFTER cursor proceeds to dropdown
-            background-color: $HV_BACKGROUND_5
-            background-image: url(../images/comnav-arrowover2.png)
+            background-color: $BASIC_NEUTRAL
+            background-image: url(../images/submenu.png)
             color: $HV_FOREGROUND
             
         ul  // 4th level dropdown menu ul
@@ -152,30 +145,32 @@ ul
           li a, *.dir  // selects 4th level menu item
             border-color: $DROPDOWN_BORDER_LT_5 $DROPDOWN_BORDER_LT_2 $DROPDOWN_BORDER_LT_2
       
-      *.dir  
-        padding: 8px 30px 8px 8px
-        background-image: url(../images/nav-arrow-right.png)
+      *.dir 
+        background-image: url(../images/submenu.png)
         background-position: 100% 50%
-        background-repeat: no-repeat
+        background-repeat: repeat
         
       ul *.dir
-        background-image: url(../images/nav-arrow-right2.png)
+        background: transparent
     
       a
-        width: 133px
-        
+        width: 150px
+       
         &.dir
-          width: 111px
+          width: 150px
       
         &.dir:hover
           /* proposal
           background-color: $HV_BACKGROUND
-          background-image: url(../images/comnav-arrowon.png)
-          color: $HV_FOREGROUND
-    
+          background-image: url(../images/submenu.png)
+          color: $PRIMARY_DARK_COLOR    
       a, span
         /* POI, proposal: override abstract a, span
-        padding: 8px
+        letter-spacing: 0.2em
+        padding: 5px
+        font-size: 0.95em
+        background: $BASIC_NEUTRAL
+        color: $PRIMARY_DARK_COLOR
         
     a
       &:link, &:visited
@@ -186,16 +181,17 @@ ul
         border-top-color: $DROPDOWN_BORDER_LT_6 !important
         border-left-color: $DROPDOWN_BORDER_LT_6
         background-color: $HV_BACKGROUND_2
-        color: $HV_FOREGROUND
+        color: $FG_TEXT
           
       &:active
-        background: $LINK_ACTIVE url(../images/nav-sub-press.png) 0 0 repeat-x !important
-        color: $HV_FOREGROUND
+        background: $BASIC_NEUTRAL  //  url(../images/submenu.png) repeat !important
+        color: $PRIMARY_DARK_COLOR
         
     a, span
       display: block
-      padding: 5px 20px
+      padding: 5px 10px
+      font-size: 1.1em
 
     *.dir
       /* POI
-      padding: 5px 20px
+      padding: 5px 10px
