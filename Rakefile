@@ -11,7 +11,7 @@ require 'rake'
   end
    
   module ::RakeFileUtils
-    extend Rake::FileUtilsExt
+    extend ::Rake::FileUtilsExt if defined? ::Rake::FileUtilsExt
   end
 
 Gardenia::Application.load_tasks
