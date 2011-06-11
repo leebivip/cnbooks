@@ -125,3 +125,11 @@ TOOLS
 def plist(list,&block);list.each{|x| puts yield(x)};nil;end;
 list = Page.all(:order => "id")
 plist(list){|x| "#{x.id.to_s}\t#{(x.parent_id.nil? ? '-' : x.parent_id.to_s)}\t#{x.created_at.to_s(:db)}\t#{(x.title.blank? ? '********' : x.title.to_s)}"}
+
+xlist = PagePart.all(:order => "id")
+plist(xlist){|x| "#{x.id.to_s}\t#{(x.page_id.nil? ? '-' : x.page_id.to_s)}\t#{x.created_at.to_s(:db)}\t#{(x.title.blank? ? '********' : x.title.to_s)}"}
+
+
+# to see all tables in db
+res = Page.connection.execute("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'")
+res.each{|x| puts x['table_name'] }
