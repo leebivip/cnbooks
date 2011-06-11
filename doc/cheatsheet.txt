@@ -120,3 +120,8 @@ To start using Google Analytics on your site go into the “Settings” area and
 
 Note: this setting only appears in production. So you won’t see this setting in your development environment.
 
+TOOLS
+==========================================
+def plist(list,&block);list.each{|x| puts yield(x)};nil;end;
+list = Page.all(:order => "id")
+plist(list){|x| "#{x.id.to_s}\t#{(x.parent_id.nil? ? '-' : x.parent_id.to_s)}\t#{x.created_at.to_s(:db)}\t#{(x.title.blank? ? '********' : x.title.to_s)}"}

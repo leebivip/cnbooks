@@ -36,7 +36,19 @@ gem 'aws-s3', :require => 'aws/s3'
 # end
 
 # REFINERY CMS ================================================================
+
+# freeze specific gems for legacy refinery 0.9.9 ******************************
+gem 'babosa', '=0.2.2'
+gem 'dragonfly', '=0.8.2'
 gem 'friendly_id_globalize3', '=3.2.1'
+gem 'globalize3', '=0.1.0.beta'
+gem 'i18n', '=0.5.0'
+gem 'truncate_html', '=0.5.0'
+gem 'warden', '=1.0.3'
+gem 'xml-simple', '=1.0.12'
+gem 'devise', '=1.1.8'
+
+# *****************************************************************************
 
 # Specify the Refinery CMS core:
 gem 'refinerycms',              '= 0.9.9'
@@ -56,14 +68,10 @@ group :test do
 
 end
 
-group :development do
-
+group :development, :test do
   gem 'heroku'
   gem 'mongrel'
 
-end
-
-group :development, :test do
   # RSpec
   gem 'rspec-rails',            '= 2.3'
 
@@ -82,8 +90,8 @@ group :development, :test do
   gem "#{'j' if RUBY_PLATFORM == 'java'}ruby-prof" unless defined?(RUBY_ENGINE) and RUBY_ENGINE == 'rbx'
 
   # other
-  gem 'tzinfo'
-  gem 'mail'
+gem 'tzinfo', '=0.3.25'    # TODO: pull freeze in 1.0 upgrade
+gem 'mail', '=2.2.15'     # TODO: pull freeze in 1.0 upgrade
   gem 'columnize'
   gem 'thor'
   gem 'taps'
@@ -94,7 +102,6 @@ end
 gem 'haml'
 gem 'sass'
 
-gem 'devise', '=1.1.8'
 gem 'dalli'   # used for heroku memcache
 
 # Specify additional Refinery CMS Engines here (all optional):
