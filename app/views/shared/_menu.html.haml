@@ -5,7 +5,6 @@
 - cache_key << (action_suffix ||= RefinerySetting.find_or_set(:refinery_menu_cache_action_suffix, "site_menu"))
 - cache_key << extra_suffix if defined?(extra_suffix) and extra_suffix.present?
 - cache_key << request.path
-- cache(cache_key.compact.join('_')){ "" }
 - cache(cache_key.compact.join('_')) do
   -## Select top menu items unless 'roots' is passed in.
   - collection ||= @menu_pages
