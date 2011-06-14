@@ -5,7 +5,7 @@ body, input, textarea, select, p, li, blockquote {
 ul, li {
   -webkit-padding-start: 0;
   margin: 0;
-  padding-left: 5px;
+  padding-left: 10px;
   list-style: inside;
   line-height: 1.6em; }
 
@@ -246,6 +246,8 @@ ul.dropdown {
   ul.dropdown li {
     float: left;
     line-height: 1.5em;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
     vertical-align: middle;
     zoom: 1;
     padding: 5px;
@@ -348,10 +350,11 @@ ul.dropdown {
   ul.dropdown a, ul.dropdown span {
     display: block;
     padding: 5px 10px;
-    font-size: 1.1em; }
+    font-size: smaller; }
   ul.dropdown *.dir {
     /* POI */
-    padding: 5px 10px; }
+    padding: 5px 10px;
+    font-size: smaller; }
 
 .inquiries .field input {
   border: 1px solid #696969;
