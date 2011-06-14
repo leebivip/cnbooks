@@ -3,7 +3,7 @@
 - site_bar = render(:partial => "/shared/site_bar", :locals => {:head => true})
 = render :partial => "/shared/head"
 %body
-  = render :partial => "gardenia_body_injection"  # GARDENIA additional stuff
+  = render :partial => "/layouts/gardenia_body_injection"  # GARDENIA additional stuff
 
   = site_bar
   = render :partial => "/shared/ie6check" if request.env['HTTP_USER_AGENT'] =~ /MSIE/

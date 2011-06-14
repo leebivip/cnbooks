@@ -8,7 +8,7 @@
 - content_for :stylesheets do
   %link{:href => "/favicon.ico", :rel => "shortcut icon"}/
   = render(:partial => '/shared/html5_for_ie.js').html_safe if request.env['HTTP_USER_AGENT'] =~ /MSIE/
-  = stylesheet_link_tag "application", :theme => theme
+  = stylesheet_link_tag "application"
   = stylesheet_link_tag 'colorbox.css', 'Quovolver.style.css'
   - if @need_banner
     = stylesheet_link_tag 'wt-rotator'
