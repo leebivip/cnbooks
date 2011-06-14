@@ -333,7 +333,6 @@ ul.dropdown {
       /* POI, proposal: override abstract a, span */
       letter-spacing: 0.2em;
       padding: 5px;
-      font-size: 0.95em;
       background: #996633;
       color: #191970; }
   ul.dropdown a:link, ul.dropdown a:visited {
