@@ -331,7 +331,6 @@ ul.dropdown {
         color: #191970; }
     ul.dropdown ul a, ul.dropdown ul span {
       /* POI, proposal: override abstract a, span */
-      letter-spacing: 0.2em;
       padding: 5px;
       background: #996633;
       color: #191970; }
