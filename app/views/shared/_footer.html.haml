@@ -1,12 +1,18 @@
 #footer_content
   #footer_inner_content
     %p
-    = link_to( "PAGE TOP", '#top' , :title => "Go to the Top of the Page")
-    \|
-    = link_to( "SITE MAP", '/sitemap', :title => "View the Site Map")
-    \|
-    &emsp;
-    = t('.copyright', :year => Time.now.year, :site_name => RefinerySetting.find_or_set(:site_name, "Company Name")).html_safe
-    v#{RefinerySetting.get(:gardenia_version)}
-    = link_to( "Design by Alexis", 'http://theauthorshop.com/' , :title => "Learn more about Designs by Alexis") 
-    -#= link_to( image_tag("tas_bigger-35.png", :alt => "Design by Alexis logo"), 'http://theauthorshop.com/' , :title => "Learn more about Designs by Alexis") 
+      = link_to( "PAGE TOP", '#top' , :title => "Go to the Top of the Page")
+      &emsp;
+      |
+      &emsp;
+      = link_to( "SITE MAP", '/sitemap', :title => "View the Site Map")
+      &emsp;
+      |
+      &emsp;
+      = t('.copyright', :year => Time.now.year, :site_name => RefinerySetting.find_or_set(:site_name, "Company Name")).html_safe
+      &emsp;
+      |
+      &emsp;
+      = link_to( "Design by Alexis", 'http://theauthorshop.com/' , :title => "Learn more about Design by Alexis") 
+      -#= link_to( image_tag("tas_bigger-35.png", :alt => "Design by Alexis logo"), 'http://theauthorshop.com/' , :title => "Learn more about Designs by Alexis") 
+      v#{RefinerySetting.get(:gardenia_version)}
