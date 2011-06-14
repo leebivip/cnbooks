@@ -1,3 +1,5 @@
+-# --------------------------------------------------------------------------
+-# ****** vvvvvvvv GARDENIA STYLING vvvvvvv *********************************  
 
 #masthead.clearfix
   - if @need_banner  # conditional section to set up images for banner-rotator jquery
@@ -20,11 +22,11 @@
     &nbsp;
 #header_content
   - if RefinerySetting.get(:gardenia_nav_search)  # comes first because float right
-    #nav_search_box
+    -# nav_search_box
       nav search TBD
   #header_inner_content
-    = render :partial => "/shared/menu", |
-      :locals => {                       |
-        :dom_id => 'menu',               |
-        :css => 'menu'                   |
-      }                                  |
+      
+  -# ****** ^^^^^^^ GARDENIA STYLING ^^^^^^^ **********************************
+  -# --------------------------------------------------------------------------
+        
+    = render :partial => "/shared/menu", :locals => { :dom_id => 'menu', :css => 'menu' }                                  |

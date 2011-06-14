@@ -1,0 +1,71 @@
+-# set up variables used in other (later) views testing for banner-rotator
+- # @use_rotator is true if the gem continaing banner-rotator is installed
+- @use_rotator = Module.constants.include? 'BannerRotator'
+- # @banner_gallery is list of page-images within the gallery
+- @banner_gallery = ( @use_rotator ? get_banner_gallery( @page )  :  [] )
+- # @need_banner will be true if banner-rotator installed and the gallery is non empty
+- @need_banner =  ( @use_rotator && !@banner_gallery.empty? )
+- @_banner_nominal = RefinerySetting.get(:gardenia_banner_nominal)
+
+  :javascript
+    $(document).ready(function(){
+    
+      $("ul.dropdown li").dropdown();  // jquery menus
+      $('blockquote, .blockquote').quovolver();     // jquery quote evolver
+      
+       // options setup for banner rotator (whether included or not)
+      var rotator_options = {
+            width:#{RefinerySetting.get(:gardenia_banner_width)},
+            height:#{RefinerySetting.get(:gardenia_banner_height)},
+            button_width:24,
+            button_height:24,
+            button_margin:4,
+            auto_start:true,
+            delay:#{RefinerySetting.get(:gardenia_banner_delay)},
+            transition:"#{RefinerySetting.get(:gardenia_banner_transition)}",
+            transition_speed:800,
+            auto_center:false,
+            cpanel_align:"BR",
+            cpanel_position:"inside",
+            timer_align:"top",
+            display_thumbs:true,
+            display_dbuttons:true,
+            display_playbutton:true,           
+            display_numbers:true,
+            display_timer:false,
+            tooltip_type:"image",
+            mouseover_pause:false,
+            cpanel_mouseover:true,
+            text_mouseover:false,
+            text_effect:"fade",
+            text_sync:true,
+            shuffle:false,
+            block_size:75,
+            vert_size:55,
+            horz_size:50,
+            block_delay:25,
+            vstripe_delay:75,
+            hstripe_delay:75
+      };
+      
+      // banner rotator referenced only if needed
+      #{'$(".container").wtRotator( rotator_options );' if @need_banner }
+      
+      $("a[rel='image-gallery']").colorbox({transition:"none", width:"75%", height:"75%"});
+    
+    });
+    
+      // fancy menu stuff
+    $.fn.dropdown = function() {
+    
+      $(this).hover(function(){
+        $(this).addClass("hover");
+        $('> .dir',this).addClass("open");
+        $('ul:first',this).css('visibility', 'visible');
+      },function(){
+        $(this).removeClass("hover");
+        $('.open',this).removeClass("open");
+        $('ul:first',this).css('visibility', 'hidden');
+      });
+    
+    }

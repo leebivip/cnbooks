@@ -1,0 +1,5 @@
+- content_for :after_javascript_libraries do
+  = javascript_include_tag 'jquery.colorbox-min.js'
+  = javascript_include_tag 'jquery.quovolver.js'
+  - if @need_banner
+    = javascript_include_tag 'jquery.wt-rotator.min.js'
