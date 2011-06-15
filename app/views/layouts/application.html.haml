@@ -2,9 +2,14 @@
 = render :partial => "/shared/html_tag"
 - site_bar = render(:partial => "/shared/site_bar", :locals => {:head => true})
 = render :partial => "/shared/head"
-%body
-  = render :partial => "/layouts/gardenia_body_injection"  # GARDENIA additional stuff
 
+= yield( :before_javascript_libraries )
+= render :partial => "/shared/javascripts"
+= yield( :after_javascript_libraries )
+  = render :partial => "/layouts/gardenia_head_injection"  # GARDENIA additional stuff
+
+
+%body
   = site_bar
   = render :partial => "/shared/ie6check" if request.env['HTTP_USER_AGENT'] =~ /MSIE/
   
@@ -39,6 +44,3 @@
   -# ****** ^^^^^^^ GARDENIA STYLING ^^^^^^^ **********************************
   -# --------------------------------------------------------------------------
   
-  = yield( :before_javascript_libraries )
-  = render :partial => "/shared/javascripts"
-  = yield( :after_javascript_libraries )
