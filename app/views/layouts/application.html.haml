@@ -3,10 +3,15 @@
 - site_bar = render(:partial => "/shared/site_bar", :locals => {:head => true})
 = render :partial => "/shared/head"
 
-= yield( :before_javascript_libraries )
+-# --------------------------------------------------------------------------
+-# ****** vvvvvvvv GARDENIA changes vvvvvvv *********************************  
+= jquery_include_tags(:jquery_ui => false)
+
 = render :partial => "/shared/javascripts"
-= yield( :after_javascript_libraries )
-  = render :partial => "/layouts/gardenia_head_injection"  # GARDENIA additional stuff
+
+= render :partial => "/layouts/gardenia_head_injection"  # GARDENIA additional stuff
+-# ****** ^^^^^^^ GARDENIA changes ^^^^^^^ **********************************
+-# --------------------------------------------------------------------------
 
 
 %body
@@ -43,4 +48,3 @@
       
   -# ****** ^^^^^^^ GARDENIA STYLING ^^^^^^^ **********************************
   -# --------------------------------------------------------------------------
-  
