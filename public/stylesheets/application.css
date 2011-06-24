@@ -40,7 +40,7 @@ a {
     color: #996633;
     background: #f0e68c; }
   a:visited {
-    color: #666666; }
+    color: #006699; }
 
 body {
   margin: 0px;
@@ -595,8 +595,6 @@ img.image-align-right {
 #body_content_right ul {
   line-height: 1.3em;
   margin-bottom: 1.6em; }
-#body_content_right li {
-  margin-left: 12px; }
 
 #body_content_left p {
   line-height: 1.6em; }
