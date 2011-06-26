@@ -1,0 +1,20 @@
+#!/bin/bash
+
+export usage="meldtool file"
+
+if [ -z $1 ]
+then
+  echo "OOPS .. please specify filename on command line:  $usage"
+  exit 1
+fi
+
+export projectspace=~/projectspace/gardenia
+export srcpath=$projectspace/app/views/$2
+export tmppath=$projectspace/tmp/haml
+export refpath=$projectspace/doc/archive
+
+cp    $srcpath/$1 $srcpath/$1.new
+echo "  merging $srcpath/$1.new $refpath/$1 $tmppath/$1 ..."
+
+merge $srcpath/$1.new $refpath/$1 $tmppath/$1
+meld  $srcpath/$1  $srcpath/$1.new $tmppath/$1 &

@@ -1,0 +1,46 @@
+- content_for :body_content_left do
+  #show_blog_post
+    = render 'post'
+  - if BlogPost.comments_allowed?
+    %aside#comments
+      %h2= t('.comments.title')
+      - if (comments = @blog_post.comments.approved).any?
+        = render :partial => "comment", :collection => comments
+      - else
+        %p
+          = t('blog.shared.comments.none')
+          \.
+      - flash.each do |key, value|
+        #flash{:class => "flash flash_#{key}"}
+          = value
+      %h2= t('.comments.add')
+      = form_for [:blog_post, @blog_comment] do |f|
+        = render :partial => "/shared/admin/error_messages", |
+          :locals => {                                       |
+            :object => f.object,                             |
+            :include_object_name => true                     |
+          }                                                  |
+        .field
+          = f.label :name
+          = f.text_field :name
+        .field
+          = f.label :email
+          = f.email_field :email
+        .field.message_field
+          = f.label :message
+          = f.text_area :message, :rows => 6
+        .field.form-actions
+          = f.submit t('.submit')
+- content_for :body_content_right do
+  = render :partial => "/blog/shared/categories"
+  = render :partial => "/blog/shared/tags"
+  = render :partial => "/blog/shared/posts"
+  = render :partial => "/blog/shared/rss_feed"
+  = blog_archive_list
+= render :partial => "/shared/content_page", :locals => { :remove_automatic_sections => true, :hide_sections => [:body_content_title] }
+- content_for :stylesheets, stylesheet_link_tag('refinerycms-blog')
+- content_for :before_javascript_libraries, jquery_include_tags(:jquery_ui => false)
+- content_for :javascripts do
+  %script{:src => "http://w.sharethis.com/button/buttons.js"}
+  :javascript
+    stLight.options({publisher:' BlogPost::ShareThis.key '});- end if BlogPost::ShareThis.enabled?
