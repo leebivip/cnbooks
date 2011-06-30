@@ -50,6 +50,11 @@ module Gardenia
     # add video tags to sanitize permitted tags
     config.action_view.sanitized_allowed_tags = 'table', 'tr', 'td', 'iframe'
     config.action_view.sanitized_allowed_attributes = 'id', 'class', 'style', 'src', 'width', 'height', 'frameborder'
-   
+    config.to_prepare do 
+    Resource.module_eval do
+    MAX_SIZE_IN_MB = 75
+  end
+end
+
   end
 end
