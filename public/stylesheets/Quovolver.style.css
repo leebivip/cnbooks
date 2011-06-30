@@ -26,7 +26,6 @@ blockquote {
 
 #quote_wrap { 
 	background: #fbffec url(
-	http://sandbox.sebnitu.com/jquery/quovolver/demo/images/quote-mark.png
-	) no-repeat 20px 20px;
+		) no-repeat 20px 20px;
 	margin: 40px 0; padding: 20px; border: 1px solid #edffaf;
 	}
