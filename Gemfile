@@ -81,8 +81,8 @@ end
 
 group :development do
   gem 'heroku'
-  gem 'mongrel'
-
+  gem 'mongrel', "1.2.0.pre2"
+  
   # RSpec
   gem 'rspec-rails'
 
