@@ -41,7 +41,7 @@ gem 'aws-s3', :require => 'aws/s3'
 # *****************************************************************************
 
 # Specify the Refinery CMS core:
-gem 'refinerycms',              '~> 1.0.3'
+gem 'refinerycms',              '1.0.1'
 # gem 'refinerycms-generators'
 
 
