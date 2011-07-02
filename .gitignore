@@ -71,8 +71,6 @@ capybara-*html
 .sass-cache/*
 
 # rvm
-.rvmrc
-.rvmrc.*
 
 # backup dump files
 *.dump
