@@ -41,7 +41,7 @@ gem 'aws-s3', :require => 'aws/s3'
 # *****************************************************************************
 
 # Specify the Refinery CMS core:
-gem 'refinerycms',              '1.0.1'
+gem 'refinerycms',              '~> 1.0.3'
 # gem 'refinerycms-generators'
 
 
@@ -112,5 +112,6 @@ gem 'refinerycms-galleries', :require => 'galleries', :git => 'git://github.com/
 gem 'refinerycms-i18n',         '~> 1.0.0'
 
 gem "recaptcha", :require => "recaptcha/rails"
+gem 'seo_meta'
 
 # END USER DEFINED
