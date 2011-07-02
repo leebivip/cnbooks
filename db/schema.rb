@@ -104,8 +104,8 @@ ActiveRecord::Schema.define(:version => 20110207230042) do
     t.integer  "news_item_id"
     t.string   "locale"
     t.string   "external_url"
-    t.string   "title"
     t.text     "body"
+    t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
