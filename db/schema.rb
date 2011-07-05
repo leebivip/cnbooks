@@ -10,12 +10,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110701061060) do
+ActiveRecord::Schema.define(:version => 20110704061016) do
 
   create_table "blog_categories", :force => true do |t|
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "cached_slug"
   end
 
   add_index "blog_categories", ["id"], :name => "index_blog_categories_on_id"
@@ -45,6 +46,9 @@ ActiveRecord::Schema.define(:version => 20110701061060) do
     t.datetime "published_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.string   "cached_slug"
+    t.string   "custom_url"
   end
 
   add_index "blog_posts", ["id"], :name => "index_blog_posts_on_id"
@@ -130,8 +134,7 @@ ActiveRecord::Schema.define(:version => 20110701061060) do
     t.datetime "publish_date"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "image_id"
-    t.string   "external_url"
+    t.datetime "expiration_date"
   end
 
   add_index "news_items", ["id"], :name => "index_news_items_on_id"
@@ -255,6 +258,23 @@ ActiveRecord::Schema.define(:version => 20110701061060) do
   add_index "slugs", ["locale"], :name => "index_slugs_on_locale"
   add_index "slugs", ["name", "sluggable_type", "scope", "sequence"], :name => "index_slugs_on_name_and_sluggable_type_and_scope_and_sequence", :unique => true
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
+
+  create_table "taggings", :force => true do |t|
+    t.integer  "tag_id"
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.integer  "tagger_id"
+    t.string   "tagger_type"
+    t.string   "context"
+    t.datetime "created_at"
+  end
+
+  add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], :name => "index_taggings_on_taggable_id_and_taggable_type_and_context"
+
+  create_table "tags", :force => true do |t|
+    t.string "name"
+  end
 
   create_table "user_plugins", :force => true do |t|
     t.integer "user_id"
