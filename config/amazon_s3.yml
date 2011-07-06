@@ -1,0 +1,16 @@
+# used for accessing majozi s3 stuff
+
+development:
+  access_key_id: 'AKIAJWMKYYC6DNN5NSCA'
+  secret_access_key: '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'
+  bucket: 'dev.majozi.com'
+
+test:
+  access_key_id: 'AKIAJWMKYYC6DNN5NSCA'
+  secret_access_key: '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'
+  bucket: 'test.majozi.com'
+  
+production:
+  access_key_id: 'AKIAJWMKYYC6DNN5NSCA'
+  secret_access_key: '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'
+  bucket: 'majozi.com'
