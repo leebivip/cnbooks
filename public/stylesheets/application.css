@@ -321,9 +321,9 @@ ul.dropdown {
     ul.dropdown ul ul *.dir {
       background: transparent; }
     ul.dropdown ul a {
-      width: 180px; }
+      width: 150px; }
       ul.dropdown ul a.dir {
-        width: 180px; }
+        width: 150px; }
       ul.dropdown ul a.dir:hover {
         /* proposal */
         background-color: #191970;
