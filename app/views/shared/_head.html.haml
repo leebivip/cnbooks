@@ -1,29 +1,21 @@
-- theme ||= false
 %head
+  %meta{:charset => ::Refinery::Application.config.encoding}/
+  %meta{:content => "IE=edge,chrome=1", "http-equiv" => "X-UA-Compatible"}/
+
   %title= browser_title(yield(:title))
-  %link{:href => "/favicon.ico", :rel => "shortcut icon"}/
-  %meta{:charset => Refinery::Application.config.encoding}/
-  = csrf_meta_tag
-  = render(:partial => '/shared/html5_for_ie.js').html_safe if request.env['HTTP_USER_AGENT'] =~ /MSIE/
-  = render :partial => 'shared/google_analytics' unless local_request?
-  -#= stylesheet_link_tag 'baseline_reset.css'
-  = stylesheet_link_tag "application", :theme => theme
-  -#= stylesheet_link_tag "theme" 
-  -#= stylesheet_link_tag "home", :theme => theme if home_page?
-  = "<!--[if IE 7]>#{stylesheet_link_tag 'ie7'}<![endif]-->".html_safe if request.env['HTTP_USER_AGENT'] =~ /MSIE/
 
-  = jquery_include_tags(:jquery_ui => false)
-  -# = javascript_include_tag 'jquery-ui.js'
-  = javascript_include_tag 'jquery.colorbox-min.js'
-  = javascript_include_tag 'jquery.quovolver.js'
-  = stylesheet_link_tag 'colorbox.css', 'Quovolver.style.css'
+  = raw "<meta name=\"description\" content=\"#{@meta.meta_description}\" />" if @meta.meta_description.present?
+  = raw "<meta name=\"keywords\" content=\"#{@meta.meta_keywords}\">" if @meta.meta_keywords.present?
+  = csrf_meta_tag if RefinerySetting.find_or_set(:authenticity_token_on_frontend, true)
+  = yield :meta
 
-  = "<meta name=\"keywords\" content=\"#{@meta.meta_keywords}\" />".html_safe if @meta.meta_keywords.present?
-  = "<meta name=\"description\" content=\"#{@meta.meta_description}\" />".html_safe if @meta.meta_description.present?
-  = yield :head_libraries
-  = yield :head
-  - if @need_banner
-    = stylesheet_link_tag 'wt-rotator'
-    = javascript_include_tag 'jquery.wt-rotator.min.js'
-  
-  
+  -# GARDENIA removes refinery's standard stylesheet section
+    = stylesheet_link_tag stylesheets_for_head(stylesheets||=%w(application formatting theme), theme ||= nil), |
+      :cache => ("cache/application" if Rails.root.writable? and                                               |
+      RefinerySetting.find_or_set(:use_resource_caching, true) and                                             |
+      request.env['HTTP_USER_AGENT'] !~ /MSIE/ and (theme ||= nil).blank?)                                     |
+    = stylesheet_link_tag "home", :theme => theme if home_page?
+
+  = yield :stylesheets
+  = render :partial => '/shared/google_analytics' unless local_request?
+  = javascript_include_tag 'modernizr-min'

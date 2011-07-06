@@ -60,9 +60,9 @@ module ApplicationHelper
     need_fallback = (!show_empty_sections and !remove_automatic_sections)
     
     @sections = [ 
-        {:yield => :body_content_right, :fallback => (@page.present? ? @page[Page.default_parts.second.to_sym] : nil)},
+        {:yield => :body_content_right, :fallback => (@page.present? ? @page.content_for(Page.default_parts.second.to_sym) : nil)},
         {:yield => :body_content_title, :fallback => page_title, :id => 'body_content_page_title', :title => true},
-        {:yield => :body_content_left, :fallback => (@page.present? ? @page[Page.default_parts.first.to_sym] : nil)},
+        {:yield => :body_content_left, :fallback => (@page.present? ? @page.content_for(Page.default_parts.first.to_sym) : nil)},
       ]
     
     # if there is no title, then the order of sections presented to browser must reverse, otherwise
@@ -86,7 +86,7 @@ module ApplicationHelper
     if @page.present? && Page.default_parts.size > 2  # need any sidebar boxes?
       
       sidebar_sections = Page.default_parts[2,Page.default_parts.size - 2].inject([]) do |list, part|
-        list << {:yield => part.to_sym, :fallback => @page[part.to_sym] }
+        list << {:yield => part.to_sym, :fallback => @page.content_for(part.to_sym) }
       end  # do each page part
         
       sidebar_sections.reject{ |section| hide_sections.include?( section[:yield] ) }

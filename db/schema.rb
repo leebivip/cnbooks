@@ -10,12 +10,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110207230042) do
+ActiveRecord::Schema.define(:version => 20110706000356) do
 
   create_table "blog_categories", :force => true do |t|
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "cached_slug"
   end
 
   add_index "blog_categories", ["id"], :name => "index_blog_categories_on_id"
@@ -45,6 +46,10 @@ ActiveRecord::Schema.define(:version => 20110207230042) do
     t.datetime "published_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.string   "cached_slug"
+    t.string   "custom_url"
+    t.text     "custom_teaser"
   end
 
   add_index "blog_posts", ["id"], :name => "index_blog_posts_on_id"
@@ -116,8 +121,8 @@ ActiveRecord::Schema.define(:version => 20110207230042) do
     t.integer  "news_item_id"
     t.string   "locale"
     t.string   "external_url"
-    t.string   "title"
     t.text     "body"
+    t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -130,8 +135,7 @@ ActiveRecord::Schema.define(:version => 20110207230042) do
     t.datetime "publish_date"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "image_id"
-    t.string   "external_url"
+    t.datetime "expiration_date"
   end
 
   add_index "news_items", ["id"], :name => "index_news_items_on_id"
@@ -162,32 +166,25 @@ ActiveRecord::Schema.define(:version => 20110207230042) do
     t.integer  "page_id"
     t.string   "locale"
     t.string   "title"
-    t.string   "browser_title"
-    t.string   "meta_keywords"
-    t.text     "meta_description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "custom_title"
   end
 
   add_index "page_translations", ["page_id"], :name => "index_page_translations_on_page_id"
 
   create_table "pages", :force => true do |t|
-    t.string   "title"
     t.integer  "parent_id"
     t.integer  "position"
     t.string   "path"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "meta_keywords"
-    t.text     "meta_description"
     t.boolean  "show_in_menu",        :default => true
     t.string   "link_url"
     t.string   "menu_match"
     t.boolean  "deletable",           :default => true
-    t.string   "custom_title"
     t.string   "custom_title_type",   :default => "none"
     t.boolean  "draft",               :default => false
-    t.string   "browser_title"
     t.boolean  "skip_to_first_child", :default => false
     t.integer  "lft"
     t.integer  "rgt"
@@ -236,6 +233,19 @@ ActiveRecord::Schema.define(:version => 20110207230042) do
   add_index "roles_users", ["role_id", "user_id"], :name => "index_roles_users_on_role_id_and_user_id"
   add_index "roles_users", ["user_id", "role_id"], :name => "index_roles_users_on_user_id_and_role_id"
 
+  create_table "seo_meta", :force => true do |t|
+    t.integer  "seo_meta_id"
+    t.string   "seo_meta_type"
+    t.string   "browser_title"
+    t.string   "meta_keywords"
+    t.text     "meta_description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "seo_meta", ["id"], :name => "index_seo_meta_on_id"
+  add_index "seo_meta", ["seo_meta_id", "seo_meta_type"], :name => "index_seo_meta_on_seo_meta_id_and_seo_meta_type"
+
   create_table "slugs", :force => true do |t|
     t.string   "name"
     t.integer  "sluggable_id"
@@ -250,6 +260,23 @@ ActiveRecord::Schema.define(:version => 20110207230042) do
   add_index "slugs", ["name", "sluggable_type", "scope", "sequence"], :name => "index_slugs_on_name_and_sluggable_type_and_scope_and_sequence", :unique => true
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
 
+  create_table "taggings", :force => true do |t|
+    t.integer  "tag_id"
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.integer  "tagger_id"
+    t.string   "tagger_type"
+    t.string   "context"
+    t.datetime "created_at"
+  end
+
+  add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], :name => "index_taggings_on_taggable_id_and_taggable_type_and_context"
+
+  create_table "tags", :force => true do |t|
+    t.string "name"
+  end
+
   create_table "user_plugins", :force => true do |t|
     t.integer "user_id"
     t.string  "name"
@@ -263,7 +290,6 @@ ActiveRecord::Schema.define(:version => 20110207230042) do
     t.string   "username",             :null => false
     t.string   "email",                :null => false
     t.string   "encrypted_password",   :null => false
-    t.string   "password_salt",        :null => false
     t.string   "persistence_token"
     t.datetime "created_at"
     t.datetime "updated_at"

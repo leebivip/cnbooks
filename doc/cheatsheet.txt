@@ -133,3 +133,19 @@ plist(xlist){|x| "#{x.id.to_s}\t#{(x.page_id.nil? ? '-' : x.page_id.to_s)}\t#{x.
 # to see all tables in db
 res = Page.connection.execute("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'")
 res.each{|x| puts x['table_name'] }
+
+
+MIGRATION TO REFINERYCMS 1.0.3
+==================================================================
+>> make sure to heroku pgbackups:capture --expiry to backup production database
+
+1. normal git pull upstream
+2. rake db:migrate
+3. rm -rf tmp/index   # because acts_as_indexed has changed
+4. rvm gemset create gardenia-1.0
+5. check .rvmrc, make sure points to this new gemset
+6. rm Gemfile.lock
+7. gem update --system
+8. gem install bundler
+9. bundle install --without linux:test
+10. rails server
