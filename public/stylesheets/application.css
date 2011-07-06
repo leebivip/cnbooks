@@ -278,7 +278,7 @@ ul.dropdown {
     z-index: 598;
     left: 0;
     right: auto;
-    width: 188px;
+    width: 198px;
     margin-top: 0px; }
     ul.dropdown ul li:hover > a.dir:hover {
       background: transparent url(../images/submenu.png);
@@ -321,9 +321,9 @@ ul.dropdown {
     ul.dropdown ul ul *.dir {
       background: transparent; }
     ul.dropdown ul a {
-      width: 160px; }
+      width: 170px; }
       ul.dropdown ul a.dir {
-        width: 160px; }
+        width: 170px; }
       ul.dropdown ul a.dir:hover {
         /* proposal */
         background-color: #191970;
