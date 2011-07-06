@@ -113,5 +113,6 @@ gem 'refinerycms-i18n',         '~> 1.0.0'
 
 gem "recaptcha", :require => "recaptcha/rails"
 gem 'seo_meta'
+gem 'fog'
 
 # END USER DEFINED
