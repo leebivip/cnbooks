@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/dsaronin/refinerycms-blog
-  revision: 906602a159203013ed79ee5098aa160557d1364f
+  revision: 408394acfac2807eb322a6d751c9d978b902a2ae
   branch: master
   specs:
     refinerycms-blog (1.6.2)

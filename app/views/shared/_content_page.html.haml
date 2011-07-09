@@ -29,7 +29,7 @@
     - @news_items = NewsItem.latest
     = render(:partial => "/news_items/recent_posts")
 
-- if !@page.images.empty? 
+- unless @page.nil? || @page.images.empty? 
   - @_page_image_gallery = capture do
     #page_image_gallery
       %ul#gallery
