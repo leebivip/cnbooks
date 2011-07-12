@@ -381,6 +381,11 @@ ul.dropdown {
   padding: 0;
   list-style: none; }
 
+.thumbnails ul, .thumbnails li {
+  -webkit-padding-start: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none inside; }
 .thumbnails dl {
   float: left;
   text-align: center;
