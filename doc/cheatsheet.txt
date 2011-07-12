@@ -139,7 +139,7 @@ MIGRATION TO REFINERYCMS 1.0.3
 ==================================================================
 >> make sure to heroku pgbackups:capture --expiry to backup production database
 
-1. normal git pull upstream
+1. git pull upstream master
 2. rvm setup
    -- $ rvm install 1.9.2 (do only once)
    -- $ rvm 1.9.2    (make sure before creating gemset
@@ -155,8 +155,9 @@ MIGRATION TO REFINERYCMS 1.0.3
 10. rails server
 
 >>> going to heroku
+>>> $ heroku pgbackups
 
 1. $ heroku stack:migrate bamboo-mri-1.9.2
 2. $ git push heroku
-3. $ rake db:migrate
+3. $ heroku rake db:migrate
 4. $ heroku restart
