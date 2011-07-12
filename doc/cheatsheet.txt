@@ -64,7 +64,7 @@ ENGINE EXPANSION
 
 	To get RSS for your entire site, insert this into the head section of your layout after installing:
 	
-		<%= auto_discovery_link_tag(:rss, news_items_url(:format => 'rss')) %>
+		<%= auto_discovery_link_tag(:rss, news_items_url(:format => 'rss'git@github.com:AlexisMasters/tas.git)) %>
 		
 5. Haml/Sass
 	
@@ -140,12 +140,23 @@ MIGRATION TO REFINERYCMS 1.0.3
 >> make sure to heroku pgbackups:capture --expiry to backup production database
 
 1. normal git pull upstream
-2. rake db:migrate
-3. rm -rf tmp/index   # because acts_as_indexed has changed
-4. rvm gemset create gardenia-1.0
-5. check .rvmrc, make sure points to this new gemset
-6. rm Gemfile.lock
-7. gem update --system
-8. gem install bundler
-9. bundle install --without linux:test
+2. rvm setup
+   -- $ rvm install 1.9.2 (do only once)
+   -- $ rvm 1.9.2    (make sure before creating gemset
+   -- $ rvm alias create 1.9.2 ruby-1.9.2-p180
+   -- $ rvm gemset create gardenia-1.0
+3. check .rvmrc, make sure points to this new gemset
+4. rm Gemfile.lock
+5. gem update --system    (do only once)
+6. gem install bundler   (first time in new gemset)
+7. bundle install --without linux:test
+8. rm -rf tmp/index   # because acts_as_indexed has changed
+9. rake db:migrate
 10. rails server
+
+>>> going to heroku
+
+1. $ heroku stack:migrate bamboo-mri-1.9.2
+2. $ git push heroku
+3. $ rake db:migrate
+4. $ heroku restart
