@@ -577,7 +577,6 @@ input[type="hidden"] {
   float: right; }
 
 .sidebar_box {
-  font-size: 0.9em;
   line-height: 1.4em; }
   .sidebar_box li {
     margin-left: 12px;
@@ -592,7 +591,6 @@ img.image-align-right {
   padding: 0 0 1em 1em; }
 
 #body_content_right p {
-  font-size: 0.9em;
   line-height: 1.4em; }
 #body_content_right ul {
   margin-bottom: 1.6em; }
