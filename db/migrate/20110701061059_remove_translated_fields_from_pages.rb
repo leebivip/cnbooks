@@ -14,3 +14,5 @@ class RemoveTranslatedFieldsFromPages < ActiveRecord::Migration
 
     ::Page.reset_column_information
   end
+
+end # class
