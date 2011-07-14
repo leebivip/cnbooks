@@ -1,0 +1,29 @@
+- theme ||= false
+%head
+  %title= browser_title(yield(:title))
+  %link{:href => "/favicon.ico", :rel => "shortcut icon"}/
+  %meta{:charset => Refinery::Application.config.encoding}/
+  = csrf_meta_tag
+  = render(:partial => '/shared/html5_for_ie.js').html_safe if request.env['HTTP_USER_AGENT'] =~ /MSIE/
+  = render :partial => 'shared/google_analytics' unless local_request?
+  -#= stylesheet_link_tag 'baseline_reset.css'
+  = stylesheet_link_tag "application", :theme => theme
+  -#= stylesheet_link_tag "theme" 
+  -#= stylesheet_link_tag "home", :theme => theme if home_page?
+  = "<!--[if IE 7]>#{stylesheet_link_tag 'ie7'}<![endif]-->".html_safe if request.env['HTTP_USER_AGENT'] =~ /MSIE/
+
+  = jquery_include_tags(:jquery_ui => false)
+  -# = javascript_include_tag 'jquery-ui.js'
+  = javascript_include_tag 'jquery.colorbox-min.js'
+  = javascript_include_tag 'jquery.quovolver.js'
+  = stylesheet_link_tag 'colorbox.css', 'Quovolver.style.css'
+
+  = "<meta name=\"keywords\" content=\"#{@meta.meta_keywords}\" />".html_safe if @meta.meta_keywords.present?
+  = "<meta name=\"description\" content=\"#{@meta.meta_description}\" />".html_safe if @meta.meta_description.present?
+  = yield :head_libraries
+  = yield :head
+  - if @need_banner
+    = stylesheet_link_tag 'wt-rotator'
+    = javascript_include_tag 'jquery.wt-rotator.min.js'
+  
+  

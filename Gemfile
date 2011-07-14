@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.3'
+gem 'rails', '3.0.9'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -26,7 +26,6 @@ end
 # Bundle the extra gems:
 # gem 'bj'
 # gem 'nokogiri'
-gem 'aws-s3', :require => 'aws/s3'
 
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
@@ -37,22 +36,12 @@ gem 'aws-s3', :require => 'aws/s3'
 
 # REFINERY CMS ================================================================
 
-# freeze specific gems for legacy refinery 0.9.9 ******************************
-gem 'babosa', '=0.2.2'
-gem 'dragonfly', '=0.8.2'
-gem 'friendly_id_globalize3', '=3.2.1'
-gem 'globalize3', '=0.1.0.beta'
-gem 'i18n', '=0.5.0'
-gem 'truncate_html', '=0.5.0'
-gem 'warden', '=1.0.3'
-gem 'xml-simple', '=1.0.12'
-gem 'devise', '=1.1.8'
 
 # *****************************************************************************
 
 # Specify the Refinery CMS core:
-gem 'refinerycms',              '= 0.9.9'
-gem 'refinerycms-generators',   '= 0.9.9.1'
+gem 'refinerycms',              '~> 1.0.3'
+# gem 'refinerycms-generators'
 
 
 group :test do
@@ -66,23 +55,14 @@ group :test do
   gem 'autotest-notification'
   gem 'redgreen'
 
-end
-
-group :development, :test do
-  gem 'heroku'
-  gem 'mongrel'
-
-  # RSpec
-  gem 'rspec-rails',            '= 2.3'
-
   # Cucumber
   gem 'capybara'
   gem 'database_cleaner'
   gem 'cucumber-rails'
   gem 'launchy'
   gem 'gherkin'
-  gem 'spork', "~>0.8.5" unless Bundler::WINDOWS
-  gem 'rack-test', '~> 0.5.6'
+  gem 'spork'       unless Bundler::WINDOWS
+  gem 'rack-test'
   gem 'json_pure'
 
   # Factory Girl
@@ -90,11 +70,21 @@ group :development, :test do
   gem "#{'j' if RUBY_PLATFORM == 'java'}ruby-prof" unless defined?(RUBY_ENGINE) and RUBY_ENGINE == 'rbx'
 
   # other
-gem 'tzinfo', '=0.3.25'    # TODO: pull freeze in 1.0 upgrade
-gem 'mail', '=2.2.15'     # TODO: pull freeze in 1.0 upgrade
+  gem 'tzinfo'
+  gem 'mail'
   gem 'columnize'
   gem 'thor'
   gem 'taps'
+
+end
+
+group :development do
+  gem 'heroku'
+  gem 'mongrel', "1.2.0.pre2"
+  
+  # RSpec
+  gem 'rspec-rails'
+
 end
 # END REFINERY CMS ============================================================
 
@@ -108,8 +98,8 @@ gem 'sass'
 # gem 'refinerycms-portfolio',  '~> 0.9'
 # gem 'refinerycms-theming',    '~> 0.9'
 
-gem 'refinerycms-inquiries',    '= 0.9.9.9'
-gem 'refinerycms-page-images', '= 1.0.3'
+gem 'refinerycms-inquiries',    '~> 1.0'
+gem 'refinerycms-page-images'
 gem 'refinerycms-news', :git => 'git://github.com/dsaronin/refinerycms-news', :branch => 'master'
 gem 'refinerycms-blog', :git => 'git://github.com/dsaronin/refinerycms-blog', :branch => 'master'
 gem 'refinerycms-galleries', :require => 'galleries', :git => 'git://github.com/dsaronin/refinerycms-galleries', :branch => 'master'
@@ -118,19 +108,10 @@ gem 'refinerycms-galleries', :require => 'galleries', :git => 'git://github.com/
 gem 'banner-rotator', :git => 'git://github.com/dsaronin/banner-rotator.git', :branch => 'master'
 
 # Add i18n support (optional, you can remove this if you really want to).
-gem 'refinerycms-i18n',         '= 0.9.9.7'
+gem 'refinerycms-i18n',         '~> 1.0.0'
 
-# Figure out how to get RMagick:
-rmagick_options = {:require => false}
-rmagick_options.update({
-  :git => 'git://github.com/refinerycms/rmagick.git',
-  :branch => 'windows'
-}) if Bundler::WINDOWS
-
-# Specify a version of RMagick that works in your environment:
-gem 'rmagick',                  '~> 2.12.0', rmagick_options
-
-gem 'authlogic'
 gem "recaptcha", :require => "recaptcha/rails"
+gem 'seo_meta'
+gem 'fog'
 
 # END USER DEFINED

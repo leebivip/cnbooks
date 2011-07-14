@@ -1,0 +1,47 @@
+-# Gardenia: setup for our stylesheets, javascript, etc goes here now
+- content_for :after_javascript_libraries do
+  = javascript_include_tag 'jquery.colorbox-min.js'
+  = javascript_include_tag 'jquery.quovolver.js'
+  - if @need_banner
+    = javascript_include_tag 'jquery.wt-rotator.min.js'
+
+- content_for :stylesheets do
+  %link{:href => "/favicon.ico", :rel => "shortcut icon"}/
+  = render(:partial => '/shared/html5_for_ie.js').html_safe if request.env['HTTP_USER_AGENT'] =~ /MSIE/
+  = stylesheet_link_tag "application"
+  = stylesheet_link_tag 'colorbox.css', 'Quovolver.style.css'
+  - if @need_banner
+    = stylesheet_link_tag 'wt-rotator'
+
+-# Gardenia: replaced almost all the ruby code by moving it to application_helper.rb
+-# prepare_content_page sets instance variables: @sections, @class_list
+  
+- hide_sections ||= []
+- hide_sections << :body_content_title if RefinerySetting.get(:gardenia_disable_repeat_title)
+
+- if @page.present? && @page.parts.any?{|p| p.title == 'Recent Posts' }
+  - content_for('Recent Posts'.to_sym) do
+    - @blog_posts = BlogPost.recent_top
+    = render(:partial => "/blog/shared/posts")
+
+- if @page.present? && @page.parts.any?{|p| p.title == 'Recent News' }
+  - content_for('Recent News'.to_sym) do
+    - @news_items = NewsItem.latest
+    = render(:partial => "/news_items/recent_posts")
+
+- if !@page.images.empty? 
+  - @_page_image_gallery = capture do
+    #page_image_gallery
+      %ul#gallery
+        - @page.image_pages.each do |i|
+          %li
+            = link_to( image_tag(i.image.thumbnail("100x100#c").url), i.image.thumbnail("900x600").url, {:rel => 'image-gallery', :title => raw(i.caption) } )
+
+- prepare_content_page(show_empty_sections ||= false, remove_automatic_sections ||= false, hide_sections)
+
+#body_content{ :class => @class_list }
+  %a{:NAME => "top"}
+  - @sections.each do |s|
+    = s[:html].to_s.html_safe      # = s[:html].to_s.html_safe
+
+= render :partial => '/shared/draft_page_message' unless @page.nil? or @page.live?

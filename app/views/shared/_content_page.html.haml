@@ -1,3 +1,18 @@
+-# Gardenia: setup for our stylesheets, javascript, etc goes here now
+- content_for :after_javascript_libraries do
+  = javascript_include_tag 'jquery.colorbox-min.js'
+  = javascript_include_tag 'jquery.quovolver.js'
+  - if @need_banner
+    = javascript_include_tag 'jquery.wt-rotator.min.js'
+
+- content_for :stylesheets do
+  %link{:href => "/favicon.ico", :rel => "shortcut icon"}/
+  = render(:partial => '/shared/html5_for_ie.js').html_safe if request.env['HTTP_USER_AGENT'] =~ /MSIE/
+  = stylesheet_link_tag "application"
+  = stylesheet_link_tag 'colorbox.css', 'Quovolver.style.css'
+  - if @need_banner
+    = stylesheet_link_tag 'wt-rotator'
+
 -# Gardenia: replaced almost all the ruby code by moving it to application_helper.rb
 -# prepare_content_page sets instance variables: @sections, @class_list
   
@@ -14,7 +29,7 @@
     - @news_items = NewsItem.latest
     = render(:partial => "/news_items/recent_posts")
 
-- if !@page.images.empty? 
+- unless @page.nil? || @page.images.empty? 
   - @_page_image_gallery = capture do
     #page_image_gallery
       %ul#gallery

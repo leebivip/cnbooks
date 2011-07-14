@@ -1,109 +1,50 @@
 !!!
--# set up variables used in other (later) views testing for banner-rotator
-- # @use_rotator is true if the gem continaing banner-rotator is installed
-- @use_rotator = Module.constants.include? 'BannerRotator'
-- # @banner_gallery is list of page-images within the gallery
-- @banner_gallery = ( @use_rotator ? get_banner_gallery( @page )  :  [] )
-- # @need_banner will be true if banner-rotator installed and the gallery is non empty
-- @need_banner =  ( @use_rotator && !@banner_gallery.empty? )
-- @_banner_nominal = RefinerySetting.get(:gardenia_banner_nominal)
+= render :partial => "/shared/html_tag"
+- site_bar = render(:partial => "/shared/site_bar", :locals => {:head => true})
+= render :partial => "/shared/head"
 
-%html
-  = render :partial => "/shared/head", :locals => {:theme => true}
-  :javascript
-    $(document).ready(function(){
-    
-    	$("ul.dropdown li").dropdown();  // jquery menus
-    	$('blockquote, .blockquote').quovolver();     // jquery quote evolver
-    	
-    	 // options setup for banner rotator (whether included or not)
-    	var rotator_options = {
-            width:#{RefinerySetting.get(:gardenia_banner_width)},
-            height:#{RefinerySetting.get(:gardenia_banner_height)},
-            button_width:24,
-            button_height:24,
-            button_margin:4,
-            auto_start:true,
-            delay:#{RefinerySetting.get(:gardenia_banner_delay)},
-            transition:"#{RefinerySetting.get(:gardenia_banner_transition)}",
-            transition_speed:800,
-            auto_center:false,
-            cpanel_align:"BR",
-            cpanel_position:"inside",
-            timer_align:"top",
-            display_thumbs:false,
-            display_dbuttons:false,
-            display_playbutton:false,           
-            display_numbers:false,
-            display_timer:false,
-            tooltip_type:"image",
-            mouseover_pause:false,
-            cpanel_mouseover:false,
-            text_mouseover:false,
-            text_effect:"fade",
-            text_sync:true,
-            shuffle:false,
-            block_size:75,
-            vert_size:55,
-            horz_size:50,
-            block_delay:25,
-            vstripe_delay:75,
-            hstripe_delay:75
-    	};
-    	
-    	// banner rotator referenced only if needed
-    	#{'$(".container").wtRotator( rotator_options );' if @need_banner }
-    	
-    	$("a[rel='image-gallery']").colorbox({transition:"none", width:"75%", height:"75%"});
-    
-    });
-    
-      // fancy menu stuff
-    $.fn.dropdown = function() {
-    
-    	$(this).hover(function(){
-    		$(this).addClass("hover");
-    		$('> .dir',this).addClass("open");
-    		$('ul:first',this).css('visibility', 'visible');
-    	},function(){
-    		$(this).removeClass("hover");
-    		$('.open',this).removeClass("open");
-    		$('ul:first',this).css('visibility', 'hidden');
-    	});
-    
-    }
+-# --------------------------------------------------------------------------
+-# ****** vvvvvvvv GARDENIA changes vvvvvvv *********************************  
+= jquery_include_tags(:jquery_ui => false)
 
-  %body
-    = render :partial => "/shared/site_bar",   |
-      :locals => {                             |
-        :exclude_css => false,                 |
-        :exclude_cornering_library => false,   |
-        :exclude_site_bar_javascript => false, |
-        :exclude_jquery => false               |
-      }                                        |
+= render :partial => "/shared/javascripts"
 
-    #page_container
-      #page
-        = render :partial => "/shared/ie6check" if request.env['HTTP_USER_AGENT'] =~ /MSIE/
-        
-        - if RefinerySetting.get(:gardenia_hf_stretch) # select stretch headers/footers?
+= render :partial => "/layouts/gardenia_head_injection"  # GARDENIA additional stuff
+-# ****** ^^^^^^^ GARDENIA changes ^^^^^^^ **********************************
+-# --------------------------------------------------------------------------
 
-          #header
-            = render :partial => "/shared/header"
-          -# the following phantom div should not be required, but needed to prevent #body encompassing #footer .. haml issue?
-          %div
-            #body.clearfix
-              = yield
-          #footer
-            = render :partial => "/shared/footer"
 
-        - else  # non-stretch
+%body
+  = site_bar
+  = render :partial => "/shared/ie6check" if request.env['HTTP_USER_AGENT'] =~ /MSIE/
+  
+  -# --------------------------------------------------------------------------
+  -# ****** vvvvvvvv GARDENIA STYLING vvvvvvv *********************************  
 
-          #body.clearfix
-            #header
-              = render :partial => "/shared/header"
+  #page_container
+    #page
+      
+      - if RefinerySetting.get(:gardenia_hf_stretch) # select stretch headers/footers?
+
+        %header#header
+          = render :partial => "/shared/header"
+        -# the following phantom div should not be required, but needed to prevent #body encompassing #footer .. haml issue?
+        %div
+          %section#body.clearfix
             = yield
-            #footer
-              = render :partial => "/shared/footer"
-        = auto_discovery_link_tag(:rss, news_items_url(:format => 'rss'))
-        
+        %footer#footer
+          = render :partial => "/shared/footer"
+
+      - else  # non-stretch *************************************************
+
+        #body.clearfix
+          %header#header
+            = render :partial => "/shared/header"
+          %section
+            = yield
+          %footer#footer
+            = render :partial => "/shared/footer"
+      = auto_discovery_link_tag(:rss, news_items_url(:format => 'rss'))
+      
+  -# ****** ^^^^^^^ GARDENIA STYLING ^^^^^^^ **********************************
+  -# --------------------------------------------------------------------------
