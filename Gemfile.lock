@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: git://github.com/dsaronin/refinerycms-blog
-  revision: 408394acfac2807eb322a6d751c9d978b902a2ae
+  revision: 9175c5f9a309277427982bc81f6869536f478b68
   branch: master
   specs:
     refinerycms-blog (1.6.2)
