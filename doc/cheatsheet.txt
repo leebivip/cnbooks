@@ -120,9 +120,13 @@ To start using Google Analytics on your site go into the “Settings” area and
 
 Note: this setting only appears in production. So you won’t see this setting in your development environment.
 
-TOOLS
+CONSOLE TOOLS: $ heroku console
 ==========================================
+(next two lines yield list of Refinery 0.9.9 page titles, custom titles)
+
 def plist(list,&block);list.each{|x| puts yield(x)};nil;end;
+plist( Page.all(:order => "id") ) {|p| "#{p.id.to_s}\t#{p.title}\t|\t#{p.custom_title}" }
+
 list = Page.all(:order => "id")
 plist(list){|x| "#{x.id.to_s}\t#{(x.parent_id.nil? ? '-' : x.parent_id.to_s)}\t#{x.created_at.to_s(:db)}\t#{(x.title.blank? ? '********' : x.title.to_s)}"}
 
@@ -139,25 +143,55 @@ MIGRATION TO REFINERYCMS 1.0.3
 ==================================================================
 >> make sure to heroku pgbackups:capture --expiry to backup production database
 
-1. git pull upstream master
-2. rvm setup
-   -- $ rvm install 1.9.2 (do only once)
-   -- $ rvm 1.9.2    (make sure before creating gemset
-   -- $ rvm alias create 1.9.2 ruby-1.9.2-p180
-   -- $ rvm gemset create gardenia-1.0
-3. check .rvmrc, make sure points to this new gemset
-4. rm Gemfile.lock
-5. gem update --system    (do only once)
-6. gem install bundler   (first time in new gemset)
-7. bundle install --without linux:test
-8. rm -rf tmp/index   # because acts_as_indexed has changed
-9. rake db:migrate
-10. rails server
+one-time setup
+----------------------------------------------------------
+rvm setup
+  $ rvm install 1.9.2
+  $ rvm 1.9.2                               (make sure before creating gemset)
+  $ rvm alias create 1.9.2 ruby-1.9.2-p180
+  $ rvm gemset create gardenia-1.0
+  $ gem update --system    
+  $ gem install bundler                     (first time in new gemset)
 
->>> going to heroku
->>> $ heroku pgbackups
+migration procedure: local first
+----------------------------------------------------------
+  $ cd <project>
+  $ git status                           (git add .; git commit ... if needed)
+  $ rm .rvmrc
 
-1. $ heroku stack:migrate bamboo-mri-1.9.2
-2. $ git push heroku
-3. $ heroku rake db:migrate
-4. $ heroku restart
+  $ git pull upstream master
+  $ git mergetool                         (resolve all conflicts)
+    -- if there were any image file conflicts:
+       cp  xxxxx.orig  xxxxxx
+       rm  xxxxx.orig
+    -- rm  public/stylesheets/application.css
+    -- Gemfile: comment in/out banner rotator as needed
+
+  $ cat .rvmrc                        (make sure: rvm 1.9.2@gardenia-1.0)
+  $ `cat .rvmrc`
+  $ rvm gemdir                        (make sure: rvm 1.9.2@gardenia-1.0)
+  $ rm Gemfile.lock
+
+  $ bundle install --without linux:test
+  $ rm -rf tmp/index                  (acts_as_indexed has changed)
+  $ rake db:migrate
+  $ rails server                      (validate app locally)
+  $ git status                        (make sure application.css changed)
+  $ git add .; git commit -a -m 'xxxx migration to 1.0.3'; git push origin master
+
+archive current custom titles using $ heroku console
+----------------------------------------------------------
+(next two lines yield list of Refinery 0.9.9 page titles, custom titles)
+
+>> def plist(list,&block);list.each{|x| puts yield(x)};nil;end;
+>> plist( Page.all(:order => "id") ) {|p| "#{p.id.to_s}\t#{p.title}\t|\t#{p.custom_title}" }
+
+migration procedure: heroku  
+(always verify successful completion of each step before proceeding to the next!)
+----------------------------------------------------------
+  $ heroku pgbackups                        (verify that current backup exists)
+  $ heroku stack:migrate bamboo-mri-1.9.2
+  $ git push heroku master
+  $ heroku rake db:migrate
+  $ heroku restart
+  (validate app.heroku via browser)
