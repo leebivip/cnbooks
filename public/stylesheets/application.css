@@ -346,11 +346,11 @@ ul.dropdown {
     color: #191970; }
   ul.dropdown a, ul.dropdown span {
     display: block;
-    padding: 5px 10px;
+    padding: 5px 8px;
     font-size: smaller; }
   ul.dropdown *.dir {
     /* POI */
-    padding: 5px 10px;
+    padding: 5px 8px;
     font-size: smaller; }
 
 .inquiries .field input {
