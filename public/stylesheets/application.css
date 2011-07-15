@@ -346,11 +346,11 @@ ul.dropdown {
     color: #191970; }
   ul.dropdown a, ul.dropdown span {
     display: block;
-    padding: 5px 8px;
+    padding: 5px 10px;
     font-size: smaller; }
   ul.dropdown *.dir {
     /* POI */
-    padding: 5px 8px;
+    padding: 5px 10px;
     font-size: smaller; }
 
 .inquiries .field input {
@@ -605,6 +605,12 @@ img.image-align-right {
 
 #body_content_left p {
   line-height: 1.6em; }
+#body_content_left ul {
+  margin-bottom: 1.6em; }
+#body_content_left li {
+  margin-left: 12px;
+  line-height: 1.4em;
+  list-style: inside; }
 
 #page_image_gallery ul#gallery, #page_image_gallery ul {
   margin: 0;
