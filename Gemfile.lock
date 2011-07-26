@@ -1,9 +1,9 @@
 GIT
   remote: git://github.com/dsaronin/banner-rotator.git
-  revision: a7e4b72a40a0f1397aae03063c6bd86745d3d3ca
+  revision: b3a3d7056c32acb7c3d197bef3e5faef7be1370c
   branch: master
   specs:
-    banner-rotator (0.2.3)
+    banner-rotator (0.2.4)
       refinerycms-page-images (~> 1.0.3)
 
 GIT
