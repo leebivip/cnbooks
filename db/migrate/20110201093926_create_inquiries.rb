@@ -6,8 +6,8 @@ class CreateInquiries < ActiveRecord::Migration
         t.string   "email"
         t.string   "phone"
         t.text     "message"
-        t.integer  "position"
-        t.boolean  "open",       :default => true
+#        t.integer  "position"
+#        t.boolean  "open",       :default => true
         t.datetime "created_at"
         t.datetime "updated_at"
         t.boolean  "spam",       :default => false
