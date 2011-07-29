@@ -1,4 +1,4 @@
-class CreateInquiries < ActiveRecord::Migration
+class CreateInquiriesBlogsNewsGalleries < ActiveRecord::Migration
   def self.up
     unless ::Inquiry.table_exists?
 
