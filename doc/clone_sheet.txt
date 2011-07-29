@@ -16,46 +16,68 @@ $  git clone --origin upstream git@github.com:AlexisMasters/gardenia.git <projec
 $  cd <project>
 $  git status
 $  git remote add origin git@github.com:AlexisMasters/<project>.git
-$  git push origin master
-#  now the repository has been cloned to local machine & github
 
->> Open Aptana, have it access the new project 
->> (you may have to delete its bogus project reference to <project>)
->> Make local adjustments to GemFile
-	# gem 'pg'
-	gem 'sqlite3-ruby', :require => 'sqlite3'
+$  git push origin master
+##  now the repository has been cloned to local machine & github
+
+>> Open gvim, have it access the new project; >> Make local adjustments to GemFile
+
+>> comment to NOT use banner-rotator (if not using banner rotator: do not buy license) 
+  # gem banner-rotator dsaronin version 
+
 >> fix config/database.yml
 	development:
 	  adapter: sqlite3
 	  database: db/development.sqlite3
 	  pool: 5
 	  timeout: 5000
+	  
 >> delete Gemfile.lock from local project
+  $ rm Gemfile.lock
 
-$  bundle install --without linux
-$  rake db:setup
-$  git add .; git commit -a -m 'ready to init heroku'; git push origin master
+** make sure .rvmrc exists for the project:
+  $ cat .rvmrc
+
+** if it doesn't, copy from gardenia directory
+  $ cp ../gardenia/.rvmrc ./
+
+** HOW TO VERIFY GEM PATHS, RVM SELECTIONS: 1.9.2@gardenia-1.0
+  $ gem env
+  $ rvm gemdir
+
+$  bundle install --without linux:test
+
+** the following 4 steps MUST BE IN CORRECT ORDER AND CANNOT BE RE-RUN
+** DO NOT RUN TWICE
+
+$  rake db:create
+$  rake db:core_migrate
+$  rake db:migrate
+$  rake db:seed
+  
+>>> check out in browser; if ok, THEN proceed to set up new project on heroku
 $  rails server
 
-#  if ok, now let's set up new project on heroku
+$  git add .; git commit -a -m 'ready to init heroku'; git push origin master
 
-$  heroku create <project>
+$  heroku create <project>  --stack bamboo-mri-1.9.2
+
+$  heroku addons:add sendgrid:free
+$  heroku addons:add custom_domains:basic
+$  heroku addons:add releases:basic
+$  heroku addons:add pgbackups:basic
+$  heroku addons:add logging:basic
+$  heroku addons:add zerigo_dns:basic
+
+$  heroku config:add BUNDLE_WITHOUT="development:test:linux:mac"
+$  heroku config:add S3_BUCKET=nfe_assets S3_KEY=AKIAJLXVHKBPV4JMI5KA S3_SECRET=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
+
 $  git push heroku master
-$  heroku rake db:setup
+
+$  heroku rake db:core_migrate
+$  heroku rake db:migrate
+$  heroku rake db:seed
+  
 $  heroku restart
->> @safari: http://<project>.heroku.com
 
-HEROKU CONFIG VARS
-============================================
-$ $ heroku config:add BUNDLE_WITHOUT="development:test:linux:mac"
-
-HEROKU ADD-ONS
-=============================================
-$ heroku addons:add memcache
-$ heroku addons:add sendgrid:free
-$ heroku addons:add custom_domains:basic
-$ heroku addons:add releases:basic
-$ heroku addons:add pgbackups:basic
-$ heroku addons:add logging:basic
-$ heroku addons:add zerigo_dns:basic  
-
+>> now check out http://<project>.heroku.com
