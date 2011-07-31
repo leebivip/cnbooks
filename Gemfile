@@ -10,7 +10,7 @@ group :linux do
 end
 
 group :mac do
-  gem 'sqlite3-ruby', :require => 'sqlite3'
+  gem 'sqlite3-ruby', ">= 1.3.3", :require => 'sqlite3'
 end
 
 
