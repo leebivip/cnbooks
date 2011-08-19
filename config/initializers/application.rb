@@ -19,7 +19,7 @@
   ].each{|setting,default| RefinerySetting.set(setting,default) if RefinerySetting.get(setting).nil?}
   
   parts_list = RefinerySetting.get(:default_page_parts) || []
-  ['Recent Posts', 'Recent News'].each do |parts_name|
+  ['Body', 'Side Body', 'Recent Posts', 'Recent News'].each do |parts_name|
     unless parts_list.include?(parts_name)
       parts_list << parts_name
     end
