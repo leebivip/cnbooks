@@ -19,9 +19,9 @@ class TranslatePagePlugin < ActiveRecord::Migration
     ::Page::Translation.reset_column_information
     ::Slug.reset_column_information
 
-    if (seed_file = Rails.root.join('db', 'seeds', 'pages.rb')).file?
-      load seed_file.to_s unless Page.where(:link_url => '/').any?
-    end
+    #if (seed_file = Rails.root.join('db', 'seeds', 'pages.rb')).file?
+    #  load seed_file.to_s unless Page.where(:link_url => '/').any?
+    #end
 
     Slug.update_all(:locale => ::I18n.locale)
   end
