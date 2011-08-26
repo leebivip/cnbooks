@@ -44,7 +44,7 @@ module ApplicationHelper
       
     end  # if
 
-    return ( section[:id] ||= section[:yield].to_s.downcase )  # dom_id
+    return ( section[:id] ||= section[:yield].to_s.downcase.gsub(/\s+/,"_") )  # dom_id
   end
 # -----------------------------------------------------------------------------  
 # prepare_content_page -- replaces *ALL* the erb/haml code on shared/content_page
