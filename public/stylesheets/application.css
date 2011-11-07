@@ -612,6 +612,13 @@ img.image-align-right {
   line-height: 1.6em;
   list-style: inside; }
 
+#blockquote2 {
+  font-family: Georgia, Times, serif;
+  font-style: italic;
+  width: 500px;
+  margin: 0 auto;
+  line-height: 1.4; }
+
 #page_image_gallery ul#gallery, #page_image_gallery ul {
   margin: 0;
   padding: 0; }
