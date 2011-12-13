@@ -19,7 +19,7 @@
                   = link_to( image_tag(image.thumbnail("100x100#c").url) , image.thumbnail( @_banner_nominal ).url)
                   
   - else
-    &nbsp;
+    = link_to( raw( image_tag( 'spacer.png', {:alt => 'return to home page'} ) ), "/", {:title => 'return to home page'} )
 #header_content
   - if RefinerySetting.get(:gardenia_nav_search)  # comes first because float right
     -# nav_search_box
