@@ -58,37 +58,39 @@ module ApplicationHelper
   def prepare_content_page(show_empty_sections, remove_automatic_sections , hide_sections)
   
     need_fallback = (!show_empty_sections and !remove_automatic_sections)
+    empty_fill = ( RefinerySetting.get(:gardenia_parts_skip_empty) ? nil : "&nbsp;" )
+
+    main_part = Page.default_parts.first
+    sidebar_part = Page.default_parts.second
     
+    # ***************************************************************************
+    #   PART A --  BASIC PREPARATION of PAGE SECTIONS
+    # ***************************************************************************
+      # start off by defining the default sections and fallback content for each
+    # since sidebar is special, its content cannot be nil (for main loop in PART B
+    # to work correctly)
     @sections = [ 
-        {:yield => :body_content_right, :fallback => (@page.present? ? @page.content_for(Page.default_parts.second.to_sym) : nil)},
+        {:yield => :body_content_right, :fallback => (@page.present? ? @page.content_for(sidebar_part.to_sym) : nil )},
         {:yield => :body_content_title, :fallback => page_title, :id => 'body_content_page_title', :title => true},
-        {:yield => :body_content_left, :fallback => (@page.present? ? @page.content_for(Page.default_parts.first.to_sym) : nil)},
+        {:yield => :body_content_left, :fallback => (@page.present? ? @page.content_for(main_part.to_sym) : nil )},
       ]
     
-    # if there is no title, then the order of sections presented to browser must reverse, otherwise
-    # things won't float correctly .. yeah, I know this repetitive code looks like a kludge below .. maybe clean up someday?
-    
-#    if content_for(:body_content_title).blank? || RefinerySetting.get(:gardenia_disable_repeat_title)
-#      @sections.concat [ 
-#        {:yield => :body_content_left, :fallback => (@page.present? ? @page[Page.default_parts.first.to_sym] : nil)},
-#        {:yield => :body_content_right, :fallback => (@page.present? ? @page[Page.default_parts.second.to_sym] : nil)},
-#      ]
-#    else
-#      @sections.concat [ 
-#        {:yield => :body_content_right, :fallback => (@page.present? ? @page[Page.default_parts.second.to_sym] : nil)},
-#        {:yield => :body_content_title, :fallback => page_title, :id => 'body_content_page_title', :title => true},
-#        {:yield => :body_content_left, :fallback => (@page.present? ? @page[Page.default_parts.first.to_sym] : nil)},
-#      ]
-#    end
-  
+      # remove any sections designated as hidden
     @sections.delete_if{ |section| hide_sections.include?( section[:yield] ) }
     
-    if @page.present? && Page.default_parts.size > 2  # need any sidebar boxes?
+      # need any default sidebar boxes?; populate these too
+    if @page.present? && !@page.parts.empty?
       
-      sidebar_sections = Page.default_parts[2,Page.default_parts.size - 2].inject([]) do |list, part|
-        list << {:yield => part.to_sym, :fallback => @page.content_for(part.to_sym) }
+      sidebar_sections = @page.parts.inject([]) do |list, page_part|
+        part = page_part.title
+        if part == main_part || part == sidebar_part  # part already handled
+          list
+        else
+          list << {:yield => part.to_sym, :fallback => @page.content_for(part.to_sym) }
+        end
       end  # do each page part
         
+        # remove any sections designated as hidden
       sidebar_sections.reject{ |section| hide_sections.include?( section[:yield] ) }
       
     else
@@ -96,14 +98,18 @@ module ApplicationHelper
       sidebar_sections = []   # no further sidebar sections
           
     end  # if..else for sidebars
-    
+
+    # ***************************************************************************
+    #   PART B --  PER SECTION CONTENT POPULATION
+    # ***************************************************************************
     css = []
   
     @sections.each do |section|
 
       dom_id = prep_dom_section(section, need_fallback )
       
-      unless section[:html].blank?
+         # sidebar part always is handled
+      if  section[:yield] == :body_content_right || !section[:html].blank?  
       # see application_helper.rb for select_outer_div and choose_body_floats
     
         if section[:title]
@@ -113,8 +119,12 @@ module ApplicationHelper
           
             # if this is the sidebar area, then also insert subsidiary boxes to sidebar
           if section[:yield] == :body_content_right
+
             sidebar_sections.each do |sub_section|
+              
               sub_dom_id = prep_dom_section(sub_section, need_fallback )
+              sub_section[:html] = empty_fill if sub_section[:html].blank?
+
               unless sub_section[:html].blank?
                 section[:html] << "<div class='sidebar_box clearfix' id='#{sub_dom_id}'>#{sub_section[:html]} </div> "
               end  # sub_section unless

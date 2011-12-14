@@ -3,4 +3,4 @@ require File.expand_path('../application', __FILE__)
 
 # Initialize the rails application
 Gardenia::Application.initialize!
-RefinerySetting.set(:gardenia_version,'0.4-13') if RefinerySetting.table_exists?
+RefinerySetting.set(:gardenia_version,'0.5-0') if RefinerySetting.table_exists?
