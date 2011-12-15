@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.9'
+gem 'rails', '3.0.10'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -40,7 +40,7 @@ end
 # *****************************************************************************
 
 # Specify the Refinery CMS core:
-gem 'refinerycms',              '~> 1.0.3'
+gem 'refinerycms',              '~> 1.0.9'
 # gem 'refinerycms-generators'
 
 
