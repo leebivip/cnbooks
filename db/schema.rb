@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110706000356) do
+ActiveRecord::Schema.define(:version => 20120109012530) do
 
   create_table "blog_categories", :force => true do |t|
     t.string   "title"
@@ -53,6 +53,24 @@ ActiveRecord::Schema.define(:version => 20110706000356) do
   end
 
   add_index "blog_posts", ["id"], :name => "index_blog_posts_on_id"
+
+  create_table "campaigns", :force => true do |t|
+    t.string   "subject"
+    t.string   "mailchimp_campaign_id"
+    t.string   "mailchimp_list_id"
+    t.string   "mailchimp_template_id"
+    t.string   "from_email"
+    t.string   "from_name"
+    t.string   "to_name"
+    t.text     "body"
+    t.datetime "sent_at"
+    t.datetime "scheduled_at"
+    t.boolean  "auto_tweet",            :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "campaigns", ["id"], :name => "index_campaigns_on_id"
 
   create_table "galleries", :force => true do |t|
     t.string   "name"

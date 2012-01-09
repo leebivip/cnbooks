@@ -144,6 +144,7 @@ GEM
       rest-client (~> 1.6.1)
       rubyzip
       term-ansicolor (~> 1.0.5)
+    hominid (3.0.2)
     i18n (0.5.0)
     json (1.6.1)
     json_pure (1.6.1)
@@ -232,6 +233,8 @@ GEM
       refinerycms-core (= 1.0.4)
     refinerycms-inquiries (1.0.1)
       filters_spam (~> 0.2)
+    refinerycms-mailchimp (0.0.2)
+      hominid (~> 3.0)
     refinerycms-page-images (1.0.4)
       refinerycms-pages (>= 0.9.9.1)
     refinerycms-pages (1.0.4)
@@ -334,6 +337,7 @@ DEPENDENCIES
   refinerycms-galleries!
   refinerycms-i18n (~> 1.0.0)
   refinerycms-inquiries (~> 1.0)
+  refinerycms-mailchimp
   refinerycms-news!
   refinerycms-page-images
   rspec-rails
