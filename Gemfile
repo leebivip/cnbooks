@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '>=3.0.9'
+gem 'rails', '3.0.10'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -40,8 +40,7 @@ end
 # *****************************************************************************
 
 # Specify the Refinery CMS core:
-# gem 'refinerycms',              '~> 1.0.3'
-gem 'refinerycms', :git => 'git://github.com/resolve/refinerycms.git', :branch => '1-0-stable'
+gem 'refinerycms',              '~> 1.0.9'
 # gem 'refinerycms-generators'
 
 
@@ -104,6 +103,7 @@ gem 'refinerycms-page-images'
 gem 'refinerycms-news', :git => 'git://github.com/dsaronin/refinerycms-news', :branch => 'master'
 gem 'refinerycms-blog', :git => 'git://github.com/dsaronin/refinerycms-blog', :branch => 'master'
 gem 'refinerycms-galleries', :require => 'galleries', :git => 'git://github.com/dsaronin/refinerycms-galleries', :branch => 'master'
+gem 'refinerycms-mailchimp'
 
 # gem 'banner-rotator', :git => 'git@github.com:AlexisMasters/banner-rotator.git', :branch => 'master'
 gem 'banner-rotator', :git => 'git://github.com/dsaronin/banner-rotator.git', :branch => 'master'
