@@ -10,6 +10,9 @@ class SitemapController < ::Refinery::FastController
 
     respond_to do |format|
 
+      format.html do
+      end  # html format
+
       format.xml do
         headers['Content-Type'] = 'application/xml'
       end  # xml format
