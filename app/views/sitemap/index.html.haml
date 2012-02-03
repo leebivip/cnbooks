@@ -1,0 +1,4 @@
+#sitemap
+  - if @pages.any?
+    %ul
+      = render :partial => "page", :collection => @pages.select{|p| p.parent_id.nil?}
