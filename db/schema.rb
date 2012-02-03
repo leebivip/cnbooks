@@ -128,6 +128,8 @@ ActiveRecord::Schema.define(:version => 20120109012530) do
     t.boolean  "spam",       :default => false
   end
 
+  add_index "inquiries", ["id"], :name => "index_inquiries_on_id"
+
   create_table "inquiry_settings", :force => true do |t|
     t.string   "name"
     t.text     "value"
@@ -139,9 +141,9 @@ ActiveRecord::Schema.define(:version => 20120109012530) do
   create_table "news_item_translations", :force => true do |t|
     t.integer  "news_item_id"
     t.string   "locale"
-    t.string   "external_url"
-    t.text     "body"
     t.string   "title"
+    t.text     "body"
+    t.string   "external_url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -185,30 +187,25 @@ ActiveRecord::Schema.define(:version => 20120109012530) do
     t.integer  "page_id"
     t.string   "locale"
     t.string   "title"
+    t.string   "custom_title"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "custom_title"
   end
 
   add_index "page_translations", ["page_id"], :name => "index_page_translations_on_page_id"
 
   create_table "pages", :force => true do |t|
-    t.string   "title"
     t.integer  "parent_id"
     t.integer  "position"
     t.string   "path"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "meta_keywords"
-    t.text     "meta_description"
     t.boolean  "show_in_menu",        :default => true
     t.string   "link_url"
     t.string   "menu_match"
     t.boolean  "deletable",           :default => true
-    t.string   "custom_title"
     t.string   "custom_title_type",   :default => "none"
     t.boolean  "draft",               :default => false
-    t.string   "browser_title"
     t.boolean  "skip_to_first_child", :default => false
     t.integer  "lft"
     t.integer  "rgt"
@@ -254,6 +251,9 @@ ActiveRecord::Schema.define(:version => 20120109012530) do
     t.integer "role_id"
   end
 
+  add_index "roles_users", ["role_id", "user_id"], :name => "index_roles_users_on_role_id_and_user_id"
+  add_index "roles_users", ["user_id", "role_id"], :name => "index_roles_users_on_user_id_and_role_id"
+
   create_table "seo_meta", :force => true do |t|
     t.integer  "seo_meta_id"
     t.string   "seo_meta_type"
@@ -274,8 +274,10 @@ ActiveRecord::Schema.define(:version => 20120109012530) do
     t.string   "sluggable_type", :limit => 40
     t.string   "scope",          :limit => 40
     t.datetime "created_at"
+    t.string   "locale"
   end
 
+  add_index "slugs", ["locale"], :name => "index_slugs_on_locale"
   add_index "slugs", ["name", "sluggable_type", "scope", "sequence"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
 
@@ -306,14 +308,21 @@ ActiveRecord::Schema.define(:version => 20120109012530) do
   add_index "user_plugins", ["user_id", "name"], :name => "index_unique_user_plugins", :unique => true
 
   create_table "users", :force => true do |t|
-    t.string   "login",             :null => false
-    t.string   "email",             :null => false
-    t.string   "crypted_password",  :null => false
-    t.string   "password_salt",     :null => false
+    t.string   "username",             :null => false
+    t.string   "email",                :null => false
+    t.string   "encrypted_password",   :null => false
     t.string   "persistence_token"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "perishable_token"
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.integer  "sign_in_count"
+    t.string   "remember_token"
+    t.string   "reset_password_token"
+    t.datetime "remember_created_at"
   end
 
   add_index "users", ["id"], :name => "index_users_on_id"
