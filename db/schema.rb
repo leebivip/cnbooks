@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -127,6 +128,8 @@ ActiveRecord::Schema.define(:version => 20120109012530) do
     t.boolean  "spam",       :default => false
   end
 
+  add_index "inquiries", ["id"], :name => "index_inquiries_on_id"
+
   create_table "inquiry_settings", :force => true do |t|
     t.string   "name"
     t.text     "value"
@@ -138,9 +141,9 @@ ActiveRecord::Schema.define(:version => 20120109012530) do
   create_table "news_item_translations", :force => true do |t|
     t.integer  "news_item_id"
     t.string   "locale"
-    t.string   "external_url"
-    t.text     "body"
     t.string   "title"
+    t.text     "body"
+    t.string   "external_url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -184,9 +187,9 @@ ActiveRecord::Schema.define(:version => 20120109012530) do
     t.integer  "page_id"
     t.string   "locale"
     t.string   "title"
+    t.string   "custom_title"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "custom_title"
   end
 
   add_index "page_translations", ["page_id"], :name => "index_page_translations_on_page_id"
@@ -275,7 +278,7 @@ ActiveRecord::Schema.define(:version => 20120109012530) do
   end
 
   add_index "slugs", ["locale"], :name => "index_slugs_on_locale"
-  add_index "slugs", ["name", "sluggable_type", "scope", "sequence"], :name => "index_slugs_on_name_and_sluggable_type_and_scope_and_sequence", :unique => true
+  add_index "slugs", ["name", "sluggable_type", "scope", "sequence"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
 
   create_table "taggings", :force => true do |t|
