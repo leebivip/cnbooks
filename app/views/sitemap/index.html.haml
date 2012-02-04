@@ -1,4 +1,20 @@
+- content_for :after_javascript_libraries do
+  = javascript_include_tag 'jquery.colorbox-min.js'
+  = javascript_include_tag 'jquery.quovolver.js'
+  - if @need_banner
+    = javascript_include_tag 'jquery.wt-rotator.min.js'
+
+- content_for :stylesheets do
+  %link{:href => "/favicon.ico", :rel => "shortcut icon"}/
+  = render(:partial => '/shared/html5_for_ie.js').html_safe if request.env['HTTP_USER_AGENT'] =~ /MSIE/
+  = stylesheet_link_tag "application"
+  = stylesheet_link_tag 'colorbox.css', 'Quovolver.style.css'
+  - if @need_banner
+    = stylesheet_link_tag 'wt-rotator'
+
 #sitemap
+  %h1 Sitemap
   - if @pages.any?
     %ul
       = render :partial => "page", :collection => @pages.select{|p| p.parent_id.nil?}
+  %h3 &nbsp;

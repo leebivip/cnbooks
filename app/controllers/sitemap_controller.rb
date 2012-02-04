@@ -1,7 +1,9 @@
-class SitemapController < ::Refinery::FastController
-  layout nil
+class SitemapController < ApplicationController   #::Refinery::FastController
+
+  # layout nil
 
   def index
+    @pages = Page.where(:parent_id => nil).all
     @locales = if ::Refinery.i18n_enabled?
                  ::Refinery::I18n.frontend_locales
                else
@@ -11,6 +13,7 @@ class SitemapController < ::Refinery::FastController
     respond_to do |format|
 
       format.html do
+        # render :layout => 'application'
       end  # html format
 
       format.xml do

@@ -1,12 +1,7 @@
-%li
-  %span.title
-    = page.title_with_meta.html_safe
-    - if ::Refinery.i18n_enabled? and ::Refinery::I18n.frontend_locales.many? and
-    - (locales = page.translations.map(&:locale)).present?
-      %span.preview
-        - ([page.translation.try(:locale)] | locales).each do |locale|
-          = link_to 'wild blue', edit_admin_page_path(page, :switch_locale => locale), :class => 'locale'                                                  |
-          = link_to 'wild blue', edit_admin_page_path(page), :title => t('edit', :scope => 'admin.pages') 
- 
-%ul.nested
-  = render :partial => 'page', :collection => page.children
+- unless page.draft?
+  %li
+    %span.title
+      = link_to( page.title.html_safe, page )
+   
+  %ul.nested
+    = render :partial => 'page', :collection => page.children
