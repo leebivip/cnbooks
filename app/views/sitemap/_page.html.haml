@@ -1,0 +1,7 @@
+- unless page.draft?
+  %li
+    %span.title
+      = link_to( page.title.html_safe, page )
+   
+  %ul.nested
+    = render :partial => 'page', :collection => page.children

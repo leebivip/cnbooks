@@ -3,6 +3,9 @@ class TranslateCustomTitleOnPages < ActiveRecord::Migration
     unless ::Page.translation_class.column_names.map(&:to_sym).include?(:custom_title)
       add_column ::Page.translation_class.table_name, :custom_title, :string
 
+      ::Page.reset_column_information
+      ::Page.translation_class.reset_column_information
+
       say_with_time("Re-save custom_title") do
         ::Page.all.each do |page|
           say "updating custom_title field for page##{page.id} using: #{page.untranslated_attributes['custom_title'] || '**nil**'}"
