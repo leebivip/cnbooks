@@ -116,6 +116,8 @@ body {
 #masthead {
   height: 225px;
   background: white url("../images/masthead.png") no-repeat; }
+  #masthead a:hover {
+    background: transparent; }
 
 #nav_search_box {
   float: right;
@@ -612,3 +614,12 @@ img.image-align-right {
 #page_image_gallery #gallery {
   margin: 0;
   padding: 0; }
+
+#sitemap {
+  padding: 1em; }
+  #sitemap ul {
+    margin-left: 1em; }
+  #sitemap li {
+    margin-left: 1em;
+    line-height: 1.1em;
+    list-style: none; }

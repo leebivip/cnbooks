@@ -25,7 +25,12 @@ $  git push origin master
 >> comment to NOT use banner-rotator (if not using banner rotator: do not buy license) 
   # gem banner-rotator dsaronin version 
 
->> fix config/database.yml
+>> LINUX: fix config/database.yml
+   $ cp ../gardenia/config/database.yml config/
+   $ gvim -f config/database.yml &
+   :%s/gardenia/<project>/g
+
+>> MAC: fix config/database.yml
 	development:
 	  adapter: sqlite3
 	  database: db/development.sqlite3
@@ -45,7 +50,7 @@ $  git push origin master
   $ gem env
   $ rvm gemdir
 
-$  bundle install --without linux:test
+$  bundle install --without mac:test
 
 ** the following 4 steps MUST BE IN CORRECT ORDER AND CANNOT BE RE-RUN
 ** DO NOT RUN TWICE
