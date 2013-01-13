@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.10'
+gem 'rails', '3.0.19'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -79,7 +79,6 @@ group :test do
 end
 
 group :development do
-  gem 'heroku'
   gem 'mongrel', "1.2.0.pre2"
   
   # RSpec
