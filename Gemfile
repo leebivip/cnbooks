@@ -1,9 +1,13 @@
 source 'http://rubygems.org'
+ruby "1.9.3"
 
 gem 'rails', '3.0.20'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
+
+  gem  'thin'
+  gem  'rdoc'
 
 group :linux do
   gem 'pg'
@@ -79,7 +83,6 @@ group :test do
 end
 
 group :development do
-  gem 'mongrel', "1.2.0.pre2"
   
   # RSpec
   gem 'rspec-rails'
